@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/pages/index'
-import search from  '@/pages/search'
+import searchPage from '@/pages/searchPage'
 
 Vue.use(Router)
 
@@ -12,9 +12,9 @@ export default new Router({
       name: 'index',
       component: Index
     },{
-      path:'/search',
-      name:'search',
-      component:search
+      path: '/search',
+      name: 'searchPage',
+      component: searchPage
     }
   ]
 })

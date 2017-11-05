@@ -1,7 +1,7 @@
 <template>
   <section id="header">
     <router-link to="/search" class="search">
-      <input type="search" placeholder="搜索宝贝/鱼塘/用户">
+      <input type="search">
     </router-link>
   </section>
 </template>

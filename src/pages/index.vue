@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <Header></Header>
+    <Theader></Theader>
       <banner></banner>
     <GoodList></GoodList>
   </div>
@@ -11,13 +11,13 @@
 <script type="text/ecmascript-6">
 import banner from '@/components/banner'
 import GoodList from '@/components/GoodList'
-import Header from '@/components/header'
+import Theader from '@/components/Theader'
     export default {
         name:'index',
         components:{
             banner,
           GoodList,
-          Header
+          Theader
 
         },
         data() {
