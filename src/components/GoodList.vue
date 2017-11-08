@@ -1,6 +1,7 @@
 <template>
   <div class="root">
     <ul>
+      <router-link to="/goodsdetail">
       <li class="items" v-for="item in dataArr"><a href="#">
         <div class="similar-product">
           <div class="similar-pose"><img :src="item.img" alt=""></div>
@@ -14,6 +15,7 @@
           <p class="praise_info"><span class="praise-num"><span>好评率{{item.praise}}</span></span><span class="guess-button">领优惠券</span></p>
         </div>
       </a></li>
+    </router-link>
     </ul>
   </div>
 </template>
