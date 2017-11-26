@@ -1,6 +1,6 @@
 <template>
 <div class="wrap">
-		<div class="head">			
+		<div class="head">
 			<div class="searchbox">
 				<input type="search" autofocus @keypress.enter="search(keywords)" v-model="keywords" placeholder="尽情搜索">
 			</div>
@@ -12,14 +12,19 @@
 			<div class="hotHea"><span>热门搜索</span></div>
 			<div class="s-mi-hq" v-for="item in hotword"><span class="s-mi-cont-key">{{item}}</span></div>
 		</div>
+<tabbar></tabbar>
 	</div>
 </template>
 
 <script>
 import {Toast} from 'mint-ui'
+import tabbar from '@/components/Tabbar'
 export default {
 
   name: 'search',
+  components:{
+    tabbar
+  },
 
   data () {
 		return {
@@ -41,13 +46,13 @@ export default {
 
 				// }).catch((error) => {
 				// 	console.log(error)
-				// })	
+				// })
 			}else{
 				Toast('请输入')
 				return
 			}
-						
-	}	
+
+	}
 }
 };
 </script>
@@ -97,7 +102,7 @@ export default {
 				color:#ffffff;
 				border: none;
 				outline: none;
-				background:#FF1845; 
+				background:#FF1845;
 				font-size: 1rem;
 				line-height: 1.2;
 			}

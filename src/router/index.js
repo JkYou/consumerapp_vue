@@ -14,10 +14,11 @@ export default new Router({
       component: Index
     },{
       path: '/search',
-      name: 'searchPage',
+      name: 'search',
       component: searchPage
     },{
       path:'/goodsdetail',
+      name: 'goodsdetail',
       component:goodsDetail
     }
   ]

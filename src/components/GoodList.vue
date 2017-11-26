@@ -8,7 +8,7 @@
           <span class="product_text">{{item.content}}</span>
           <p class="product_info">
             <span class="similar-product-price">¥&nbsp;
-              <span class="big-price">{{item.price}}</span><span class="small-price">.00</span> 
+              <span class="big-price">{{item.price}}</span><span class="small-price">.00</span>
             </span>
             <span class="old-price">¥&nbsp;{{item.oldprice}}</span>
           </p>
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import { Loadmore } from 'mint-ui';
   export default {
     name: 'GoodList',
     data () {
@@ -39,6 +38,14 @@ import { Loadmore } from 'mint-ui';
                 price:'3699',oldprice:'999',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
                 content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
                 price:'3699',oldprice:'677',praise:'50%'}]
+      }
+    },
+    methods:{
+      loadMore() {
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+        }, 2500);
       }
     }
   }

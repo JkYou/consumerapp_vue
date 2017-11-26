@@ -8,26 +8,28 @@
 </template>
 
 <script>
+  import{mapMutations} from 'vuex';
 export default {
-  name: 'app'
+  name: 'app',
+  created() {
+    this.INIT_STATE();
+  },
+  methods: {
+    ...mapMutations([
+      'INIT_STATE'
+    ])
+  }
 }
 </script>
 
 <style lang="less">
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  ul,li{
-    list-style: none;
-  }
-  a{
-    text-decoration: none;
-  }
   #app{
-    overflow: hidden;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;overflow-x: hidden;
   .router-link-active {
-    color:#52D3AA;
+    color:#FF1845;
   }
   }
 </style>

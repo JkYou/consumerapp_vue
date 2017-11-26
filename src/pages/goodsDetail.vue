@@ -1,7 +1,7 @@
 <template>
 	<div id="root">
 		<mt-swipe :auto="9000" class="swipe">
-			<mt-swipe-item v-for="data in dataArr.imgArr">
+			<mt-swipe-item v-for="data in dataArr.imgArr" :key="index">
 				<img :src="data" alt="">
 			</mt-swipe-item>
 		</mt-swipe>
@@ -13,13 +13,18 @@
 			<span class="total">月销量：{{dataArr.total}}</span>
 			<span class="adress">{{dataArr.adress}}</span></div>
 		</div>
+    <tabbar></tabbar>
 	</div>
 </template>
 
 <script>
+  import tabbar from '@/components/Tabbar'
 export default {
 
   name: 'goodsDetail',
+  components:{
+      tabbar
+  },
 
   data () {
     return {
@@ -110,7 +115,6 @@ export default {
 			    span:last-child{
 			    	text-align: right;
 			    }
-
 		}
 
 	}
