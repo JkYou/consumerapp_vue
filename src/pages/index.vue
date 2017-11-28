@@ -3,6 +3,7 @@
   <div>
     <Theader></Theader>
       <banner></banner>
+      <topbar></topbar>
     <GoodList></GoodList>
     <proto></proto>
     <tabbar></tabbar>
@@ -17,6 +18,7 @@ import Theader from '@/components/Theader'
 import proto from '@/components/proto'
 import car from '@/components/car'
 import tabbar from '@/components/Tabbar'
+import topbar from '@/components/Topbar'
 
     export default {
         name:'index',
@@ -25,7 +27,8 @@ import tabbar from '@/components/Tabbar'
           GoodList,
           Theader,
           proto,
-          tabbar
+          tabbar,
+          topbar
 
         },
         data() {
