@@ -1,52 +1,78 @@
 <template>
-  <div class="root">
-    <ul>
-      <router-link to="/goodsdetail">
-      <li class="items" v-for="item in dataArr"><a href="#">
-        <div class="similar-product">
-          <div class="similar-pose"><img :src="item.img" alt=""></div>
-          <span class="product_text">{{item.content}}</span>
-          <p class="product_info">
-            <span class="similar-product-price">¥&nbsp;
-              <span class="big-price">{{item.price}}</span><span class="small-price">.00</span>
-            </span>
-            <span class="old-price">¥&nbsp;{{item.oldprice}}</span>
-          </p>
-          <p class="praise_info"><span class="praise-num"><span>好评率{{item.praise}}</span></span><span class="guess-button">领优惠券</span></p>
-        </div>
-      </a></li>
-    </router-link>
-    </ul>
+  <div class="root" ref="root">
+    <div>
+      <div class="top-tip" v-show="refresh">下拉刷新</div>
+      <ul class="content">
+        <router-link to="/goodsdetail">
+        <li class="items" v-for="item in dataArr"><a href="#">
+          <div class="similar-product">
+            <div class="similar-pose"><img :src="item.img" alt=""></div>
+            <span class="product_text">{{item.content}}</span>
+            <p class="product_info">
+              <span class="similar-product-price">¥&nbsp;
+                <span class="big-price">{{item.price}}</span><span class="small-price">.00</span>
+              </span>
+              <span class="old-price">¥&nbsp;{{item.oldprice}}</span>
+            </p>
+            <p class="praise_info"><span class="praise-num"><span>好评率{{item.praise}}</span></span><span class="guess-button">领优惠券</span></p>
+          </div>
+        </a></li>
+      </router-link>
+      </ul>
+      <div class="bottom-tip" v-show="moershow" >加载更多</div>
+      </div>
   </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
   export default {
     name: 'GoodList',
     data () {
       return {
         msg: '商品列表',
+        refresh:false,
+        moershow:false,
         dataArr:[{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
                 content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
                 price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
                 content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6999',praise:'100%'},
-                {img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
                 content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'1000',praise:'90%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
                 content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'999',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
                 content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'677',praise:'50%'}]
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
+                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
+                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
+                price:'3699',oldprice:'6777',praise:'50%'}]
       }
     },
+    mounted(){
+      this.$nextTick(() => {
+        this.scroll=new BScroll(this.$refs.root,{
+          //api参数
+          click:true,
+          scrollY: true,
+          eventPassthrough: 'vertical'
+        })
+      })
+    },
     methods:{
-      loadMore() {
-        this.loading = true;
-        setTimeout(() => {
-          this.loading = false;
-        }, 2500);
-      }
     }
   }
 </script>
@@ -56,6 +82,16 @@
   .root{
     width: 100%;
     margin-top: .5rem;
+    height: 800px;
+    overflow-y:hidden;
+    .top-tip {
+      margin-top: 0 auto;
+      text-align: center;
+    }
+    .bottom-tip{
+      margin-top: 0 auto;
+      text-align: center;
+    }
     ul{
       width: 100%;
       overflow: hidden;

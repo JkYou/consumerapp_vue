@@ -1,13 +1,14 @@
 <template>
 	<div class="wrapper" ref="wrapper">
 	  <ul class="content"> 
-	  	<li>滚动</li>
-	  	<li>滚动</li>
-	  	<li>滚动</li>
-	  	<li>滚动</li>
-	  	<li>滚动</li>
-	  	<li>滚动</li>
-	  	<li>xiha</li>
+	  	<li>男装</li>
+	  	<li>女装</li>
+	  	<li>家居</li>
+	  	<li>日用</li>
+	  	<li>厨房</li>
+	  	<li>零食</li>
+	  	<li>办公</li>
+	  	<li>文具</li>
 	  </ul>
     </div>
 </template>
@@ -32,7 +33,7 @@ export default {
             eventPassthrough: 'vertical'
 		})
 	})
-}
+  }
 
 }
 </script>
@@ -43,7 +44,7 @@ export default {
 	margin: 0 auto;
 	z-index: 2;
 	background: #ed424b;
-	overflow-x: hidden;/**/
+	overflow-x: hidden;
 	.content{
 		height:40px;
 		width: 450px;
@@ -55,11 +56,7 @@ export default {
 			height:40px;
 			width: 50px;
 			margin: 0 2px;
-			padding: 2px;
 			font: 14px/40px a;
-			&:active{
-				background: #ed424b;
-			}
 		}
 	}
 }

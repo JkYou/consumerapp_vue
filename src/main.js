@@ -8,7 +8,6 @@ import mint from '@/library/mint'
 import store from './store/'
 import FastClick from 'fastclick'
 
-
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
