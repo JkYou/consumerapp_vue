@@ -5,7 +5,7 @@
     <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
       <banner></banner>
       <!-- <topbar></topbar> -->
-        <GoodList></GoodList>
+        <GoodList :productList="indexProduct.tbk_item_get_response.results"></GoodList>
     <proto></proto>
     </mt-loadmore>
     <tabbar></tabbar>
@@ -28,16 +28,18 @@ import { Loadmore } from 'mint-ui';
         name:'index',
         components:{
             banner,
-          GoodList,
-          Theader,
-          proto,
-          tabbar,
-          topbar
+            GoodList,
+            Theader,
+            proto,
+            tabbar,
+            topbar
         },
         data() {
             return {
               scrolled:false,
               allLoaded:false,
+              indexProduct:{},
+              indexData:{}
               // handleTopChange:'下拉刷新'
             };
         },
@@ -55,11 +57,21 @@ import { Loadmore } from 'mint-ui';
             console.log(111111);
             // this.allLoaded = true;// 若数据已全部获取完毕
             this.$refs.loadmore.onBottomLoaded();
+          },
+          getProduct(){
+            this.axios.post('/searchProduct',{"key":"男装","itemloc":"浙江"}).then((response) => {
+                if(response.data.code=='00000'){
+                  this.indexProduct=JSON.parse(response.data.data);
+                }
+                console.log(this.indexProduct);       
+            }).catch(function (error) {
+              console.log(error); 
+            })
+            
           }
         },
         created() {
-          // window.addEventListener('scroll', this.handleScroll);
-
+          this.getProduct();
         },
 
     }

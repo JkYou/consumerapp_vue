@@ -1,23 +1,21 @@
 <template>
   <div class="root" ref="root">
-    <div>
+    <div class="content"> 
       <div class="top-tip" v-show="refresh">下拉刷新</div>
       <ul class="content">
-        <router-link to="/goodsdetail">
-        <li class="items" v-for="item in dataArr"><a href="#">
+        <li class="items" v-for="item in productList.n_tbk_item"><a :href="item.item_url">
           <div class="similar-product">
-            <div class="similar-pose"><img :src="item.img" alt=""></div>
-            <span class="product_text">{{item.content}}</span>
+            <div class="similar-pose"><img :src="item.pict_url" alt=""></div>
+            <span class="product_text">{{item.title}}</span>
             <p class="product_info">
               <span class="similar-product-price">¥&nbsp;
-                <span class="big-price">{{item.price}}</span><span class="small-price">.00</span>
+                <span class="big-price">{{item.k_final_price}}</span><span class="small-price"></span>
               </span>
-              <span class="old-price">¥&nbsp;{{item.oldprice}}</span>
+              <span class="old-price">¥&nbsp;{{item.reserve_price}}</span>
             </p>
-            <p class="praise_info"><span class="praise-num"><span>好评率{{item.praise}}</span></span><span class="guess-button">领优惠券</span></p>
+            <p class="praise_info"><span class="praise-num"><span>近30天销量：{{item.volume}}</span></span><span class="guess-button">领优惠券</span></p>
           </div>
         </a></li>
-      </router-link>
       </ul>
       <div class="bottom-tip" v-show="moershow" >加载更多</div>
       </div>
@@ -28,47 +26,22 @@
 import BScroll from 'better-scroll'
   export default {
     name: 'GoodList',
+    props: {
+     productList: {
+      type: Object
+     }
+    },
     data () {
       return {
-        msg: '商品列表',
         refresh:false,
         moershow:false,
-        dataArr:[{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'},{img:'//m.360buyimg.com//mobilecms/s276x276_jfs/t4507/361/4653622104/393108/667b7271/591197d6N182118fb.jpg!q70.jpg',
-                content:'苹果 Apple 2017新款 iPad 平板电脑 9.7 英寸 Ari2 升级版 金色 32G WiFi版',
-                price:'3699',oldprice:'6777',praise:'50%'}]
       }
     },
     mounted(){
       this.$nextTick(() => {
         this.scroll=new BScroll(this.$refs.root,{
           //api参数
-          click:true,
-          scrollY: true,
-          eventPassthrough: 'vertical'
+          tap:true
         })
       })
     },
@@ -82,8 +55,7 @@ import BScroll from 'better-scroll'
   .root{
     width: 100%;
     margin-top: .5rem;
-    height: 800px;
-    overflow-y:hidden;
+     overflow: hidden;
     .top-tip {
       margin-top: 0 auto;
       text-align: center;

@@ -16,7 +16,7 @@ if ('addEventListener' in document) {
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
 axios.default.timeout = 5000
-axios.defaults.baseURL = 'http://alpha.cnpawn.cn/factor/'
+axios.defaults.baseURL = 'http://localhost:9012/check_in/control/'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
