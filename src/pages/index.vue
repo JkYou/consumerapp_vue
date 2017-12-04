@@ -2,12 +2,12 @@
 <template>
   <div>
     <Theader></Theader>
-    <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
       <banner></banner>
-      <!-- <topbar></topbar> -->
+      <topbar></topbar>
+      <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
         <GoodList :productList="indexProduct.tbk_item_get_response.results"></GoodList>
+      </mt-loadmore>
     <proto></proto>
-    </mt-loadmore>
     <tabbar></tabbar>
   </div>
 
@@ -22,8 +22,6 @@ import car from '@/components/car'
 import tabbar from '@/components/Tabbar'
 import topbar from '@/components/Topbar'
 import { Loadmore } from 'mint-ui';
-// Vue.component(Loadmore.name, Loadmore);
-
     export default {
         name:'index',
         components:{
@@ -39,7 +37,7 @@ import { Loadmore } from 'mint-ui';
               scrolled:false,
               allLoaded:false,
               indexProduct:{},
-              indexData:{}
+              pageNo:1
               // handleTopChange:'下拉刷新'
             };
         },
@@ -49,29 +47,29 @@ import { Loadmore } from 'mint-ui';
             console.log('正在滚动');
           },
           loadTop() {
-            console.log(2222);
-              this.$refs.loadmore.onTopLoaded();
+            this.$refs.loadmore.onTopLoaded();
           },
           loadBottom() {
-            // 加载更多数据
-            console.log(111111);
-            // this.allLoaded = true;// 若数据已全部获取完毕
+            this.allLoaded = false;// 若数据已全部获取完毕
             this.$refs.loadmore.onBottomLoaded();
+            this.pageNo++;
+            this.getProduct(this.pageNo);
           },
-          getProduct(){
-            this.axios.post('/searchProduct',{"key":"男装","itemloc":"浙江"}).then((response) => {
-                if(response.data.code=='00000'){
-                  this.indexProduct=JSON.parse(response.data.data);
-                }
-                console.log(this.indexProduct);       
-            }).catch(function (error) {
-              console.log(error); 
-            })
-            
-          }
+            getProduct(pageNo){
+              console.log(pageNo);
+              this.axios.post('/getProductList',{"pageNo":pageNo}).then((response) => {
+                 console.log(response);
+                  if(response.status=='200'){
+                    this.indexProduct=JSON.parse(response.data.data);
+                  }       
+              }).catch(function (error) {
+
+              })
+
+            }
         },
         created() {
-          this.getProduct();
+          this.getProduct(1);
         },
 
     }
@@ -79,7 +77,7 @@ import { Loadmore } from 'mint-ui';
 
 <style lang="less" scoped>
 div{
-  overflow: scroll;
+  overflow: hidden;
 }
 
 </style>

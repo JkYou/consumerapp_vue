@@ -1,15 +1,13 @@
 <template>
-  <div class="root" ref="root">
-    <div class="content"> 
-      <div class="top-tip" v-show="refresh">下拉刷新</div>
+  <div class="root">
       <ul class="content">
         <li class="items" v-for="item in productList.n_tbk_item"><a :href="item.item_url">
           <div class="similar-product">
-            <div class="similar-pose"><img :src="item.pict_url" alt=""></div>
+            <div class="similar-pose"><img v-lazy="item.pict_url" alt=""></div>
             <span class="product_text">{{item.title}}</span>
             <p class="product_info">
               <span class="similar-product-price">¥&nbsp;
-                <span class="big-price">{{item.k_final_price}}</span><span class="small-price"></span>
+                <span class="big-price">{{item.zk_final_price}}</span><span class="small-price"></span>
               </span>
               <span class="old-price">¥&nbsp;{{item.reserve_price}}</span>
             </p>
@@ -17,13 +15,10 @@
           </div>
         </a></li>
       </ul>
-      <div class="bottom-tip" v-show="moershow" >加载更多</div>
-      </div>
   </div>
 </template>
 
 <script>
-import BScroll from 'better-scroll'
   export default {
     name: 'GoodList',
     props: {
@@ -33,17 +28,7 @@ import BScroll from 'better-scroll'
     },
     data () {
       return {
-        refresh:false,
-        moershow:false,
       }
-    },
-    mounted(){
-      this.$nextTick(() => {
-        this.scroll=new BScroll(this.$refs.root,{
-          //api参数
-          tap:true
-        })
-      })
     },
     methods:{
     }
@@ -84,12 +69,17 @@ import BScroll from 'better-scroll'
             font-size: 0;
             .similar-pose{
               position: relative;
-              width: 185.5px;
-              height: 185.5px;
+              width: 175.5px;
+              height: 175.5px;
               img{
                 display: block;
                 width: 100%;
                 height: 100%;
+              }
+              image[lazy=loading] {
+                width: 40px;
+                height: 300px;
+                margin: auto;
               }
             }
             .product_text{
