@@ -4,7 +4,6 @@
 	<li class="goodstype">
 		<h1 class="title">自营商品</h1>
 		<ul>
-		<router-link to="/bookDetial">
 			<li class="book-item">
 				<div class="top">
 					<div class="avator"><img src="./old.jpg" alt=""></div>
@@ -28,7 +27,6 @@
 					</div>
 				</div>
 			</li>
-		</router-link>	
 		</ul>
 	</li>
 </ul>

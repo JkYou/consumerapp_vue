@@ -1,57 +1,93 @@
 <template>
-  <div class="root">
-      <ul class="content">
-        <li class="items" v-for="item in productList.n_tbk_item"><a :href="item.item_url">
-          <div class="similar-product">
-            <div class="similar-pose"><img v-lazy="item.pict_url" alt=""></div>
-            <span class="product_text">{{item.title}}</span>
-            <p class="product_info">
-              <span class="similar-product-price">¥&nbsp;
-                <span class="big-price">{{item.zk_final_price}}</span><span class="small-price"></span>
-              </span>
-              <span class="old-price">¥&nbsp;{{item.reserve_price}}</span>
-            </p>
-            <p class="praise_info"><span class="praise-num"><span>近30天销量：{{item.volume}}</span></span><span class="guess-button">领优惠券</span></p>
-          </div>
-        </a></li>
-      </ul>
-  </div>
+  <div class="mainpage" ref="wrapper">
+      <div class="wrapper">
+        <div class="content">
+          <ul>
+            <li class="items" v-for="item in indexProduct"><a :href="item.item_url">
+                <div class="similar-product">
+                  <div class="similar-pose"><img v-lazy="item.pict_url" alt=""></div>
+                  <span class="product_text">{{item.title}}</span>
+                  <p class="product_info">
+                    <span class="similar-product-price">¥&nbsp;
+                      <span class="big-price">{{item.zk_final_price}}</span><span class="small-price"></span>
+                    </span>
+                    <span class="old-price">{{item.coupon_info}}</span>
+                  </p>
+                  <p class="praise_info"><span class="praise-num"><span>{{item.coupon_info}}</span></span><span class="guess-button"><a :href="item.coupon_click_url">领优惠券</a></span></p>
+                </div>
+              </a>
+            </li>
+         </ul>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
   export default {
     name: 'GoodList',
-    props: {
-     productList: {
-      type: Object
-     }
-    },
     data () {
       return {
+        indexProduct:[],
+        pageNo:1,
       }
     },
+    created() {
+      this.loadData(this.pageNo);
+    },
+    watch:{
+     data(){
+      this.$nextTick(()=>{
+        this.scroll.finishPullUp()
+        this.scroll.refresh() 
+      }) 
+     }
+    },
     methods:{
+      loadData:function(pageNo){
+         this.axios.post('/getCouponProductList',{}).then((response) => {
+              this.indexProduct=response.data;  
+              this.$nextTick(() => {
+                this._initScroll();
+              })
+          }).catch(function (error) {
+          }) 
+      },
+      _initScroll(){
+        // console.log(this.$refs.wrapper)
+        this.scroll=new BScroll(this.$refs.wrapper,{
+          //api参数
+          tap:true,
+          // pullUpLoad:true,
+          // threshold:40,
+          // moreTxt:"dhsfk",
+          // noMoreTxt:"fdsf"
+        })
+        // this.scroll.on("pullingUp",() => {
+        //   this.loadData(this.pageNo);
+        // })
+
+      }
+
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-  .root{
-    width: 100%;
-    margin-top: .5rem;
-     overflow: hidden;
-    .top-tip {
-      margin-top: 0 auto;
-      text-align: center;
-    }
-    .bottom-tip{
-      margin-top: 0 auto;
-      text-align: center;
-    }
-    ul{
-      width: 100%;
-      overflow: hidden;
+.mainpage{
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+  overflow: hidden;
+  height: 100%;
+.wrapper{
+  height: 100%;
+  ul{
+       width: 100%;
+       height: 100%;
       .items{
         float: left;
         width: 50%;
@@ -117,13 +153,12 @@
                     }
               }
               .old-price{
-                 color: #666666;
-                  padding: 0 5px 0 4px;
+                 color: #fff;
+                  padding: 0 5px 0 10px;
                   top: 1px;
                   height: 25px;
                   line-height: 25px;
                   font-size: 12px;
-                  text-decoration: line-through;
 
 
                     }
@@ -175,6 +210,7 @@
         }
       }
     }
-  }
+}
+}
 
 </style>

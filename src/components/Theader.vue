@@ -21,11 +21,11 @@
 <style lang="less" scoped>
 #header{
   width:90%;
-  height: 3rem;
+  height: 2rem;
   background: none;
   z-index: 10;
   position: fixed;
-  top:0;
+  top:10px;
   display: flex;
   align-items: center;
   padding-left: 5%;
@@ -47,7 +47,6 @@
     background-size: 1.8rem 1.8rem;
     background-position: .8rem 50%;
   }
-
 }
 
 </style>
