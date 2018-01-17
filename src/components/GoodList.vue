@@ -1,216 +1,169 @@
 <template>
-  <div class="mainpage" ref="wrapper">
-      <div class="wrapper">
-        <div class="content">
-          <ul>
-            <li class="items" v-for="item in indexProduct"><a :href="item.item_url">
-                <div class="similar-product">
-                  <div class="similar-pose"><img v-lazy="item.pict_url" alt=""></div>
-                  <span class="product_text">{{item.title}}</span>
-                  <p class="product_info">
-                    <span class="similar-product-price">¥&nbsp;
-                      <span class="big-price">{{item.zk_final_price}}</span><span class="small-price"></span>
-                    </span>
-                    <span class="old-price">{{item.coupon_info}}</span>
-                  </p>
-                  <p class="praise_info"><span class="praise-num"><span>{{item.coupon_info}}</span></span><span class="guess-button"><a :href="item.coupon_click_url">领优惠券</a></span></p>
-                </div>
-              </a>
-            </li>
-         </ul>
-        </div>
-      </div>
-    </div>
+	<div id="root" :style="{'-webkit-overflow-scrolling': scrollMode}">
+		 <v-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">  
+			<ul>
+				<li  v-for="item in pageList">
+					<a :href="item.item_url">
+						<div class="good-item">
+							<div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
+							<div class="item-right">
+								<p class="detail">{{item.title}}</p>{{item.shop_title}}</span></p>
+								<div class="coupon"><span class="price">￥{{item.zk_final_price}}</span><div class="cou-text">{{item.coupon_info}}</div></div>
+							</div>
+						</div>
+				    </a>
+				</li>
+			</ul>
+		</v-loadmore>
+	</div>
 </template>
 
 <script>
-import BScroll from 'better-scroll'
-  export default {
-    name: 'GoodList',
-    data () {
-      return {
-        indexProduct:[],
-        pageNo:1,
-      }
-    },
-    created() {
-      this.loadData(this.pageNo);
-    },
-    watch:{
-     data(){
-      this.$nextTick(()=>{
-        this.scroll.finishPullUp()
-        this.scroll.refresh() 
-      }) 
-     }
-    },
-    methods:{
-      loadData:function(pageNo){
-         this.axios.post('/getCouponProductList',{}).then((response) => {
-              this.indexProduct=response.data;  
-              this.$nextTick(() => {
-                this._initScroll();
-              })
-          }).catch(function (error) {
-          }) 
-      },
-      _initScroll(){
-        // console.log(this.$refs.wrapper)
-        this.scroll=new BScroll(this.$refs.wrapper,{
-          //api参数
-          tap:true,
-          // pullUpLoad:true,
-          // threshold:40,
-          // moreTxt:"dhsfk",
-          // noMoreTxt:"fdsf"
-        })
-        // this.scroll.on("pullingUp",() => {
-        //   this.loadData(this.pageNo);
-        // })
+import {Loadmore} from 'mint-ui';
+ export default { 
+    name :"GoodList",
+    data:function() {  
+      return {  
+        searchCondition:{  //分页属性  
+          pageNo:"1",  
+          pageSize:"10"  
+        },  
+        pageList:[],  
+        allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了  
+        scrollMode:"auto" //移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动  
+      }  
+    },  
+    components: {  
+      'v-loadmore':Loadmore  // 为组件起别名，vue转换template标签时不会区分大小写，例如：loadMore这种标签转换完就会变成loadmore，容易出现一些匹配问题  
+                              // 推荐应用组件时用a-b形式起名  
+    },  
+    mounted(){  
+      this.loadPageList();  //初次访问查询列表  
+    },  
+    methods: {  
+      loadTop:function() { //组件提供的下拉触发方法  
+        //下拉加载  
+        this.loadPageList();  
+        this.$refs.loadmore.onTopLoaded();// 固定方法，查询完要调用一次，用于重新定位  
+      },  
+      loadBottom:function() {  
+        // 上拉加载  
+        this.more();// 上拉触发的分页查询  
+        this.$refs.loadmore.onBottomLoaded();// 固定方法，查询完要调用一次，用于重新定位  
+      },  
+      loadPageList:function (){  
+          // 查询数据 
+          console.log("ajax")
+           this.axios.post('/getCouponProductList',{}).then((response) => { 
+              // 是否还有下一页，加个方法判断，没有下一页要禁止上拉  
+		          this.isHaveMore(true);  
+		          this.pageList = response.data;  
+		          this.$nextTick(function () {  
+		            // 原意是DOM更新循环结束时调用延迟回调函数，大意就是DOM元素在因为某些原因要进行修改就在这里写，要在修改某些数据后才能写，  
+		            // 这里之所以加是因为有个坑，iphone在使用-webkit-overflow-scrolling属性，就是移动端弹性滚动效果时会屏蔽loadmore的上拉加载效果，  
+		            // 花了好久才解决这个问题，就是用这个函数，意思就是先设置属性为auto，正常滑动，加载完数据后改成弹性滑动，安卓没有这个问题，移动端弹性滑动体验会更好  
+		            this.scrollMode = "touch";  
+		          });
+          })
+          .catch(function (error) {
+          	console.log(error)
 
-      }
-
-    }
-  }
+          })   
+      },  
+      more:function (){  
+          // 分页查询  
+        this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;  
+		this.axios.post('/getCouponProductList',{}).then((response) => { 
+		             this.pageList = this.pageList.concat(response.data);  
+                     this.isHaveMore(true);
+				
+		          }).catch(function (error) {
+                       console.log(error)
+		          })   
+      },  
+      isHaveMore:function(isHaveMore){  
+        // 是否还有下一页，如果没有就禁止上拉刷新  
+        this.allLoaded = true; //true是禁止上拉加载  
+        if(isHaveMore){  
+          this.allLoaded = false;  
+        }  
+      }  
+    }  
+  }  
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-.mainpage{
-  position: absolute;
-  width: 100%;
-  top: 0px;
-  bottom: 0px;
-  overflow: hidden;
-  height: 100%;
-.wrapper{
-  height: 100%;
-  ul{
-       width: 100%;
-       height: 100%;
-      .items{
-        float: left;
-        width: 50%;
-        box-sizing: border-box;
-        padding-bottom: 4px;
-        position: relative;
-         &:nth-child(2n+1){
-           padding-left: 2px;
-         }
-        a{
-          -webkit-tap-highlight-color: transparent;
-          .similar-product{
-            background-color: #ffffff;
-            padding-bottom: 6px;
-            font-size: 0;
-            .similar-pose{
-              position: relative;
-              width: 175.5px;
-              height: 175.5px;
-              img{
-                display: block;
-                width: 100%;
-                height: 100%;
-              }
-              image[lazy=loading] {
-                width: 40px;
-                height: 300px;
-                margin: auto;
-              }
-            }
-            .product_text{
-              height: 33px;
-              font-size: 13px;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              -webkit-line-clamp: 2;
-              -webkit-box-orient: vertical;
-              word-break: break-word;
-              color: #232326;
-              margin-top: 5px;
-              line-height: 17px;
-              margin-bottom: 3px;
-              padding: 0 4px;
-            }
-            .product_info{
-              height: 23px;
-              font-size: 13px;
-              overflow: hidden;
-              .similar-product-price{
-                    color: #f23030;
-                    display: inline-block;
-                    padding: 0 5px 0 4px;
-                    position: relative;
-                    top: 1px;
-                    height: 25px;
-                    line-height: 25px;
-                    .big-price{
-                      font-size: 16px;
-                    }
-                    .small-price{
-                      font-size: 13px
-                    }
-              }
-              .old-price{
-                 color: #fff;
-                  padding: 0 5px 0 10px;
-                  top: 1px;
-                  height: 25px;
-                  line-height: 25px;
-                  font-size: 12px;
+#root{
+	width: 100%;
+	overflow: hidden;
+	.good-item{
+		display: flex;
+		width: 100%;
+		height: 100px;
+		padding:5px 10px;
+		// background: red;
+		.item-left{
+			flex: 0 0 100px;
+			background:rgba(0,0,0,.3);
+			img{
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.item-right{
+			padding-top: 5px;
+			margin-left: 5px;
+			flex: 1;
+			width: 100%;
+			border-bottom: 1px solid #eee;
+			.detail{
+				font-size: 14px;
+				color: #333;
+				word-break: normal;
+			}
+			.total{
+			    font-size: 12px;
+			    line-height: 12px;
+			    color: #999;
+			    margin-top: 9px;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+			    overflow: hidden;
+			    .origin{
+			    	margin-left: 15px;
+			    }
+			}
+			.coupon{
+			    font-size: 16px;
+			    line-height: 16px;
+			    font-weight: 700;
+			    color: #DD2727;
+			    margin-top: 9px;
+			    margin-right: 25px;
+			    .price{
+			    	font-size: 14px;
+				    line-height: 20px;
+				    font-weight: 600;
+				    vertical-align: bottom;
+			    }
+			    .cou-text{
+			    	display: inline-block;
+			    	float: right;
+			    	width: 80px;
+			    	height: 30px;
+			    	font-weight: normal;
+			    	background: #DD2727;
+			    	line-height: 30px;
+			    	text-align: center;
+			    	font-size: 12px;
+				    color: #fff;
+				    margin-left: 9px;
+				    border-radius: 5px;
+			    }
+				
+			}
 
-
-                    }
-            }
-            .praise_info{
-                  display: block;
-                  padding: 0 4px;
-                  position: relative;
-                  top: 1px;
-                  height: 25px;
-                  line-height: 25px;
-                  .praise-num{
-                        font-size: 20px;
-                        color: #999;
-                        height: 25px;
-                        display: block;
-                        width: 100%;
-                        padding-right: 60px;
-                        overflow: hidden;
-                        span{
-                          position: relative;
-                          top: 6px;
-                          display: block;
-                          width: 200%;
-                          -webkit-transform: scale(0.6,0.6);
-                          transform-origin: left top;
-                          -webkit-transform-origin: left top;
-                          white-space: nowrap;
-                          overflow: hidden;
-                        }
-                  }
-                  .guess-button{
-                        display: block;
-                        position: absolute;
-                        background-color: #FF1845;
-                        top: 0px;
-                        right: 8px;
-                        text-align: center;
-                        color: #ffffff;
-                        padding: 2px;
-                        border-radius: 5px;
-                        font-size: 12px;
-                        width: 49px;
-                        height: 24px;
-                        line-height: 25px;
-                  }
-            }
-          }
-        }
-      }
-    }
+		}
+	}
 }
-}
-
 </style>

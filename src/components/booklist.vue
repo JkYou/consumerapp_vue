@@ -1,17 +1,17 @@
 <template>
 <div class="boot">
-<ul class="bookwrap">
+<ul class="bookwrap" ref="wrapper">
 	<li class="goodstype">
-		<h1 class="title">自营商品</h1>
+		<!-- <h1 class="title">自营商品</h1> -->
 		<ul>
 			<li class="book-item">
 				<div class="top">
-					<div class="avator"><img src="./old.jpg" alt=""></div>
-					<div class="info"><span><img src="../../assets/man32.png">沈若愚</span></div>
+					<div class="avator"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3902168736,1556323406&fm=58"></div>
+					<div class="info"><span><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3902168736,1556323406&fm=58">沈若愚</span></div>
 					<div class="adress">郑州轻工业大学</div>
 				</div>
 				<div class="middle">
-					<div class="icon"><img src="./old.jpg" alt=""></div>
+					<div class="icon"><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3902168736,1556323406&fm=58"></div>
 					<div class="content">
 						<h2 class="name">致我们终将逝去的青春</h2>
 						<div class="desc">辛夷坞 &nbsp;|&nbsp; 百花洲文艺出版社</div>
@@ -45,6 +45,9 @@ export default {
     return {
 
     };
+  },
+  methods(){
+  
   }
 };
 </script>
