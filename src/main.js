@@ -16,7 +16,7 @@ if ('addEventListener' in document) {
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
 axios.default.timeout = 5000
-axios.defaults.baseURL = 'http://192.168.2.180:8090/imall/'
+axios.defaults.baseURL = 'http://192.168.2.180:8080/imall/'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

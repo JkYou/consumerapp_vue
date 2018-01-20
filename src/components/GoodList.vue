@@ -38,12 +38,12 @@ import {Loadmore} from 'mint-ui';
                               // 推荐应用组件时用a-b形式起名  
     },  
     mounted(){  
-      this.loadPageList();  //初次访问查询列表  
+      this.loadPageList(1);  //初次访问查询列表  
     },  
     methods: {  
       loadTop:function() { //组件提供的下拉触发方法  
         //下拉加载  
-        this.loadPageList();  
+        this.loadPageList(1);  
         this.$refs.loadmore.onTopLoaded();// 固定方法，查询完要调用一次，用于重新定位  
       },  
       loadBottom:function() {  
@@ -51,13 +51,14 @@ import {Loadmore} from 'mint-ui';
         this.more();// 上拉触发的分页查询  
         this.$refs.loadmore.onBottomLoaded();// 固定方法，查询完要调用一次，用于重新定位  
       },  
-      loadPageList:function (){  
+      loadPageList:function (page){  
           // 查询数据 
-          console.log("ajax")
-           this.axios.post('/getCouponProductList',{}).then((response) => { 
+           this.axios.post('/getCouponProductList',{
+           	pageNo:page
+           }).then((response) => { 
               // 是否还有下一页，加个方法判断，没有下一页要禁止上拉  
 		          this.isHaveMore(true);  
-		          this.pageList = response.data;  
+		            this.pageList = this.pageList.concat(response.data);  
 		          this.$nextTick(function () {  
 		            // 原意是DOM更新循环结束时调用延迟回调函数，大意就是DOM元素在因为某些原因要进行修改就在这里写，要在修改某些数据后才能写，  
 		            // 这里之所以加是因为有个坑，iphone在使用-webkit-overflow-scrolling属性，就是移动端弹性滚动效果时会屏蔽loadmore的上拉加载效果，  
@@ -73,13 +74,7 @@ import {Loadmore} from 'mint-ui';
       more:function (){  
           // 分页查询  
         this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;  
-		this.axios.post('/getCouponProductList',{}).then((response) => { 
-		             this.pageList = this.pageList.concat(response.data);  
-                     this.isHaveMore(true);
-				
-		          }).catch(function (error) {
-                       console.log(error)
-		          })   
+		this.loadPageList(this.searchCondition.pageNo);
       },  
       isHaveMore:function(isHaveMore){  
         // 是否还有下一页，如果没有就禁止上拉刷新  
@@ -94,6 +89,7 @@ import {Loadmore} from 'mint-ui';
 
 <style lang="less" scoped>
 #root{
+	margin-top: 400px;
 	width: 100%;
 	overflow: hidden;
 	.good-item{

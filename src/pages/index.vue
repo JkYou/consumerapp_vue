@@ -1,8 +1,9 @@
 
 <template>
   <div>
-    <!-- <Theader></Theader> -->
-      <!-- <banner></banner> -->
+    <Theader></Theader>
+      <banner></banner>
+      <markAd></markAd>    
       <!-- <topbar></topbar> -->
         <GoodList></GoodList>
         <!-- <goods></goods>    -->
@@ -21,6 +22,7 @@ import car from '@/components/car'
 import tabbar from '@/components/Tabbar'
 import topbar from '@/components/Topbar'
 import goods from '@/components/booklist'
+import markAd from '@/components/markAd'
     export default {
         name:'index',
         components:{
@@ -30,7 +32,8 @@ import goods from '@/components/booklist'
             proto,
             tabbar,
             topbar,
-            goods
+            goods,
+            markAd
         },
         data() {
             return {
