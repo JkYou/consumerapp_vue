@@ -3,9 +3,10 @@
   <div>
     <Theader></Theader>
       <banner></banner>
+      <navList></navList>
       <markAd></markAd>    
       <!-- <topbar></topbar> -->
-        <GoodList></GoodList>
+        <!-- <GoodList></GoodList> -->
         <!-- <goods></goods>    -->
     <!-- <proto></proto> -->
     <tabbar></tabbar>
@@ -23,6 +24,7 @@ import tabbar from '@/components/Tabbar'
 import topbar from '@/components/Topbar'
 import goods from '@/components/booklist'
 import markAd from '@/components/markAd'
+import navList from '@/components/navList'
     export default {
         name:'index',
         components:{
@@ -33,7 +35,8 @@ import markAd from '@/components/markAd'
             tabbar,
             topbar,
             goods,
-            markAd
+            markAd,
+            navList
         },
         data() {
             return {

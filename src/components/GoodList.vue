@@ -53,8 +53,11 @@ import {Loadmore} from 'mint-ui';
       },  
       loadPageList:function (page){  
           // 查询数据 
+          console.log(page);
            this.axios.post('/getCouponProductList',{
-           	pageNo:page
+           	pageNo:page,
+           	q:"新年",
+           	pageSize:20,
            }).then((response) => { 
               // 是否还有下一页，加个方法判断，没有下一页要禁止上拉  
 		          this.isHaveMore(true);  
@@ -89,7 +92,7 @@ import {Loadmore} from 'mint-ui';
 
 <style lang="less" scoped>
 #root{
-	margin-top: 400px;
+	margin-top: 265px;
 	width: 100%;
 	overflow: hidden;
 	.good-item{

@@ -1,12 +1,14 @@
 <template>
 <div class="wrap">
+	<p class="top-title">品牌精选</p>
 	<div class="shop-content">
-		<div class="shop-left"><img src="//img.alicdn.com/bao/uploaded///img.taobaocdn.com/tps/TB1iYwSOXXXXXX6aXXXwu0bFXXX.png" alt=""></div>
+		<div class="shop-left"><a href="https://s.click.taobao.com/t?e=m%3D2%26s%3DeXgR%2F%2BotmKocQipKwQzePDAVflQIoZepK7Vc7tFgwiFRAdhuF14FMbC8x2pSp4H%2B8sviUM61dt3BwPqyOKArDP9AYRsAKUXmGQeXQo3aQ40ygDoAqfMYoJRCcGz72LMHDJbuZDCrHt4%3D"><img src="//img.alicdn.com/bao/uploaded///img.taobaocdn.com/tps/TB1iYwSOXXXXXX6aXXXwu0bFXXX.png" alt=""></a></div>
 		<div class="shop-right">
-			<div class="top"><img src="//img.alicdn.com/tps/TB14DuKSXXXXXXUXpXXXXXXXXXX_180x180Q50s50.jpg_.webp" alt=""></div>
-			<div class="bottom"><img src="//img.alicdn.com/tps/TB1GWDpKXXXXXb.XXXXSutbFXXX.jpg_180x180Q50s50.jpg_.webp" alt=""></div>
+			<div class="top"><a href="https://s.click.taobao.com/t?e=m%3D2%26s%3DxugDKTe%2BxPgcQipKwQzePDAVflQIoZepK7Vc7tFgwiFRAdhuF14FMbhEyY52R3phJ1gyddu7kN%2FBwPqyOKArDP9AYRsAKUXmGQeXQo3aQ40ygDoAqfMYoD5LMzoYMHwuOYQwrhPE0iw%3D"><img src="//img.alicdn.com/tps/TB14DuKSXXXXXXUXpXXXXXXXXXX_180x180Q50s50.jpg_.webp" alt=""></a></div>
+			<div class="bottom"><a href="https://s.click.taobao.com/t?e=m%3D2%26s%3D2CQTF6gvQ3ocQipKwQzePDAVflQIoZepK7Vc7tFgwiFRAdhuF14FMWg%2BDNzbGyEW79%2FTFaMDK6TBwPqyOKArDP9AYRsAKUXmGQeXQo3aQ40ygDoAqfMYoI6tmYNREXrBOYQwrhPE0iw%3D"><img src="//img.alicdn.com/tps/TB1GWDpKXXXXXb.XXXXSutbFXXX.jpg_180x180Q50s50.jpg_.webp" alt=""></a></div>
 		</div>
 	</div>
+	<!-- <p class="top-title">热门分区</p>
 	<ul class="adlist">
 		<li class="ad-item">
 			<router-link to="/seller">
@@ -36,9 +38,9 @@
 					<div class="mark"></div>
 					<div class="title">求购专区</div>
 				</router-link>
-			</li>
-			
-	</ul>
+			</li>			
+	</ul> -->
+	<p class="top-title">精选好货</p>
 </div>
 </template>
 
@@ -60,8 +62,22 @@ export default {
 	width: 100%;
 	height: 6rem;
 	margin-top: .5rem;
+	.top-title{
+	    // border-top: 1px solid #ddd;
+	    border-bottom: 1px solid #ddd;
+	    border-left: 7px solid #ff5000;
+	    color: #353535;
+	    font-size: 16px;
+	    line-height: 30px;
+	    height: 30px;
+	    padding-left: 10px;
+	    position: relative;
+	    background: #fff;
+	    margin: 5px auto;
+	}
 	.shop-content{
 		width: 100%;
+		margin-top: 5px;
 		display: flex;
 		overflow: hidden;
 		justify-content: center;
