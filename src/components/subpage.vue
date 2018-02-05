@@ -20,9 +20,19 @@
 
 <script>
 import {Loadmore} from 'mint-ui';
- export default { 
-    name :"GoodList",
-    data:function() {  
+export default {
+
+  name: 'subpage',
+  props: {
+          keyword: String
+        },
+
+  data () {
+    return {
+
+    }
+  },
+  data:function() {  
       return {  
         searchCondition:{  //分页属性  
           pageNo:"1",  
@@ -53,26 +63,30 @@ import {Loadmore} from 'mint-ui';
       },  
       loadPageList:function (page){  
           // 查询数据 
-          console.log(page);
-           this.axios.post('/getCouponProductList',{
-           	pageNo:page,
-           	q:"新年",
-           	pageSize:20,
-           }).then((response) => { 
-              // 是否还有下一页，加个方法判断，没有下一页要禁止上拉  
-		          this.isHaveMore(true);  
-		            this.pageList = this.pageList.concat(response.data);  
-		          this.$nextTick(function () {  
-		            // 原意是DOM更新循环结束时调用延迟回调函数，大意就是DOM元素在因为某些原因要进行修改就在这里写，要在修改某些数据后才能写，  
-		            // 这里之所以加是因为有个坑，iphone在使用-webkit-overflow-scrolling属性，就是移动端弹性滚动效果时会屏蔽loadmore的上拉加载效果，  
-		            // 花了好久才解决这个问题，就是用这个函数，意思就是先设置属性为auto，正常滑动，加载完数据后改成弹性滑动，安卓没有这个问题，移动端弹性滑动体验会更好  
-		            this.scrollMode = "touch";  
-		          });
-          })
-          .catch(function (error) {
-          	console.log(error)
+          console.log(this.keyword);
+          if(this.keyword){
 
-          })   
+
+	           this.axios.post('/getCouponProductList',{
+	           	pageNo:page,
+	           	q:this.keyword,
+	           	pageSize:20,
+	           }).then((response) => { 
+	              // 是否还有下一页，加个方法判断，没有下一页要禁止上拉  
+			          this.isHaveMore(true);  
+			            this.pageList = this.pageList.concat(response.data);  
+			          this.$nextTick(function () {  
+			            // 原意是DOM更新循环结束时调用延迟回调函数，大意就是DOM元素在因为某些原因要进行修改就在这里写，要在修改某些数据后才能写，  
+			            // 这里之所以加是因为有个坑，iphone在使用-webkit-overflow-scrolling属性，就是移动端弹性滚动效果时会屏蔽loadmore的上拉加载效果，  
+			            // 花了好久才解决这个问题，就是用这个函数，意思就是先设置属性为auto，正常滑动，加载完数据后改成弹性滑动，安卓没有这个问题，移动端弹性滑动体验会更好  
+			            this.scrollMode = "touch";  
+			          });
+	          })
+	          .catch(function (error) {
+	          	console.log(error)
+
+	          }) 
+            }  
       },  
       more:function (){  
           // 分页查询  
@@ -86,13 +100,13 @@ import {Loadmore} from 'mint-ui';
           this.allLoaded = false;  
         }  
       }  
-    }  
-  }  
+    } 
+}
 </script>
 
 <style lang="less" scoped>
 #root{
-	margin-top: 100px;
+	margin-top: 265px;
 	width: 100%;
 	overflow: hidden;
 	.good-item{
