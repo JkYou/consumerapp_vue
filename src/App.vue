@@ -28,8 +28,8 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100%;overflow-x: hidden;
-  .router-link-active {
-    color:#FF1845;
-  }
+    .router-link-active {
+      color:#FF1845;
+    }
   }
 </style>

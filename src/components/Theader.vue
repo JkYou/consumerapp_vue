@@ -1,5 +1,5 @@
 <template>
-  <section id="header">
+  <section id="header" v-bind:class="{isScroll:scrolled}">
     <router-link to="/search" class="search">
       <input type="search">
     </router-link>
@@ -11,14 +11,26 @@
     name: 'header',
     data () {
       return {
-        msg: '头部导航'
+        msg: '头部导航',
+         scrolled: false
       }
+    },
+    method(){
+      handleScroll :function(){
+        this.scrolled=window.scrollY>50?true:false;
+      }
+    },
+    ready () {
+      window.addEventListener('scroll', this.handleScroll);
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
+.isScroll{
+  background:#DD2727;
+}
 #header{
   width:90%;
   height: 2rem;
