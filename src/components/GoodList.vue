@@ -8,7 +8,8 @@
 							<div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
 							<div class="item-right">
 								<p class="detail">{{item.title}}</p>{{item.shop_title}}</span></p>
-								<div class="coupon"><span class="price">￥{{item.zk_final_price}}</span><div class="cou-text">{{item.coupon_info}}</div></div>
+								<div class="coupon"><span class="price">￥{{item.zk_final_price}}</span>
+									<a :href="item.coupon_click_url"><div class="cou-text">{{item.coupon_info}}</div></a></div>
 							</div>
 						</div>
 				    </a>
@@ -54,14 +55,14 @@ import {Loadmore} from 'mint-ui';
       loadPageList:function (page){  
           // 查询数据 
           console.log(page);
-           this.axios.post('/getCouponProductList',{
-           	pageNo:page,
-           	q:"新年",
-           	pageSize:20,
-           }).then((response) => { 
+          let param = new URLSearchParams();
+				param.append("pageNo", page);
+				param.append("q", "韩版女装");
+				param.append("pageSize", 20);
+           this.axios.post('/getCouponProductList',param).then((response) => { 
               // 是否还有下一页，加个方法判断，没有下一页要禁止上拉  
 		          this.isHaveMore(true);  
-		            this.pageList = this.pageList.concat(response.data);  
+		            this.pageList = this.pageList.concat(response.data); 
 		          this.$nextTick(function () {  
 		            // 原意是DOM更新循环结束时调用延迟回调函数，大意就是DOM元素在因为某些原因要进行修改就在这里写，要在修改某些数据后才能写，  
 		            // 这里之所以加是因为有个坑，iphone在使用-webkit-overflow-scrolling属性，就是移动端弹性滚动效果时会屏蔽loadmore的上拉加载效果，  
@@ -92,7 +93,7 @@ import {Loadmore} from 'mint-ui';
 
 <style lang="less" scoped>
 #root{
-	margin-top: 100px;
+	margin-top: 130px;
 	width: 100%;
 	overflow: hidden;
 	.good-item{

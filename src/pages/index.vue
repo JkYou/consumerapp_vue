@@ -3,10 +3,10 @@
   <div>
     <Theader></Theader>
       <banner></banner>
-      <navList></navList>
+      <!-- <navList></navList> -->
       <markAd></markAd>    
       <!-- <topbar></topbar> -->
-        <!-- <GoodList></GoodList> -->
+        <GoodList></GoodList>
         <!-- <goods></goods>    -->
     <!-- <proto></proto> -->
     <tabbar></tabbar>
@@ -41,6 +41,8 @@ import navList from '@/components/navList'
         data() {
             return {
             }
+        },
+        methods:{
         }
     }
 </script>

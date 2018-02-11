@@ -15,14 +15,8 @@
          scrolled: false
       }
     },
-    method(){
-      handleScroll :function(){
-        this.scrolled=window.scrollY>50?true:false;
-      }
+    method:{
     },
-    ready () {
-      window.addEventListener('scroll', this.handleScroll);
-    }
   }
 </script>
 

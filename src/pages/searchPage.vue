@@ -29,7 +29,7 @@
 				</ul>
 			</v-loadmore>
 	    </div>
-	<tabbar></tabbar>
+	
 </div>
 
 </template>
@@ -37,7 +37,6 @@
 <script>
 import {Toast} from 'mint-ui'
 import {Loadmore} from 'mint-ui'
-import tabbar from '@/components/Tabbar'
 export default {
 
   name: 'search',
@@ -61,7 +60,6 @@ export default {
 	components: {  
       'v-loadmore':Loadmore, // 为组件起别名，vue转换template标签时不会区分大小写，例如：loadMore这种标签转换完就会变成loadmore，容易出现一些匹配问题  
                               // 推荐应用组件时用a-b形式起名 
-        tabbar                        
     }, 
     mounted(){  
       // this.loadPageList(1);  //初次访问查询列表  

@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/pages/index'
-import searchPage from '@/pages/searchPage'
-import goodsDetail from '@/pages/goodsDetail'
+import taoqiang from '@/pages/taoqiang'
+import juhuasuan from '@/pages/juhuasuan'
+import search from '@/pages/searchPage'
 
 Vue.use(Router)
 
@@ -13,13 +14,17 @@ export default new Router({
       name: 'index',
       component: Index
     },{
-      path: '/search',
-      name: 'search',
-      component: searchPage
+      path: '/juhuasuan',
+      name: 'juhuasuan',
+      component: juhuasuan
     },{
-      path:'/goodsdetail',
-      name: 'goodsdetail',
-      component:goodsDetail
+      path:'/taoqiang',
+      name: 'taoqiang',
+      component:taoqiang
+    },{
+      path:'/search',
+      name: 'search',
+      component:search
     }
   ]
 })
