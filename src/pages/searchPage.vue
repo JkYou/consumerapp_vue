@@ -46,7 +46,7 @@ export default {
 			items: '',
 			result: true,
 			key: '',
-			hotword:["iphoneX","毛巾","男外套","肯德基","全家桶","男外套"],
+			hotword:["日用","男装","女装","零食","办公","电脑"],
 			searchCondition:{  //分页属性  
 	          pageNo:"1",  
 	          pageSize:"10"  

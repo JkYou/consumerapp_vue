@@ -116,6 +116,7 @@ import topbar from '@/components/Topbar'
 		.item-right{
 			padding-top: 5px;
 			margin-left: 5px;
+			margin-right: 8px;
 			flex: 1;
 			width: 100%;
 			border-bottom: 1px solid #eee;
