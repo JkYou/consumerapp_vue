@@ -1,14 +1,7 @@
 <template>
 	<div class="wrapper" ref="wrapper">
 	  <ul class="content"> 
-	  	<li>男装</li>
-	  	<li>女装</li>
-	  	<li>家居</li>
-	  	<li>日用</li>
-	  	<li>厨房</li>
-	  	<li>零食</li>
-	  	<li>办公</li>
-	  	<li>文具</li>
+	  	<li v-for="item in titleArr" @click="search($event)" :key="item.id">{{item}}</li>
 	  </ul>
     </div>
 </template>
@@ -21,6 +14,7 @@ export default {
 
   data () {
     return {
+    	titleArr:["男装","女装","家居","文具","厨房","零食","办公"]
 
     }
   },
@@ -33,6 +27,13 @@ export default {
             eventPassthrough: 'vertical'
 		})
 	})
+  },
+  methods:{
+  	search:function($event,$index){
+  		console.log($event.srcElement.innerText);
+  		// console.log($index);
+
+  	}
   }
 
 }

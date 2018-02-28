@@ -1,5 +1,6 @@
 <template>
 	<div id="root" :style="{'-webkit-overflow-scrolling': scrollMode}">
+     <topbar></topbar>
 		 <v-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">  
 			<ul>
 				<li  v-for="item in pageList">
@@ -21,6 +22,7 @@
 
 <script>
 import {Loadmore} from 'mint-ui';
+import topbar from '@/components/Topbar'
  export default { 
     name :"GoodList",
     data:function() {  
@@ -35,8 +37,9 @@ import {Loadmore} from 'mint-ui';
       }  
     },  
     components: {  
-      'v-loadmore':Loadmore  // 为组件起别名，vue转换template标签时不会区分大小写，例如：loadMore这种标签转换完就会变成loadmore，容易出现一些匹配问题  
+      'v-loadmore':Loadmore,  // 为组件起别名，vue转换template标签时不会区分大小写，例如：loadMore这种标签转换完就会变成loadmore，容易出现一些匹配问题  
                               // 推荐应用组件时用a-b形式起名  
+      topbar
     },  
     mounted(){  
       this.loadPageList(1);  //初次访问查询列表  
