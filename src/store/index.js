@@ -5,7 +5,8 @@ import mutations from './mutations';
 import actions from './action';
 
 Vue.use(Vuex);
-export const store = new Vuex.Store({
+
+export default  Vuex.Store({
   state: {
     registrations: [],
     key: [
