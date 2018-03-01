@@ -6,7 +6,7 @@ import actions from './action';
 
 Vue.use(Vuex);
 
-export default  Vuex.Store({
+export default new  Vuex.Store({
   state: {
     registrations: [],
     key: [
