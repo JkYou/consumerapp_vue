@@ -1,5 +1,5 @@
 <template>
-  <section id="header" v-bind:class="{isScroll:scrolled}">
+  <section id="header"  v-bind:class="{ isScroll: scrolled}" @scroll.native="listenerScroll">
     <router-link to="/search" class="search">
       <input type="search">
     </router-link>
@@ -15,8 +15,16 @@
          scrolled: false
       }
     },
-    method:{
+    methods:{
+      handleScroll(e){
+        let scroll=document.body.scrollTop;
+        this.scrolled=scroll >100? true:false;
+        console.log(e);
+      }
     },
+    mounted(){
+         
+    }
   }
 </script>
 

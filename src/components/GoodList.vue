@@ -43,8 +43,17 @@ import topbar from '@/components/Topbar'
     },  
     mounted(){  
       this.loadPageList(1);  //初次访问查询列表  
+      window.addEventListener('scroll',function(){
+          console.log('test');
+         })
     },  
     methods: {  
+    	listenerScroll(){
+    		debugger
+        let scroll=document.body.scrollTop;
+        // this.scrolled=scroll >100? true:false;
+        console.log(scroll)
+      },
       loadTop:function() { //组件提供的下拉触发方法  
         //下拉加载  
         this.loadPageList(1);  
@@ -98,7 +107,8 @@ import topbar from '@/components/Topbar'
 #root{
 	margin-top: 130px;
 	width: 100%;
-	overflow: hidden;
+	over-flow: auto;     /* winphone8和android4+ */
+    -webkit-overflow-scrolling: touch;    /* ios5+ */
 	.good-item{
 		display: flex;
 		width: 100%;

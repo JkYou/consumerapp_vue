@@ -1,5 +1,5 @@
 <template>
-<div class="wrap">
+<div class="wrap"  @click="add">
 	<p class="top-title">品牌精选</p>
 	<div class="shop-content">
 		<div class="shop-left"><a href="https://s.click.taobao.com/t?e=m%3D2%26s%3DeXgR%2F%2BotmKocQipKwQzePDAVflQIoZepK7Vc7tFgwiFRAdhuF14FMbC8x2pSp4H%2B8sviUM61dt3BwPqyOKArDP9AYRsAKUXmGQeXQo3aQ40ygDoAqfMYoJRCcGz72LMHDJbuZDCrHt4%3D"><img src="//img.alicdn.com/bao/uploaded///img.taobaocdn.com/tps/TB1iYwSOXXXXXX6aXXXwu0bFXXX.png" alt=""></a></div>
@@ -45,14 +45,33 @@
 </template>
 
 <script>
+import Bus from '@/components/base/bus.js'
 export default {
 
   name: 'markAd',
+  props: {
+     msg: {
+      type: String
+     }
+   },
 
   data () {
     return {
-
+    	count:1019
     };
+  },
+  created(){
+  	console.log(this.msg);
+  },
+  methods:{
+  	add(){
+  		// 触发组件A中的事件
+  		this.count++;
+       this.$emit('changeData', this.count);
+
+       Bus.$emit('msg', this.count)
+
+  	}
   }
 };
 </script>

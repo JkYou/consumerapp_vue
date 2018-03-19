@@ -25,8 +25,18 @@
 export default {
     name: 'tabbar',
     data() {
-        return {};
-    }
+        return {
+            counter:0
+        };
+    },
+    created() {
+            //在组件B创建的钩子中监听事件
+            this.$on('change', count => {
+                debugger
+                this.counter += count
+            })
+            console.log(this.counter);
+        }
 }
 </script>
 

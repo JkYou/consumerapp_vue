@@ -7,15 +7,15 @@
 </template>
 
 <script>
+import Bus from '@/components/base/bus.js'
 import BScroll from 'better-scroll'
 export default {
 
   name: 'TopBar',
-
   data () {
     return {
-    	titleArr:["男装","女装","家居","文具","厨房","零食","办公"]
-
+    	titleArr:["男装","女装","家居","文具","厨房","零食","办公"],
+    	message:'',
     }
   },
   mounted(){
@@ -26,12 +26,16 @@ export default {
 			scrollX: true,
             eventPassthrough: 'vertical'
 		})
+		Bus.$on('msg', (msg) => {
+         this.message = msg
+         console.log("兄弟数据"+this.message);
+       })
 	})
+	
   },
   methods:{
   	search:function($event,$index){
   		console.log($event.srcElement.innerText);
-  		// console.log($index);
 
   	}
   }
