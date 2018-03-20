@@ -42,7 +42,15 @@ import navList from '@/components/navList'
             return {
             }
         },
+        created(){
+
+        },
         methods:{
+        },
+        mounted(){
+            window.addEventListener('scroll',function(){
+          console.log('test');
+         })
         }
     }
 </script>

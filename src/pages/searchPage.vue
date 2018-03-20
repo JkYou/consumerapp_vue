@@ -21,7 +21,7 @@
 								<div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
 								<div class="item-right">
 									<p class="detail">{{item.title}}</p>{{item.shop_title}}</span></p>
-									<div class="coupon"><span class="price">￥{{item.zk_final_price}}</span><div class="cou-text">{{item.coupon_info}}</div></div>
+									<div class="coupon"><span class="price">￥{{item.zk_final_price}}</span><a :href="item.coupon_click_url"><div class="cou-text">{{item.coupon_info}}</div></a></div>
 								</div>
 							</div>
 					    </a>
@@ -136,6 +136,8 @@ export default {
 	width: 100%;
 	height: 100vh;
 	background-color: #F3F3F3;
+	over-flow: auto;     /* winphone8和android4+ */
+-webkit-overflow-scrolling: touch;    /* ios5+ */
 	#root{
 	// margin-top: 265px;
 	width: 100%;

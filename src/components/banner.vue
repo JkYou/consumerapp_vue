@@ -27,7 +27,7 @@ export default {
 <style lang="less" scoped>
 .banner{
     width: 100%;
-    height: 12rem;
+    height: 7.5rem;
     img{
       width: 100%;
       height: 100%;

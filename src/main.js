@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import mint from '@/library/mint'
-import store from './store'
+import store from './store/'
 import FastClick from 'fastclick'
 
 if ('addEventListener' in document) {
@@ -25,4 +25,4 @@ new Vue({
   store,
   template: '<App/>',
   components: { App }
-})
+}).$mount('#app')

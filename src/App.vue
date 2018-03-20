@@ -12,12 +12,11 @@
 export default {
   name: 'app',
   created() {
-    this.INIT_STATE();
+    console.log("获取vuex中state参数"+this.$store.state.keyword)
+    this.$store.commit("addfn",10);
+     console.log("获取修改后vuex中state参数"+this.$store.state.keyword)
   },
   methods: {
-    ...mapMutations([
-      'INIT_STATE'
-    ])
   }
 }
 </script>

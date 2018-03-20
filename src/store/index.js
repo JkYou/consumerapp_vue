@@ -6,14 +6,14 @@ import actions from './action';
 
 Vue.use(Vuex);
 
-export default new  Vuex.Store({
-  state: {
-    registrations: [],
-    key: [
-        {id: 1, name: 'Max', registered: false}, 
-    ]
-  },
-  getters,
-  mutations,
-  actions
+const state = {
+	keyword: 111, // 关键字
+
+}
+
+export default new Vuex.Store({
+	state,
+	getters,
+	actions,
+	mutations,
 })

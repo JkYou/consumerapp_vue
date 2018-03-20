@@ -1,7 +1,5 @@
 import {
-  INIT_STATE,
-  SET_SEARCH_HISTORY,
-  CLEAR_SEARCH_HISTORY
+  INIT_STATE
 } from './mutation-types';
 import {
   setStore,
@@ -9,7 +7,8 @@ import {
   removeStore
 } from '../util/util'
 export default {
-  [INIT_STATE](state){
+  addfn(state,n){
+  	state.keyword=n;
 
   }
 }
