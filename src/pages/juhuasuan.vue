@@ -1,6 +1,6 @@
 <template>
 <div class="root" >
-	<markad :msg='msg' @changeData="get"></markad>
+	<!-- <markad :msg='msg' @changeData="get"></markad> -->
 	<scroll>
 		<ul class="wrap">
 		<li class="item">
@@ -8,7 +8,7 @@
 		</li>
 	</ul>
 	</scroll>	
-	<topbar></topbar>
+	<tabber></tabber>
 </div>
 </template>
 
@@ -16,6 +16,7 @@
 import markad from '@/components/markAd'
 import topbar from '@/components/TopBar'
 import scroll from '@/components/base/scroll'
+import tabber from '@/components/Tabbar'
 export default {
 
   name: 'juhuasuan',
@@ -36,7 +37,8 @@ export default {
    components: {
    	topbar,
    	markad,
-   	scroll
+	   scroll,
+	   tabber
     }
 }
 </script>

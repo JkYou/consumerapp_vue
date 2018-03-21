@@ -1,1 +1,1 @@
-export const INIT_STATE = 'INIT_STATE';
+export const SET_KEYWORD = 'SET_KEYWORD';

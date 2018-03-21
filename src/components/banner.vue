@@ -1,8 +1,7 @@
 <template>
   <div class="banner">
     <mt-swipe :auto="8000">
-      <mt-swipe-item
-        v-for="data in urlArr" key="data.id">
+      <mt-swipe-item  v-for="data in urlArr">
         <img :src="data.url">
       </mt-swipe-item>
     </mt-swipe>

@@ -37,6 +37,7 @@
 <script>
 import {Toast} from 'mint-ui'
 import {Loadmore} from 'mint-ui'
+  import store from 'vuex';
 export default {
 
   name: 'search',
@@ -69,8 +70,13 @@ export default {
 		    console.log("scroll");
 		  },
 		search (keyword) {
-			this.keyword=keyword
-			 this.loadPageList(1);  
+			this.$store.commit("SET_KEYWORD",keyword);
+			// this.keyword=keyword
+			 this.loadPageList(1); 
+			console.log(this.$store.state.keyword);
+			 this.loadPageList(1); 
+			
+			  
 
 		},
 		loadTop:function() { //组件提供的下拉触发方法  
@@ -87,7 +93,7 @@ export default {
 	          // 查询数据 
 	            let param = new URLSearchParams();
 				param.append("pageNo", page);
-				param.append("q", this.keyword);
+				param.append("q", this.$store.state.keyword);
 				param.append("pageSize", 20);
 				let oldKeyword=this.keyword;
 				console.log(oldKeyword);
@@ -136,8 +142,6 @@ export default {
 	width: 100%;
 	height: 100vh;
 	background-color: #F3F3F3;
-	over-flow: auto;     /* winphone8和android4+ */
--webkit-overflow-scrolling: touch;    /* ios5+ */
 	#root{
 	// margin-top: 265px;
 	width: 100%;

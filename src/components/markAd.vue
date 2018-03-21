@@ -79,7 +79,7 @@ export default {
 <style lang="less" scoped>
 .wrap{
 	width: 100%;
-	height: 6rem;
+	height: 4.0rem;
 	margin-top: .5rem;
 	.top-title{
 	    // border-top: 1px solid #ddd;
