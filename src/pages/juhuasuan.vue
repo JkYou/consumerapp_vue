@@ -14,7 +14,7 @@
 
 <script  type="text/ecmascript-6">
 import markad from '@/components/markAd'
-import topbar from '@/components/TopBar'
+// import TopBar from '@/components/TopBar'
 import scroll from '@/components/base/scroll'
 import tabber from '@/components/Tabbar'
 export default {
@@ -35,7 +35,7 @@ export default {
   },
 
    components: {
-   	topbar,
+   	// TopBar,
    	markad,
 	   scroll,
 	   tabber

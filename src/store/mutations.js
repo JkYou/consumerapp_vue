@@ -1,4 +1,4 @@
-import * as types from './mutation-types';
+import {SET_KEYWORD} from './mutation-types';
 import {
   setStore,
   getStore,
@@ -6,7 +6,7 @@ import {
 } from '../util/util'
 
 const mutations = {
-  [types.SET_KEYWORD](state, keyword) {
+  [SET_KEYWORD](state, keyword) {
     state.keyword = keyword;
   }
 };

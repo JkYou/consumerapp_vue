@@ -1,1 +1,1 @@
-import * as types from './mutation-types';
+import { SET_KEYWORD } from './mutation-types';
