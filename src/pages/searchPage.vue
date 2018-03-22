@@ -219,14 +219,14 @@ export default {
 	.head {
 		background-color: #FF1845;
 		width: 100%;
-		height: 3.5rem;
+		height: 1.2rem;
 		display: -webkit-flex;
 		display: flex;
 		align-items: center;
 		.back {
-			width: 2rem;
-			height: 2rem;
-			padding-left: .5rem;
+			width: 0.533333rem;
+			height: 0.533333rem;
+			padding-left: 0.4rem;
 			img {
 				width: 100%;
 				height: 100%;
@@ -234,18 +234,18 @@ export default {
 	    }
 	    .searchbox {
 			flex: 1;
-			margin:0 1rem;
+			margin:0 0.933333rem;
 			input {
-				height: 2rem;
+				height: 0.8rem;
 				width: 100%;
 				border: none;
-				font-size: 1rem;
-				padding-left: 3rem;
+				font-size: 16px;
+				padding-left: 1rem;
 				background-image: url('../assets/search.png');
 				background-repeat: no-repeat;
-				background-size: 2rem 2rem;
+				background-size: 0.8rem 0.8rem;
 				box-sizing: border-box;
-				background-position: .3rem 50%;
+				background-position: 0.3rem 50%;
 				outline: none ;
 				border-radius: .4rem
 			}
@@ -257,7 +257,7 @@ export default {
 				border: none;
 				outline: none;
 				background:#FF1845;
-				font-size: 1rem;
+				font-size: 16px;
 				line-height: 1.2;
 			}
 		}
