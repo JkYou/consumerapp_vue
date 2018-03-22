@@ -1,20 +1,20 @@
 <template>
 <div class="root" >
 	<!-- <markad :msg='msg' @changeData="get"></markad> -->
-	<scroll>
-		<ul class="wrap">
+	<!-- <scroll> -->
+	<ul class="wrap">
 		<li class="item">
-			
+			<div class="imgwrap"><img src="" alt=""></div>
+			<p class="title"></p>
 		</li>
 	</ul>
-	</scroll>	
+	<!-- </scroll>	 -->
 	<tabber></tabber>
 </div>
 </template>
 
 <script  type="text/ecmascript-6">
 import markad from '@/components/markAd'
-// import TopBar from '@/components/TopBar'
 import scroll from '@/components/base/scroll'
 import tabber from '@/components/Tabbar'
 export default {
@@ -52,12 +52,13 @@ export default {
 		height: auto;
 		font-size: 0px;
 		.item{
-			width: 100%;
-			height: 6.0rem;
-			margin: 0.5rem 0.15rem 0rem 0.15rem;
-			padding: 0.0rem 0.15rem;
-			box-shadow: 1px 1px 1px #FF1845;
-			background: red;
+			width: 1.066667rem;
+			height: 1.333333rem;
+			box-shadow: 0 0 3px #C0C0C0;
+			img{
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 }

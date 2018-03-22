@@ -35,7 +35,7 @@
 }
 #header{
   width:90%;
-  height: 2rem;
+  height: 0.8rem;
   background: none;
   z-index: 10;
   position: fixed;
@@ -49,17 +49,17 @@
   }
   .search{
     flex:1;
-    height: 2rem;
+    height: 0.8rem;
     display: flex;
     align-items: center;
     outline: none;
-    border-radius:2rem;
+    border-radius:0.666667rem;
     border: none;
     background-color: #fff;
     background-image: url('../assets/search.png');
     background-repeat: no-repeat;
-    background-size: 1.8rem 1.8rem;
-    background-position: .8rem 50%;
+    background-size: 0.533333rem 0.533333rem;
+    background-position: .4rem 50%;
   }
 }
 
