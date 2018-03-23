@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/pages/index'
-import taoqiang from '@/pages/taoqiang'
-import juhuasuan from '@/pages/juhuasuan'
-import search from '@/pages/searchPage'
+const Index = resolve => require(['@/pages/index'], resolve);
+const taoqiang = resolve => require(['@/pages/taoqiang'], resolve);
+const juhuasuan = resolve => require(['@/pages/juhuasuan'], resolve);
+const search = resolve => require(['@/pages/searchPage'], resolve);
 
 Vue.use(Router)
 
@@ -20,11 +20,11 @@ export default new Router({
     },{
       path:'/taoqiang',
       name: 'taoqiang',
-      component:taoqiang
+      component: taoqiang
     },{
       path:'/search',
       name: 'search',
-      component:search
+      component:  search
     }
   ]
 })

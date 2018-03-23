@@ -9,6 +9,8 @@
 <script>
 import Bus from '@/components/base/bus.js'
 import BScroll from 'better-scroll'
+import store from 'vuex'
+
 export default {
 
   name: 'TopBar',
@@ -35,8 +37,8 @@ export default {
   },
   methods:{
   	search:function($event,$index){
-  		console.log($event.srcElement.innerText);
-
+	    Bus.$emit('msg', $event.srcElement.innerText)
+			this.$store.commit("SET_KEYWORD",$event.srcElement.innerText);
   	}
   }
 

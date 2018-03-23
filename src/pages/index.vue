@@ -4,7 +4,7 @@
     <Theader></Theader>
       <banner></banner>
       <!-- <navList></navList> -->
-      <markAd></markAd>    
+      <!-- <markAd></markAd>     -->
       <!-- <topbar></topbar> -->
         <GoodList></GoodList>
         <!-- <goods></goods>    -->

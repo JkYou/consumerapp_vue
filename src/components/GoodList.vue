@@ -8,7 +8,7 @@
 						<div class="good-item">
 							<div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
 							<div class="item-right">
-								<p class="detail">{{item.title}}</p>{{item.shop_title}}</span></p>
+								<p class="detail">{{item.title}}</p><span style="color:	#A9A9A9; display:inline-block; margin-top:10px; margin-left:5px;">{{item.shop_title}}</span>
 								<div class="coupon"><span class="price">￥{{item.zk_final_price}}</span>
 									<a :href="item.coupon_click_url"><div class="cou-text">{{item.coupon_info}}</div></a></div>
 							</div>
@@ -23,6 +23,8 @@
 <script>
 import {Loadmore} from 'mint-ui';
 import topbar from '@/components/Topbar'
+import store from 'vuex'
+import Bus from '@/components/base/bus.js'
  export default { 
     name :"GoodList",
     data:function() {  
@@ -40,16 +42,21 @@ import topbar from '@/components/Topbar'
       'v-loadmore':Loadmore,  // 为组件起别名，vue转换template标签时不会区分大小写，例如：loadMore这种标签转换完就会变成loadmore，容易出现一些匹配问题  
                               // 推荐应用组件时用a-b形式起名  
       topbar
-    },  
+		}, 
+		created(){
+			this.$store.commit("SET_KEYWORD","韩版春装");
+		}, 
     mounted(){  
+			Bus.$on('msg', (msg) => {
+        //  this.message = msg
+				 this.$store.commit("SET_KEYWORD", msg);
+				 this.pageList=[];
+				 this.loadPageList(1);  //初次访问查询列表  
+			})
       this.loadPageList(1);  //初次访问查询列表  
-      window.addEventListener('scroll',function(){
-          console.log('test');
-         })
     },  
     methods: {  
     	listenerScroll(){
-    		debugger
         let scroll=document.body.scrollTop;
         // this.scrolled=scroll >100? true:false;
         console.log(scroll)
@@ -69,7 +76,7 @@ import topbar from '@/components/Topbar'
           console.log(page);
           let param = new URLSearchParams();
 				param.append("pageNo", page);
-				param.append("q", "韩版女装");
+				param.append("q", this.$store.state.keyword);
 				param.append("pageSize", 20);
            this.axios.post('/getCouponProductList',param).then((response) => { 
               // 是否还有下一页，加个方法判断，没有下一页要禁止上拉  
@@ -105,10 +112,8 @@ import topbar from '@/components/Topbar'
 
 <style lang="less" scoped>
 #root{
-	margin-top: 130px;
+	// margin-top: 130px;
 	width: 100%;
-	over-flow: auto;     /* winphone8和android4+ */
-    -webkit-overflow-scrolling: touch;    /* ios5+ */
 	.good-item{
 		display: flex;
 		width: 100%;
