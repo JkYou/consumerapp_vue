@@ -3,8 +3,6 @@ var config = require('../config')
 var isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  //使用px-rem转换
-  // postcss: [require('postcss-px2rem')({remUnit: 75})],
   loaders: utils.cssLoaders({
     sourceMap: isProduction
       ? config.build.productionSourceMap
@@ -16,5 +14,6 @@ module.exports = {
     source: 'src',
     img: 'src',
     image: 'xlink:href'
-  }
+  },
+  postcss:[require('postcss-px2rem')({'remUnit':37.5,'baseDpr':2})]           /*因为我是以750px(iphone6)宽度为基准，所以remUnit为75*/
 }
