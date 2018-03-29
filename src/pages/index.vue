@@ -19,7 +19,6 @@ import banner from '@/components/banner'
 import GoodList from '@/components/GoodList'
 import Theader from '@/components/Theader'
 import proto from '@/components/proto'
-import car from '@/components/car'
 import tabbar from '@/components/Tabbar'
 import topbar from '@/components/Topbar'
 import goods from '@/components/booklist'
@@ -42,11 +41,14 @@ import navList from '@/components/navList'
             return {
             }
         },
-        created(){
-
-        },
-        methods:{
-        }
+      mounted(){
+        window.addEventListener('scroll',() =>{
+          let scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+          if(scrollTop>100){
+            console.log(scrollTop);
+          }
+        })
+      }
     }
 </script>
 <style lang="less" scoped>
