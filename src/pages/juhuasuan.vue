@@ -11,7 +11,37 @@
                 <p>杭州 滨江</p>
               </div>
             </div>
-            <div class="content"></div>
+            <div class="content">
+              <ul>
+                <li>
+                  <div class="cntop">
+                    <img src="http://img.alicdn.com/tfscom/i2/2104859223/TB1CiDGcQSWBuNjSszdXXbeSpXa_!!0-item_pic.jpg" alt="">
+                  </div>
+                  <p class="cntprice">￥200元</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item">
+            <div class="top">
+              <div class="left"><img src="http://logo.taobaocdn.com/shop-logo/79/15/TB1DR_Ffx6I8KJjSszfSuuZVXXa.jpg" alt=""></div>
+              <div class="right">
+                <p class="ptop">耐克官方旗舰店</p>
+                <p>杭州 滨江</p>
+              </div>
+            </div>
+            <div class="content">
+              <ul>
+                <li>
+                  <div class="cntop">
+                    <img src="http://img.alicdn.com/tfscom/i2/2104859223/TB1CiDGcQSWBuNjSszdXXbeSpXa_!!0-item_pic.jpg" alt="">
+                  </div>
+                  <p class="cntprice">￥200元</p>
+                </li>
+              </ul>
+            </div>
           </div>
         </li>
       </ul>
@@ -24,6 +54,8 @@
 <script  type="text/ecmascript-6">
 import scroll from '@/components/base/scroll'
 import tabber from '@/components/Tabbar'
+import proType from '@/components/proType'
+
 export default {
 
   name: 'juhuasuan',
@@ -41,7 +73,8 @@ export default {
   },
    components: {
 	   scroll,
-	   tabber
+	   tabber,
+     proType
     }
 }
 </script>
@@ -50,6 +83,7 @@ export default {
 .root{
 	width: 100%;
   overflow-x: hidden;
+  background: #F5F5F5;
   .wrapper{
     width: 100%;
     height: 700px;
@@ -58,8 +92,11 @@ export default {
       width: 100%;
       height: 180px;
       padding: 5px;
+      background: #ffffff;
+      margin: 10px 10px 0px 0px;
+      box-shadow: 0px 0px 5px #C0C0C0;
       .top{
-        height: 70px;
+        height: 60px;
         display: flex;
         align-items: center;
         border-bottom: 1px solid #DCDCDC;
@@ -88,7 +125,32 @@ export default {
           }
         }
       }
+      .content{
+        width: 100%;
+        ul{
+          display: flex;
+          overflow-y: hidden;
+          li{
+            width: 100px;
+            .cntop{
+              width: 80px;
+              margin: 10px 0 0 5px;
+              height: 80px;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .cntprice{
+              margin-left: 10px;
+              font: 14px/30px a;
+              color: #666666;
+            }
+          }
+        }
 
+
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-	<div class="wrapper" ref="wrapper">
-	  <ul class="content"> 
+	<div class="wrapper-nav" ref="wrapper">
+	  <ul class="content">
 	  	<li v-for="item in titleArr" @click="search($event)" :key="item.id">{{item}}</li>
 	  </ul>
     </div>
@@ -33,7 +33,7 @@ export default {
          console.log("兄弟数据"+this.message);
        })
 	})
-	
+
   },
   methods:{
   	search:function($event,$index){
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.wrapper{
+.wrapper-nav{
 	height: 40px;
 	margin: 0 auto;
 	z-index: 2;

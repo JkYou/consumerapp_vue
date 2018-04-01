@@ -1,8 +1,6 @@
 
 <template>
   <div>
-    <Theader></Theader>
-      <banner></banner>
       <!-- <navList></navList> -->
       <!-- <markAd></markAd>     -->
       <!-- <topbar></topbar> -->
@@ -15,9 +13,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-import banner from '@/components/banner'
 import GoodList from '@/components/GoodList'
-import Theader from '@/components/Theader'
 import proto from '@/components/proto'
 import tabbar from '@/components/Tabbar'
 import topbar from '@/components/Topbar'
@@ -27,9 +23,7 @@ import navList from '@/components/navList'
     export default {
         name:'index',
         components:{
-            banner,
             GoodList,
-            Theader,
             proto,
             tabbar,
             topbar,

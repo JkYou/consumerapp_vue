@@ -10,12 +10,6 @@
             <div class="tab-item-icon">
               <i class="icon iconfont icon-gouwuche"></i>
             </div>
-            <p class="tab-item-label">聚划算</p>
-        </router-link>
-        <router-link :to="{ name: 'taoqiang' }" class="tab-item" exact>
-            <div class="tab-item-icon">
-                <i class="icon iconfont icon-wodejuhuasuan"></i>
-            </div>
             <p class="tab-item-label">淘抢购</p>
         </router-link>
     </section>
