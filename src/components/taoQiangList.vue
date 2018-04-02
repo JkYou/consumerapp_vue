@@ -22,8 +22,6 @@
         </li>
       </ul>
     </div>
-
-
   </div>
 </template>
 
@@ -92,7 +90,8 @@
             background-size: contain;
             text-align: center;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-top: 15px;
+            margin-bottom: 10px;
             .status-progress{
               border-radius: 7px;
               position: absolute;
@@ -122,6 +121,7 @@
             overflow: hidden;
             margin: .05rem 0 .08rem;
             line-height: 30px;
+            height: 30px;
             .pri{
               float: left;
               color: #FF1845;
