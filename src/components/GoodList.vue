@@ -28,12 +28,12 @@
 
 <script>
   import Tbanner from '@/components/banner'
-
   import TNav from '@/components/Theader'
   import scroll from '@/components/base/scroll'
-import topbar from '@/components/Topbar'
-import store from 'vuex'
-import Bus from '@/components/base/bus.js'
+  import topbar from '@/components/Topbar'
+  import store from 'vuex'
+  import Bus from '@/components/base/bus.js'
+  import Util from '@/util/util.js'
  export default {
     name :"GoodList",
     data:function() {
