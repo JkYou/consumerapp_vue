@@ -124,7 +124,7 @@
             height: 30px;
             .pri{
               float: left;
-              color: #FF1845;
+              color: #ff5d62;
               font-size: 20px;
               font-weight: 700;
               .pt{

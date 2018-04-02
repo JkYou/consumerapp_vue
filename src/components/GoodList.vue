@@ -12,8 +12,12 @@
               <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
               <div class="item-right">
                 <p class="detail">{{item.title}}</p><span style="color:	#A9A9A9; display:inline-block; margin-top:10px; margin-left:5px;">{{item.shop_title}}</span>
-                <div class="coupon"><span class="price">￥{{item.zk_final_price}}</span>
-                  <a :href="item.coupon_click_url"><div class="cou-text">{{item.coupon_info}}</div></a></div>
+                <span class="couponinfo">{{item.coupon_info}}</span>
+                  <div class="coupon">
+                    <span class="price">￥{{item.zk_final_price}}</span>
+
+                    <div class="cou-text">领券</div>
+                  </div>
               </div>
             </div>
           </a>
@@ -139,7 +143,9 @@
       .detail {
         font-size: 14px;
         color: #333;
-        word-break: normal;
+        display: inline-block;
+        padding-right: 5px;
+        margin-right: 5px;
       }
       .total {
         font-size: 12px;
@@ -153,26 +159,36 @@
           margin-left: 15px;
         }
       }
+      .couponinfo{
+        display: inline-block;
+        float: right;
+        color: #ff5d62;
+        padding-right: 50px;
+        margin-top: 10px;
+        font-size: 12px;
+      }
       .coupon {
         font-size: 16px;
-        line-height: 16px;
+        line-height: 30px;
         font-weight: 700;
-        color: #DD2727;
+        color: #ff5d62;
         margin-top: 9px;
         margin-right: 25px;
+        height: 30px;
         .price {
           font-size: 14px;
-          line-height: 20px;
+          line-height: 30px;
           font-weight: 600;
           vertical-align: bottom;
         }
+
         .cou-text {
           display: inline-block;
           float: right;
           width: 80px;
           height: 30px;
           font-weight: normal;
-          background: #DD2727;
+          background: #ff5d62;
           line-height: 30px;
           text-align: center;
           font-size: 12px;
