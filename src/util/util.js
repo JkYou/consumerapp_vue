@@ -47,12 +47,3 @@ export const debounce = (fn, delay, timeout) => {
 		}
 	}
 }
-export const  getTaoCode=(url,text) => {
-    if(!url || !text){return;}
-    let params = new URLSearchParams();
-        params.append("url", url);
-        params.append("text", text);
-    this.axios.post('/getTaoCode',params).then(res => JSON.parse(res.data).tbk_tpwd_create_response.data.model ).catch(e => {
-       console.info(e);
-    })
-}

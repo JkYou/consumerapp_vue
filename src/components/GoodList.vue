@@ -7,7 +7,7 @@
         <Tbanner></Tbanner>
         <topbar></topbar>
         <li  v-for="item in pageList">
-          <a :href="item.item_url">
+          <!--<a :href="item.item_url">-->
             <div class="good-item">
               <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
               <div class="item-right">
@@ -16,11 +16,11 @@
                   <div class="coupon">
                     <span class="price">￥{{item.zk_final_price}}</span>
 
-                    <div class="cou-text">领券</div>
+                    <div class="cou-text"  @click="getCode(item.coupon_click_url,item.title)">领券下单</div>
                   </div>
               </div>
             </div>
-          </a>
+          <!--</a>-->
         </li>
       </ul>
     </scroll>
@@ -37,7 +37,6 @@
   import topbar from '@/components/Topbar'
   import store from 'vuex'
   import Bus from '@/components/base/bus.js'
-  import Util from '@/util/util.js'
  export default {
     name :"GoodList",
     data:function() {
@@ -60,7 +59,7 @@
       TNav
 		},
 		created(){
-			this.$store.commit("SET_KEYWORD","韩版春装");
+			this.$store.commit("SET_KEYWORD","春装");
 		},
     mounted(){
 			Bus.$on('msg', (msg) => {
@@ -73,6 +72,31 @@
 
     },
     methods: {
+      getCode(url,text){
+        console.log(url);
+        console.log(text);
+        if(!url || !text){return;}
+        let params = new URLSearchParams();
+        params.append("url", url);
+        params.append("text", text);
+        this.axios.post('/getTaoCode',params).then(res => {
+         let taoCode=JSON.parse(res.data.data).tbk_tpwd_create_response.data.model,
+            hiddenInput = document.createElement('input');
+            hiddenInput.value = taoCode;
+            hiddenInput.setAttribute('readonly', '');
+            hiddenInput.style.position = 'absolute';
+            hiddenInput.style.left = '-9999px';
+            document.body.appendChild(hiddenInput);
+            hiddenInput.select();
+            console.log(hiddenInput.value);
+            hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
+            document.execCommand('copy');
+            document.body.removeChild(hiddenInput);
+            console.log("已复制口令"+taoCode);
+        }).catch(e => {
+          console.info(e);
+        })
+      },
       loadTop:function() { //组件提供的下拉触发方法
         //下拉加载
         this.loadPageList(1);

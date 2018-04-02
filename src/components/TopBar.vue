@@ -16,7 +16,7 @@ export default {
   name: 'TopBar',
   data () {
     return {
-    	titleArr:["男装","女装","家居","文具","厨房","零食","办公"],
+    	titleArr:["女装","护肤","内衣","母婴","男装","零食","水果"],
     	message:'',
     }
   },

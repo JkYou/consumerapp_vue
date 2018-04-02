@@ -86,7 +86,7 @@
             line-height: 15px;
             border-radius: 7px;
             color: #fff;
-            background: url(//gw.alicdn.com/tfs/TB1Z9jBQFXXXXX3XFXXXXXXXXXX-16-26.png) repeat-x;
+            background: url("../assets/light.png") repeat-x;
             background-size: contain;
             text-align: center;
             overflow: hidden;
@@ -99,7 +99,7 @@
               left: 0;
               height: 100%;
               min-width: .13rem;
-              background: url(//gw.alicdn.com/tfs/TB1.irMQFXXXXcDXXXXXXXXXXXX-11-26.png) repeat-x;
+              background: url("../assets/deep.png") repeat-x;
               background-size: contain;
               /*width: 34%;*/
             }
