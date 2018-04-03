@@ -48,10 +48,10 @@
         this.loadPageList();  //初次访问查询列表
       },
       methods:{
-        loadPageList:function (page){
+        loadPageList:function (){
           // 查询数据
           let param = new URLSearchParams();
-          param.append("pageNo", this.searchCondition.pageSize);
+          param.append("pageNo", this.searchCondition.pageNo);
           param.append("pageSize", this.searchCondition.pageSize);
           this.axios.post('/getTaoQiang',param).then( res => {
             this.pageList = this.pageList.concat(JSON.parse(res.data.data).tbk_ju_tqg_get_response.results.results);
@@ -89,7 +89,7 @@
         },
         more(){
           this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
-          this.loadPageList(this.searchCondition.pageNo);
+          this.loadPageList();
         }
       }
     }

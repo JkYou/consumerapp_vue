@@ -97,7 +97,7 @@
       loadPageList:function (page){
              // 查询数据
             let param = new URLSearchParams();
-            param.append("pageNo", this.searchCondition.pageSize);
+            param.append("pageNo", this.searchCondition.pageNo);
             param.append("q", this.$store.state.keyword);
             param.append("pageSize", this.searchCondition.pageSize);
             param.append("platform",2);
