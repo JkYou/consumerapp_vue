@@ -1,41 +1,96 @@
 <template>
   <div>
-    <div class="wrapper-qiang">
+    <scroll class="wrapper-qiang" :pullup="pullup" @pullup="more">
       <ul class="content">
-        <li>
-          <div class="tao-lf"><img src="http://gw.alicdn.com/tps/i4/0/TB2EUN3gStYBeNjSspaXXaOOFXa_!!0-juitemmedia.jpg_320x320q80s150.jpg" alt=""></div>
+        <li v-for="(item,index) in pageList" :key="index">
+          <div class="tao-lf"><img v-lazy="item.pic_url" alt=""></div>
           <div class="tao-rg">
-            <div class="title">脆甜多汁 台湾金砖凤梨</div>
-            <div class="des">前三十分分钟买一送一</div>
+            <div class="title">{{item.title}}</div>
+            <div class="des">{{item.category_name}}<div class="time">截止时间：{{item.end_time}}</div></div>
             <div class="range">
-              <div class="status-progress" :style="{width:rate}"></div>
+              <div class="status-progress" :style="{width:item.sold_num/item.total_amount*100+'%'}"></div>
               <div class="status-msg">
-                <div class="status-num">已抢699件</div>
-                <div class="status-soldrate">{{rate}}</div>
+                <div class="status-num">已抢{{item.sold_num}}件</div>
+                <div class="status-soldrate">{{(item.sold_num/item.total_amount)*100}}%</div>
               </div>
             </div>
             <div class="bot">
-              <div class="pri"><span class="pt">￥</span>49.8<span class="oldpri">￥99.00</span></div>
-              <div class="btn">马上抢</div>
+              <div class="pri"><span class="pt">￥</span>{{item.zk_final_price}}<span class="oldpri">￥{{item.reserve_price}}</span></div>
+              <div class="btn" @touchend="getCode(item.click_url,item.title,item.pic_url)"  @click="clipBordText">马上抢</div>
             </div>
           </div>
         </li>
       </ul>
-    </div>
+    </scroll>
   </div>
 </template>
 
 <script>
-  import { Progress } from 'mint-ui';
+  import scroll from '@/components/base/scroll'
+  import { Toast } from 'mint-ui'
     export default {
         name: "taoQiangList",
         components:{
-          // Progress
+          scroll
         },
       data(){
           return {
-            rate:'50%'
+            pullup:true,
+            pageList:[],
+            searchCondition:{  //分页属性
+              pageNo:"1",
+              pageSize:"20"
+            },
+            taoCode:''
           }
+      },
+      mounted(){
+        this.loadPageList();  //初次访问查询列表
+      },
+      methods:{
+        loadPageList:function (page){
+          // 查询数据
+          let param = new URLSearchParams();
+          param.append("pageNo", this.searchCondition.pageSize);
+          param.append("pageSize", this.searchCondition.pageSize);
+          this.axios.post('/getTaoQiang',param).then( res => {
+            this.pageList = this.pageList.concat(JSON.parse(res.data.data).tbk_ju_tqg_get_response.results.results);
+          })
+          .catch( error => {
+            console.log(error)
+          })
+        },
+        getCode(url,text,logo){
+          if(!url || !text){return;}
+          let params = new URLSearchParams();
+          params.append("url", url);
+          params.append("text", text);
+          params.append("logo", logo);
+          this.axios.post('/getTaoCode',params).then(res => {
+            this.taoCode=JSON.parse(res.data.data).tbk_tpwd_create_response.data.model;
+          }).catch(e => {
+            console.info(e);
+          })
+        },
+        clipBordText(event){
+          setTimeout(()=>{
+            let hiddenInput = document.createElement('input');
+            hiddenInput.value = this.taoCode;
+            hiddenInput.setAttribute('readonly', '');
+            hiddenInput.style.position = 'absolute';
+            hiddenInput.style.left = '-9999px';
+            document.body.appendChild(hiddenInput);
+            hiddenInput.select();
+            hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
+            document.execCommand('copy');
+            document.body.removeChild(hiddenInput);
+            Toast("淘口令已复制到剪切板，打开【手机淘宝】既可领券下单");
+          },600)
+        },
+        more(){
+          this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
+          this.loadPageList(this.searchCondition.pageNo);
+        }
       }
     }
 </script>
@@ -76,7 +131,13 @@
             font-size: 12px;
             line-height: 20px;
             color: #969ba3;
+            overflow: hidden;
             margin: 5px 0 5px 10px;
+            .time{
+              float: right;
+              color: #3CB371;
+              margin-right: 10px;
+            }
           }
           .range{
             position: relative;
@@ -98,7 +159,7 @@
               top: 0;
               left: 0;
               height: 100%;
-              min-width: .13rem;
+              min-width: .2rem;
               background: url("../assets/deep.png") repeat-x;
               background-size: contain;
               /*width: 34%;*/

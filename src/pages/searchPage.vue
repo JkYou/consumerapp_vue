@@ -18,30 +18,28 @@
         <div id="root" :style="{'-webkit-overflow-scrolling': scrollMode}">
           <ul>
             <li  v-for="item in pageList">
-              <a :href="item.item_url">
-                <div class="good-item">
-                  <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
-                  <div class="item-right">
-                    <p class="detail">{{item.title}}</p><span style="color:	#A9A9A9; display:inline-block; margin-top:10px; margin-left:5px;">{{item.shop_title}}</span>
-                    <div class="coupon"><span class="price">￥{{item.zk_final_price}}</span>
-                      <a :href="item.coupon_click_url"><div class="cou-text">{{item.coupon_info}}</div></a></div>
+              <div class="good-item">
+                <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
+                <div class="item-right">
+                  <p class="detail">{{item.title}}</p><span style="color:	#A9A9A9; display:inline-block; margin-top:10px; margin-left:5px;">{{item.shop_title}}</span>
+                  <span class="couponinfo">{{item.coupon_info}}</span>
+                  <div class="coupon">
+                    <span class="price">￥{{item.zk_final_price}}</span>
+                    <div class="cou-text" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券下单</div>
                   </div>
                 </div>
-              </a>
+              </div>
             </li>
           </ul>
         </div>
       </div>
     </scroll>
 </div>
-
 </template>
-
 <script>
 import {Toast} from 'mint-ui'
 import store from 'vuex';
 import scroll from '@/components/base/scroll'
- import Util from '@/util/util.js'
 export default {
 
   name: 'search',
@@ -52,6 +50,7 @@ export default {
 			result: true,
 			key: '',
       pullup:true,
+      taoCode:'',
       hotword:["日用","男装","女装","零食","办公","电脑"],
 			searchCondition:{  //分页属性
 	          pageNo:"1",
@@ -70,6 +69,33 @@ export default {
       this.loadPageList(1);  //初次访问查询列表
     },
 	methods: {
+    getCode(url,text,logo){
+      if(!url || !text){return;}
+      let params = new URLSearchParams();
+      params.append("url", url);
+      params.append("text", text);
+      params.append("logo", logo);
+      this.axios.post('/getTaoCode',params).then(res => {
+        this.taoCode=JSON.parse(res.data.data).tbk_tpwd_create_response.data.model;
+      }).catch(e => {
+        console.info(e);
+      })
+    },
+    clipBordText(event){
+      setTimeout(()=>{
+        let hiddenInput = document.createElement('input');
+        hiddenInput.value = this.taoCode;
+        hiddenInput.setAttribute('readonly', '');
+        hiddenInput.style.position = 'absolute';
+        hiddenInput.style.left = '-9999px';
+        document.body.appendChild(hiddenInput);
+        hiddenInput.select();
+        hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
+        document.execCommand('copy');
+        document.body.removeChild(hiddenInput);
+        Toast("淘口令已复制到剪切板，打开【手机淘宝】既可领券下单");
+      },500)
+    },
 		search (keyword) {
 			this.$store.commit("SET_KEYWORD",keyword);
 			// this.keyword=keyword
@@ -127,11 +153,10 @@ export default {
     left: 0;
     z-index: 999;
     width: 100%;
-    height: 1.2rem;
+    height: 1.4rem;
     display: -webkit-flex;
     display: flex;
     align-items: center;
-    z-index: 33;
     .back {
       width: 0.533333rem;
       height: 0.533333rem;
@@ -143,7 +168,7 @@ export default {
     }
     .searchbox {
       flex: 1;
-      margin:0 0.933333rem;
+      margin:0 10px;
       input {
         height: 0.8rem;
         width: 100%;
@@ -226,6 +251,14 @@ export default {
 				color: #333;
 				word-break: normal;
 			}
+      .couponinfo{
+        display: inline-block;
+        float: right;
+        color: #ff5d62;
+        padding-right: 50px;
+        margin-top: 10px;
+        font-size: 12px;
+      }
 			.total{
 			    font-size: 12px;
 			    line-height: 12px;
@@ -242,7 +275,7 @@ export default {
 			    font-size: 16px;
 			    line-height: 16px;
 			    font-weight: 700;
-			    color: #DD2727;
+			    color: #FF1845;
 			    margin-top: 9px;
 			    margin-right: 25px;
 			    .price{
@@ -257,7 +290,7 @@ export default {
 			    	width: 80px;
 			    	height: 30px;
 			    	font-weight: normal;
-			    	background: #DD2727;
+			    	background: #FF1845;
 			    	line-height: 30px;
 			    	text-align: center;
 			    	font-size: 12px;

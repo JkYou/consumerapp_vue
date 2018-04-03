@@ -1,32 +1,6 @@
 <template>
 <div class="root" >
   <taoQiang></taoQiang>
-  <!--<scroll class="wrapper" :data="data" :pullup="pullup" @pullup="loadData">-->
-      <!--<ul class="content">-->
-        <!--<li>-->
-          <!--<div class="item">-->
-            <!--<div class="top">-->
-              <!--<div class="left"><img src="http://logo.taobaocdn.com/shop-logo/79/15/TB1DR_Ffx6I8KJjSszfSuuZVXXa.jpg" alt=""></div>-->
-              <!--<div class="right">-->
-                <!--<p class="ptop">耐克官方旗舰店</p>-->
-                <!--<p>杭州 滨江</p>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="content">-->
-              <!--<ul>-->
-                <!--<li>-->
-                  <!--<div class="cntop">-->
-                    <!--<img src="http://img.alicdn.com/tfscom/i2/2104859223/TB1CiDGcQSWBuNjSszdXXbeSpXa_!!0-item_pic.jpg" alt="">-->
-                  <!--</div>-->
-                  <!--<p class="cntprice">￥200元</p>-->
-                <!--</li>-->
-              <!--</ul>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</li>-->
-      <!--</ul>-->
-  <!--</scroll>-->
-
 	<tabber></tabber>
 </div>
 </template>

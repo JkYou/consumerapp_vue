@@ -7,26 +7,20 @@
         <Tbanner></Tbanner>
         <topbar></topbar>
         <li  v-for="item in pageList">
-          <!--<a :href="item.item_url">-->
-            <div class="good-item">
-              <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
-              <div class="item-right">
-                <p class="detail">{{item.title}}</p><span style="color:	#A9A9A9; display:inline-block; margin-top:10px; margin-left:5px;">{{item.shop_title}}</span>
-                <span class="couponinfo">{{item.coupon_info}}</span>
-                  <div class="coupon">
-                    <span class="price">￥{{item.zk_final_price}}</span>
-
-                    <div class="cou-text"  @click="getCode(item.coupon_click_url,item.title)">领券下单</div>
-                  </div>
+          <div class="good-item">
+            <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
+            <div class="item-right">
+              <p class="detail">{{item.title}}</p><span style="color:	#A9A9A9; display:inline-block; margin-top:10px; margin-left:5px;">{{item.shop_title}}</span>
+              <span class="couponinfo">{{item.coupon_info}}</span>
+              <div class="coupon">
+                <span class="price">￥{{item.zk_final_price}}</span>
+                <div class="cou-text" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券下单</div>
               </div>
             </div>
-          <!--</a>-->
+          </div>
         </li>
       </ul>
     </scroll>
-		 <!--<v-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">-->
-
-		<!--</v-loadmore>-->
 	</div>
 </template>
 
@@ -37,6 +31,7 @@
   import topbar from '@/components/Topbar'
   import store from 'vuex'
   import Bus from '@/components/base/bus.js'
+  import { Toast } from 'mint-ui'
  export default {
     name :"GoodList",
     data:function() {
@@ -48,18 +43,18 @@
         pageList:[],
         allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了
         scrollMode:"auto" ,//移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动
-        pullup:true
+        pullup:true,
+        taoCode:''
       }
     },
     components: {
-      // 'v-loadmore':Loadmore,  // 为组件起别名，vue转换template标签时不会区分大小写，例如：loadMore这种标签转换完就会变成loadmore，容易出现一些匹配问题
-        scroll,                      // 推荐应用组件时用a-b形式起名
+      scroll,
       topbar,
       Tbanner,
       TNav
 		},
 		created(){
-			this.$store.commit("SET_KEYWORD","春装");
+			this.$store.commit("SET_KEYWORD","零食");
 		},
     mounted(){
 			Bus.$on('msg', (msg) => {
@@ -72,60 +67,45 @@
 
     },
     methods: {
-      getCode(url,text){
-        console.log(url);
-        console.log(text);
+      getCode(url,text,logo){
         if(!url || !text){return;}
         let params = new URLSearchParams();
         params.append("url", url);
         params.append("text", text);
+        params.append("logo", logo);
         this.axios.post('/getTaoCode',params).then(res => {
-         let taoCode=JSON.parse(res.data.data).tbk_tpwd_create_response.data.model,
-            hiddenInput = document.createElement('input');
-            hiddenInput.value = taoCode;
-            hiddenInput.setAttribute('readonly', '');
-            hiddenInput.style.position = 'absolute';
-            hiddenInput.style.left = '-9999px';
-            document.body.appendChild(hiddenInput);
-            hiddenInput.select();
-            console.log(hiddenInput.value);
-            hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
-            document.execCommand('copy');
-            document.body.removeChild(hiddenInput);
-            console.log("已复制口令"+taoCode);
+            this.taoCode=JSON.parse(res.data.data).tbk_tpwd_create_response.data.model;
         }).catch(e => {
           console.info(e);
         })
       },
-      loadTop:function() { //组件提供的下拉触发方法
-        //下拉加载
-        this.loadPageList(1);
-      },
-      loadBottom:function() {
-        // 上拉加载
-        this.more();// 上拉触发的分页查询
+      clipBordText(event){
+        setTimeout(()=>{
+          let hiddenInput = document.createElement('input');
+          hiddenInput.value = this.taoCode;
+          hiddenInput.setAttribute('readonly', '');
+          hiddenInput.style.position = 'absolute';
+          hiddenInput.style.left = '-9999px';
+          document.body.appendChild(hiddenInput);
+          hiddenInput.select();
+          hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
+          document.execCommand('copy');
+          document.body.removeChild(hiddenInput);
+          Toast("淘口令已复制到剪切板，打开【手机淘宝】既可领券下单");
+        },600)
       },
       loadPageList:function (page){
-          // 查询数据
-          console.log(page);
-          let param = new URLSearchParams();
-				param.append("pageNo", page);
-				param.append("q", this.$store.state.keyword);
-				param.append("pageSize", 20);
+             // 查询数据
+            let param = new URLSearchParams();
+            param.append("pageNo", this.searchCondition.pageSize);
+            param.append("q", this.$store.state.keyword);
+            param.append("pageSize", this.searchCondition.pageSize);
+            param.append("platform",2);
            this.axios.post('/getCouponProductList',param).then((response) => {
-              // 是否还有下一页，加个方法判断，没有下一页要禁止上拉
-		       //    this.isHaveMore(true);
 		            this.pageList = this.pageList.concat(response.data);
-		          this.$nextTick(function () {
-		            // 原意是DOM更新循环结束时调用延迟回调函数，大意就是DOM元素在因为某些原因要进行修改就在这里写，要在修改某些数据后才能写，
-		            // 这里之所以加是因为有个坑，iphone在使用-webkit-overflow-scrolling属性，就是移动端弹性滚动效果时会屏蔽loadmore的上拉加载效果，
-		            // 花了好久才解决这个问题，就是用这个函数，意思就是先设置属性为auto，正常滑动，加载完数据后改成弹性滑动，安卓没有这个问题，移动端弹性滑动体验会更好
-		            this.scrollMode = "touch";
-		          });
           })
           .catch(function (error) {
           	console.log(error)
-
           })
       },
       more:function (){
