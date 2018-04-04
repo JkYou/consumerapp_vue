@@ -6,7 +6,7 @@
         <TNav></TNav>
         <Tbanner></Tbanner>
         <topbar></topbar>
-        <li  v-for="item in pageList">
+        <li  v-for="item in totalPageList">
           <div class="good-item">
             <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
             <div class="item-right">
@@ -14,7 +14,7 @@
               <span class="couponinfo">{{item.coupon_info}}</span>
               <div class="coupon">
                 <span class="price">￥{{item.zk_final_price}}</span>
-                <div class="cou-text" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券下单</div>
+                <div class="cou-text animated infinite pulse" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券下单</div>
               </div>
             </div>
           </div>
@@ -56,6 +56,17 @@
 		created(){
 			this.$store.commit("SET_KEYWORD","潮流春装");
 		},
+   computed:{
+     totalPageList(){
+       let newList=Array.from(new Set(this.pageList))
+       for(let i=0;i<newList.length;i++){
+         if(newList[i].shop_title.length>9){
+           newList.splice(i,1);
+         }
+       }
+       return newList;
+     }
+   },
     mounted(){
 			Bus.$on('msg', (msg) => {
         //  this.message = msg
@@ -96,6 +107,7 @@
       },
       loadPageList:function (){
              // 查询数据
+        console.log( this.searchCondition.pageNo)
             let param = new URLSearchParams();
             param.append("pageNo", this.searchCondition.pageNo);
             param.append("q", this.$store.state.keyword);
@@ -110,7 +122,7 @@
       },
       more:function (){
           // 分页查询
-        this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 2;
+        this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
 		    this.loadPageList();
       }
     }
