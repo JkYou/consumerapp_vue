@@ -1,5 +1,5 @@
 <template>
-  <section id="header"  v-bind:class="{ isScroll: scrolled}" @scroll.native="listenerScroll">
+  <section id="top"  v-bind:class="{ isScroll: scrolled}" @scroll.native="listenerScroll">
     <router-link to="/search" class="search">
       <input type="search">
     </router-link>
@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: 'header',
+    name: 'topSeach',
     data () {
       return {
         msg: '头部导航',
@@ -23,7 +23,7 @@
       }
     },
     mounted(){
-         
+
     }
   }
 </script>
@@ -33,7 +33,7 @@
 .isScroll{
   background:#DD2727;
 }
-#header{
+#top{
   width:90%;
   height: 0.8rem;
   background: none;

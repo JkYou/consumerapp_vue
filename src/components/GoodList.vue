@@ -26,7 +26,7 @@
 
 <script>
   import Tbanner from '@/components/banner'
-  import TNav from '@/components/Theader'
+  import TNav from '@/components/topSeach'
   import scroll from '@/components/base/scroll'
   import topbar from '@/components/Topbar'
   import store from 'vuex'

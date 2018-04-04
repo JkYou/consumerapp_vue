@@ -1,6 +1,6 @@
 <template>
 <div class="wrap">
-		<div class="head">
+		<div class="headtop">
 			<div class="searchbox">
 				<input type="search" autofocus @keypress.enter="search(keyword)" v-model="keyword" placeholder="尽情搜索">
 			</div>
@@ -146,7 +146,7 @@ export default {
 .wrap {
 	/*width: 100%;*/
 	background-color: #F3F3F3;
-  .head {
+  .headtop {
     background-color: #FF1845;
     position: fixed;
     top: 0;
