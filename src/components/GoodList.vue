@@ -1,7 +1,7 @@
 <template>
 	<div id="root" :style="{'-webkit-overflow-scrolling': scrollMode}" >
 
-    <scroll class="wrapper" :pullup="pullup" @pullup="more">
+    <scroll class="wrapper" :pullup="pullup" @pullup="more" >
       <ul class="content">
         <TNav></TNav>
         <Tbanner></Tbanner>
@@ -54,7 +54,7 @@
       TNav
 		},
 		created(){
-			this.$store.commit("SET_KEYWORD","零食");
+			this.$store.commit("SET_KEYWORD","潮流春装");
 		},
     mounted(){
 			Bus.$on('msg', (msg) => {
@@ -63,7 +63,7 @@
 				 this.pageList=[];
 				 this.loadPageList(1);  //初次访问查询列表
 			})
-      this.loadPageList(1);  //初次访问查询列表
+      this.loadPageList();  //初次访问查询列表
 
     },
     methods: {
@@ -94,10 +94,10 @@
           Toast("淘口令已复制到剪切板，打开【手机淘宝】既可领券下单");
         },600)
       },
-      loadPageList:function (page){
+      loadPageList:function (){
              // 查询数据
             let param = new URLSearchParams();
-            param.append("pageNo", this.searchCondition.pageSize);
+            param.append("pageNo", this.searchCondition.pageNo);
             param.append("q", this.$store.state.keyword);
             param.append("pageSize", this.searchCondition.pageSize);
             param.append("platform",2);

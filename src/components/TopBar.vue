@@ -1,7 +1,12 @@
 <template>
 	<div class="wrapper-nav" ref="wrapper">
 	  <ul class="content">
-	  	<li v-for="item in titleArr" @click="search($event)" :key="item.id">{{item}}</li>
+      <li v-for="(item,index) in titleArr" @click.stop="search(index,item.title)" :key="item.id" :class="{'active':ind ===index}">
+        <div class="imgwrap">
+          <img :src="item.url" alt="">
+        </div>
+        <p>{{item.title}}</p>
+      </li>
 	  </ul>
     </div>
 </template>
@@ -16,8 +21,17 @@ export default {
   name: 'TopBar',
   data () {
     return {
-    	titleArr:["女装","零食","内衣","母婴","男装","数码","水果","家具","卫浴","外设","电脑"],
+    	titleArr:[{title:"休闲零食",url:"//img.alicdn.com/tps/i4/TB1kMWChhWYBuNjy1zkSutGGpXa.jpg_170x120Q90s50.jpg_.webp",id:0},
+        {title:"家用电器",url:"//img.alicdn.com/tps/i4/TB1OMFQhXmWBuNjSspdSuvugXXa.jpg_170x120Q90s50.jpg_.webp",id:1},
+        {title:"家居清洁",url:"//img.alicdn.com/tps/i4/TB1U1yXhkOWBuNjSsppSutPgpXa.jpg_170x120Q90s50.jpg_.webp",id:2},
+        {title:"洗护清洁",url:"//img.alicdn.com/tps/i4/TB1FzTLhmtYBeNjSspkSuvU8VXa.jpg_170x120Q90s50.jpg_.webp",id:3},
+        {title:"美容护肤",url:"//img.alicdn.com/tps/i4/TB18gEyXpuWBuNjSszbSuwS7FXa.jpg_170x120Q90s50.jpg_.webp",id:4},
+        {title:"生鲜水果",url:"//img.alicdn.com/tps/i4/TB11LOeigmTBuNjy1XbSuuMrVXa.jpg_170x120Q90s50.jpg_.webp",id:5},
+        {title:"文具体育",url:"//img.alicdn.com/tps/i4/TB1vxHLhmBYBeNjy0FeSuvnmFXa.jpg_170x120Q90s50.jpg_.webp",id:6},
+        {title:"宠物用品",url:"//img.alicdn.com/tps/i4/TB10hqXhkOWBuNjSsppSutPgpXa.jpg_170x120Q90s50.jpg_.webp",id:7}],
     	message:'',
+      istap:true,
+      ind:'',
     }
   },
   mounted(){
@@ -36,9 +50,10 @@ export default {
 
   },
   methods:{
-  	search:function($event,$index){
-	    Bus.$emit('msg', $event.srcElement.innerText)
-			this.$store.commit("SET_KEYWORD",$event.srcElement.innerText);
+  	search:function(index,key){
+      this.ind=index;
+	    Bus.$emit('msg', key)
+			this.$store.commit("SET_KEYWORD",key);
   	}
   }
 
@@ -47,24 +62,44 @@ export default {
 
 <style lang="less" scoped>
 .wrapper-nav{
-	height: 40px;
+	/*height: 40px;*/
 	margin: 0 auto;
 	z-index: 2;
-	background: #ed424b;
 	overflow-x: hidden;
 	.content{
-		height:40px;
-		width: 450px;
+		height:90px;
+		width: 600px;
 		overflow-x: hidden;
-		color: #ffffff;
+    display: flex;
+    flex: 1;
+    color: #999999;
 		li{
-			display: block;
-			float: left;
-			height:40px;
-			width: 50px;
-			margin: 0 2px;
-			font: 14px/40px a;
+      margin: 5px 0px 5px 10px;
+      width: 60px;
+      height: 90px;
+      .imgwrap{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-left: 5px;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+      p{
+        margin-top: 5px;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+
+
+      }
 		}
+    .active{
+      color: #FF1845;
+    }
 	}
+
 }
 </style>

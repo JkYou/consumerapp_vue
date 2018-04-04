@@ -104,12 +104,12 @@ export default {
 			console.log(this.$store.state.keyword);
 			 this.loadPageList(1);
 		},
-    loadPageList:function (page){
+    loadPageList:function (){
         // 查询数据
           let param = new URLSearchParams();
-          param.append("pageNo", page);
+          param.append("pageNo", this.searchCondition.pageNo);
           param.append("q", this.$store.state.keyword);
-          param.append("pageSize", 20);
+          param.append("pageSize", this.searchCondition.pageNo);
           let oldKeyword=this.keyword;
            this.axios.post('/getCouponProductList',param).then((response) => {
                 if(this.ismore){

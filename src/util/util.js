@@ -31,6 +31,7 @@ export const removeStore = name => {
 }
 
 export const debounce = (fn, delay, timeout) => {
+  debugger
 	var timer = null;
 	var last = new Date().getTime();
 	delay = delay || 300;
