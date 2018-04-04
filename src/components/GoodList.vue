@@ -37,8 +37,8 @@
     data:function() {
       return {
         searchCondition:{  //分页属性
-          pageNo:"1",
-          pageSize:"30"
+          pageNo:1,
+          pageSize:30
         },
         pageList:[],
         allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了
@@ -107,7 +107,6 @@
       },
       loadPageList:function (){
              // 查询数据
-        console.log( this.searchCondition.pageNo)
             let param = new URLSearchParams();
             param.append("pageNo", this.searchCondition.pageNo);
             param.append("q", this.$store.state.keyword);

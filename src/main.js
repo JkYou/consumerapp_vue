@@ -7,6 +7,7 @@ import axios from 'axios'
 import mint from '@/library/mint'
 import store from './store/'
 import FastClick from 'fastclick'
+import  'animate.css'
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {

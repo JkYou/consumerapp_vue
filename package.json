@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "animate.css": "^3.6.1",
     "axios": "^0.16.1",
     "fastclick": "^1.0.6",
     "mint-ui": "^2.2.13",

@@ -1,6 +1,6 @@
 <template>
 <div class="wrap">
-		<div class="headtop">
+		<div class="head">
 			<div class="searchbox">
 				<input type="search" autofocus @keypress.enter="search(keyword)" v-model="keyword" placeholder="尽情搜索">
 			</div>
@@ -15,9 +15,9 @@
           <div class="hotHea"><span>热门搜索</span></div>
           <div class="s-mi-hq" v-for="item in hotword" @click="search(item)"><span class="s-mi-cont-key">{{item}}</span></div>
         </div>
-        <div id="root" :style="{'-webkit-overflow-scrolling': scrollMode}">
+        <div id="root">
           <ul>
-            <li  v-for="item in pageList">
+            <li  v-for="item in totalPageList">
               <div class="good-item">
                 <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
                 <div class="item-right">
@@ -53,21 +53,29 @@ export default {
       taoCode:'',
       hotword:["日用","男装","女装","零食","办公","电脑"],
 			searchCondition:{  //分页属性
-	          pageNo:"1",
-	          pageSize:"30"
+	          pageNo:1,
+	          pageSize:30
 	        },
-	        ismore:false,
 	        pageList:[],
-	        allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了
-	        scrollMode:"auto" //移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动
 			}
 	},
 	components: {
     scroll
     },
-    mounted(){
-      this.loadPageList(1);  //初次访问查询列表
+    created(){
+      this.loadPageList();  //初次访问查询列表
     },
+  computed:{
+    totalPageList(){
+      let newList=Array.from(new Set(this.pageList))
+      for(let i=0;i<newList.length;i++){
+        if(newList[i].shop_title.length>9){
+          newList.splice(i,1);
+        }
+      }
+      return newList;
+    }
+  },
 	methods: {
     getCode(url,text,logo){
       if(!url || !text){return;}
@@ -102,40 +110,25 @@ export default {
 			//  this.loadPageList(1);
       this.pageList=[];
 			console.log(this.$store.state.keyword);
-			 this.loadPageList(1);
+			 this.loadPageList();
 		},
-    loadPageList:function (){
-        // 查询数据
-          let param = new URLSearchParams();
-          param.append("pageNo", this.searchCondition.pageNo);
-          param.append("q", this.$store.state.keyword);
-          param.append("pageSize", this.searchCondition.pageNo);
-          let oldKeyword=this.keyword;
-           this.axios.post('/getCouponProductList',param).then((response) => {
-                if(this.ismore){
-                  this.pageList = this.pageList.concat(response.data);
-                }else{
-                  this.pageList=[];
-                  this.pageList =response.data;
-                }
-
-              this.$nextTick(function () {
-                // 原意是DOM更新循环结束时调用延迟回调函数，大意就是DOM元素在因为某些原因要进行修改就在这里写，要在修改某些数据后才能写，
-                // 这里之所以加是因为有个坑，iphone在使用-webkit-overflow-scrolling属性，就是移动端弹性滚动效果时会屏蔽loadmore的上拉加载效果，
-                // 花了好久才解决这个问题，就是用这个函数，意思就是先设置属性为auto，正常滑动，加载完数据后改成弹性滑动，安卓没有这个问题，移动端弹性滑动体验会更好
-                this.scrollMode = "touch";
-              });
-              // }
-          })
-          .catch(function (error) {
-            console.log(error)
-
-          })
+    loadPageList(){
+      // 查询数据
+      let param = new URLSearchParams();
+      param.append("pageNo", this.searchCondition.pageNo);
+      param.append("q", this.$store.state.keyword);
+      param.append("pageSize", this.searchCondition.pageSize);
+      param.append("platform",2);
+      this.axios.post('/getCouponProductList',param).then((response) => {
+        this.pageList = this.pageList.concat(response.data);
+      })
+        .catch(function (error) {
+          console.log(error)
+        })
     },
     more:function (){
         // 分页查询
-      this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 2;
-      this.ismore=true;
+      this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
       this.loadPageList();
     },
 	}
@@ -146,7 +139,7 @@ export default {
 .wrap {
 	/*width: 100%;*/
 	background-color: #F3F3F3;
-  .headtop {
+  .head {
     background-color: #FF1845;
     position: fixed;
     top: 0;
