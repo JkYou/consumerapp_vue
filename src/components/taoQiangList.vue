@@ -89,7 +89,7 @@
         },
         more(){
           this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
-          this.loadPageList(this.searchCondition.pageNo);
+          this.loadPageList();
         }
       }
     }
