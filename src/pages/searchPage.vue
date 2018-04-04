@@ -240,9 +240,11 @@ export default {
 			width: 100%;
 			border-bottom: 1px solid #eee;
 			.detail{
-				font-size: 14px;
-				color: #333;
-				word-break: normal;
+        font-size: 0.373333rem;
+        color: #333;
+        display: inline-block;
+        padding-right: 0.133333rem;
+        margin-right: 0.133333rem;
 			}
       .couponinfo{
         display: inline-block;
