@@ -22,7 +22,7 @@ export default {
   data () {
     return {
     	titleArr:[{title:"休闲零食",url:"//img.alicdn.com/tps/i4/TB1kMWChhWYBuNjy1zkSutGGpXa.jpg_170x120Q90s50.jpg_.webp",id:0},
-        {title:"家用电器",url:"//img.alicdn.com/tps/i4/TB1OMFQhXmWBuNjSspdSuvugXXa.jpg_170x120Q90s50.jpg_.webp",id:1},
+        {title:"手机数码",url:"//img.alicdn.com/tps/i4/TB1OMFQhXmWBuNjSspdSuvugXXa.jpg_170x120Q90s50.jpg_.webp",id:1},
         {title:"家居清洁",url:"//img.alicdn.com/tps/i4/TB1U1yXhkOWBuNjSsppSutPgpXa.jpg_170x120Q90s50.jpg_.webp",id:2},
         {title:"洗护清洁",url:"//img.alicdn.com/tps/i4/TB1FzTLhmtYBeNjSspkSuvU8VXa.jpg_170x120Q90s50.jpg_.webp",id:3},
         {title:"美容护肤",url:"//img.alicdn.com/tps/i4/TB18gEyXpuWBuNjSszbSuwS7FXa.jpg_170x120Q90s50.jpg_.webp",id:4},

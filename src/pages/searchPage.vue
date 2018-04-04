@@ -54,7 +54,7 @@ export default {
       hotword:["日用","男装","女装","零食","办公","电脑"],
 			searchCondition:{  //分页属性
 	          pageNo:"1",
-	          pageSize:"10"
+	          pageSize:"30"
 	        },
 	        ismore:false,
 	        pageList:[],
@@ -134,9 +134,9 @@ export default {
     },
     more:function (){
         // 分页查询
-      this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
+      this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 2;
       this.ismore=true;
-      this.loadPageList(this.searchCondition.pageNo);
+      this.loadPageList();
     },
 	}
 };

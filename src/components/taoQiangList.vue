@@ -39,7 +39,7 @@
             pageList:[],
             searchCondition:{  //分页属性
               pageNo:"1",
-              pageSize:"20"
+              pageSize:"30"
             },
             taoCode:''
           }

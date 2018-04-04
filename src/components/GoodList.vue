@@ -38,7 +38,7 @@
       return {
         searchCondition:{  //分页属性
           pageNo:"1",
-          pageSize:"10"
+          pageSize:"30"
         },
         pageList:[],
         allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了
@@ -61,7 +61,7 @@
         //  this.message = msg
 				 this.$store.commit("SET_KEYWORD", msg);
 				 this.pageList=[];
-				 this.loadPageList(1);  //初次访问查询列表
+				 this.loadPageList();  //初次访问查询列表
 			})
       this.loadPageList();  //初次访问查询列表
 
@@ -110,8 +110,8 @@
       },
       more:function (){
           // 分页查询
-        this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
-		    this.loadPageList(this.searchCondition.pageNo);
+        this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 2;
+		    this.loadPageList();
       }
     }
   }
