@@ -60,6 +60,8 @@
     background-repeat: no-repeat;
     background-size: 0.533333rem 0.533333rem;
     background-position: .4rem 50%;
+    /*border: 1px solid #d9d9d9;*/
+    box-shadow: 2px 2px 3px #d9d9d9;
   }
 }
 

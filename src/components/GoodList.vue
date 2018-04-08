@@ -21,6 +21,7 @@
         </li>
       </ul>
     </scroll>
+    <Loading :show="loading"></Loading>
 	</div>
 </template>
 
@@ -32,6 +33,7 @@
   import store from 'vuex'
   import Bus from '@/components/base/bus.js'
   import { Toast } from 'mint-ui'
+  import Loading from '@/components/loading'
  export default {
     name :"GoodList",
     data:function() {
@@ -44,14 +46,16 @@
         allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了
         scrollMode:"auto" ,//移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动
         pullup:true,
-        taoCode:''
+        taoCode:'',
+        loading:false
       }
     },
     components: {
       scroll,
       topbar,
       Tbanner,
-      TNav
+      TNav,
+      Loading
 		},
 		created(){
 			this.$store.commit("SET_KEYWORD","潮流春装");
@@ -102,10 +106,14 @@
           hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
           document.execCommand('copy');
           document.body.removeChild(hiddenInput);
-          Toast("淘口令已复制到剪切板，打开【手机淘宝】既可领券下单");
+          Toast({
+            message:"淘口令已复制到剪切板，打开【手机淘宝】既可领券下单",
+            duration:3000,
+          });
         },600)
       },
       loadPageList:function (){
+        this.loading=true;
              // 查询数据
             let param = new URLSearchParams();
             param.append("pageNo", this.searchCondition.pageNo);
@@ -113,9 +121,11 @@
             param.append("pageSize", this.searchCondition.pageSize);
             param.append("platform",2);
            this.axios.post('/getCouponProductList',param).then((response) => {
+             this.loading=false;
 		            this.pageList = this.pageList.concat(response.data);
           })
           .catch(function (error) {
+            this.loading=false;
           	console.log(error)
           })
       },
