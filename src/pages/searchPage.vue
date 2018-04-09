@@ -12,7 +12,7 @@
   <scroll class="wrapper-search" :pullup="pullup" @pullup="more" :listenScroll="listenerSrcoll" @scroll="scrollHandler">
       <div class="content-search">
         <div class="hotwordPanel">
-          <div class="hotHea"><span>热门搜索</span></div>
+          <div class="hotHea"><span><i class="icon iconfont icon-huo"></i>热门搜索</span></div>
           <div class="s-mi-hq" v-for="item in hotword" @click="search(item)"><span class="s-mi-cont-key">{{item}}</span></div>
         </div>
         <div id="root">
@@ -153,7 +153,7 @@ export default {
 	/*width: 100%;*/
 	background-color: #F3F3F3;
   .head {
-    background-color: #FF1845;
+    background-color: #ff5d62;
     position: fixed;
     top: 0;
     left: 0;
@@ -191,12 +191,12 @@ export default {
       }
     }
     .searchbtn {
-      margin-right: 1.4rem;
+      margin-right: 0.5rem;
       .search {
         color:#ffffff;
         border: none;
         outline: none;
-        background:#FF1845;
+        background:#ff5d62;
         font-size: 16px;
         line-height: 1.2;
       }
@@ -214,17 +214,19 @@ export default {
       float: left;
       line-height: 16px;
       margin-left: 5px;
+      margin-top: 5px;
+      color: #ff5d62;
     }
     .s-mi-hq{
       float: left;
-      border: 1px solid #FF1845;
+      border: 1px solid #ff5d62;
       margin-right: 10px;
       margin-top: 20px;
       padding: 1px 5px;
       border-radius: 5px;
       color: inherit;
       .s-mi-cont-key{
-        color: #FF1845;
+        color: #ff5d62;
       }
     }
   }
@@ -283,7 +285,7 @@ export default {
 			    font-size: 16px;
 			    line-height: 16px;
 			    font-weight: 700;
-			    color: #FF1845;
+			    color: #ff5d62;
 			    margin-top: 9px;
 			    margin-right: 25px;
 			    .price{
@@ -298,7 +300,7 @@ export default {
 			    	width: 80px;
 			    	height: 30px;
 			    	font-weight: normal;
-			    	background: #FF1845;
+			    	background: #ff5d62;
 			    	line-height: 30px;
 			    	text-align: center;
 			    	font-size: 12px;
