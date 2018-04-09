@@ -108,7 +108,7 @@
           document.body.removeChild(hiddenInput);
           console.log(this.taoCode);
           MessageBox('省钱大师', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
-        })
+        },500)
       },
       loadPageList:function(){
         this.loading=true;
