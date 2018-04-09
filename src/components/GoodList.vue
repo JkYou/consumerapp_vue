@@ -32,7 +32,7 @@
   import topbar from '@/components/Topbar'
   import store from 'vuex'
   import Bus from '@/components/base/bus.js'
-  import { Toast } from 'mint-ui'
+  import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
  export default {
     name :"GoodList",
@@ -95,7 +95,7 @@
         })
       },
       clipBordText(event){
-        setTimeout(()=>{
+        setTimeout(()=> {
           let hiddenInput = document.createElement('input');
           hiddenInput.value = this.taoCode;
           hiddenInput.setAttribute('readonly', '');
@@ -106,13 +106,11 @@
           hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
           document.execCommand('copy');
           document.body.removeChild(hiddenInput);
-          Toast({
-            message:"淘口令已复制到剪切板，打开【手机淘宝】既可领券下单",
-            duration:3000,
-          });
-        },600)
+          console.log(this.taoCode);
+          MessageBox('省钱大师', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
+        })
       },
-      loadPageList:function (){
+      loadPageList:function(){
         this.loading=true;
              // 查询数据
             let param = new URLSearchParams();

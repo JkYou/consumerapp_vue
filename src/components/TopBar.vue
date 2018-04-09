@@ -27,7 +27,7 @@ export default {
         {title:"洗护清洁",url:"//img.alicdn.com/tps/i4/TB1FzTLhmtYBeNjSspkSuvU8VXa.jpg_170x120Q90s50.jpg_.webp",id:3},
         {title:"美容护肤",url:"//img.alicdn.com/tps/i4/TB18gEyXpuWBuNjSszbSuwS7FXa.jpg_170x120Q90s50.jpg_.webp",id:4},
         {title:"生鲜水果",url:"//img.alicdn.com/tps/i4/TB11LOeigmTBuNjy1XbSuuMrVXa.jpg_170x120Q90s50.jpg_.webp",id:5},
-        {title:"文具体育",url:"//img.alicdn.com/tps/i4/TB1vxHLhmBYBeNjy0FeSuvnmFXa.jpg_170x120Q90s50.jpg_.webp",id:6},
+        {title:"体育健身",url:"//img.alicdn.com/tps/i4/TB1vxHLhmBYBeNjy0FeSuvnmFXa.jpg_170x120Q90s50.jpg_.webp",id:6},
         {title:"宠物用品",url:"//img.alicdn.com/tps/i4/TB10hqXhkOWBuNjSsppSutPgpXa.jpg_170x120Q90s50.jpg_.webp",id:7}],
     	message:'',
       istap:true,

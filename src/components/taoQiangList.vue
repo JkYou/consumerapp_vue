@@ -16,22 +16,25 @@
             </div>
             <div class="bot">
               <div class="pri"><span class="pt">￥</span>{{item.zk_final_price}}<span class="oldpri">￥{{item.reserve_price}}</span></div>
-              <div class="btn" @touchend="getCode(item.click_url,item.title,item.pic_url)"  @click="clipBordText">马上抢</div>
+              <div class="btn animated infinite pulse" @touchend="getCode(item.click_url,item.title,item.pic_url)"  @click="clipBordText">马上抢</div>
             </div>
           </div>
         </li>
       </ul>
     </scroll>
+    <Loading :show="loading"></Loading>
   </div>
 </template>
 
 <script>
   import scroll from '@/components/base/scroll'
-  import { Toast } from 'mint-ui'
+  import { MessageBox } from 'mint-ui'
+  import Loading from '@/components/loading'
     export default {
         name: "taoQiangList",
         components:{
-          scroll
+          scroll,
+          Loading
         },
       data(){
           return {
@@ -41,22 +44,26 @@
               pageNo:"1",
               pageSize:"30"
             },
-            taoCode:''
+            taoCode:'',
+            loading:false
           }
       },
       mounted(){
         this.loadPageList();  //初次访问查询列表
       },
       methods:{
-        loadPageList:function (){
+        loadPageList(){
           // 查询数据
+          this.loading=true;
           let param = new URLSearchParams();
           param.append("pageNo", this.searchCondition.pageNo);
           param.append("pageSize", this.searchCondition.pageSize);
           this.axios.post('/getTaoQiang',param).then( res => {
+            this.loading=false;
             this.pageList = this.pageList.concat(JSON.parse(res.data.data).tbk_ju_tqg_get_response.results.results);
           })
           .catch( error => {
+            this.loading=false;
             console.log(error)
           })
         },
@@ -84,7 +91,7 @@
             hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
             document.execCommand('copy');
             document.body.removeChild(hiddenInput);
-            Toast("淘口令已复制到剪切板，打开【手机淘宝】既可领券下单");
+            MessageBox('省钱大师', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
           },600)
         },
         more(){

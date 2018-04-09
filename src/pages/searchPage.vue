@@ -9,7 +9,7 @@
 			</div>
 		</div>
 
-  <scroll class="wrapper-search" :pullup="pullup" @pullup="more">
+  <scroll class="wrapper-search" :pullup="pullup" @pullup="more" :listenScroll="listenerSrcoll" @scroll="scrollHandler">
       <div class="content-search">
         <div class="hotwordPanel">
           <div class="hotHea"><span>热门搜索</span></div>
@@ -25,7 +25,7 @@
                   <span class="couponinfo">{{item.coupon_info}}</span>
                   <div class="coupon">
                     <span class="price">￥{{item.zk_final_price}}</span>
-                    <div class="cou-text" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券下单</div>
+                    <div class="cou-text animated infinite pulse" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券下单</div>
                   </div>
                 </div>
               </div>
@@ -34,12 +34,14 @@
         </div>
       </div>
     </scroll>
+  <Loading :show="loading"></Loading>
 </div>
 </template>
 <script>
-import {Toast} from 'mint-ui'
-import store from 'vuex';
-import scroll from '@/components/base/scroll'
+  import { MessageBox } from 'mint-ui'
+  import store from 'vuex';
+  import scroll from '@/components/base/scroll'
+  import Loading from '@/components/loading'
 export default {
 
   name: 'search',
@@ -50,17 +52,21 @@ export default {
 			result: true,
 			key: '',
       pullup:true,
+      listenerSrcoll:true,
       taoCode:'',
       hotword:["日用","男装","女装","零食","办公","电脑"],
 			searchCondition:{  //分页属性
 	          pageNo:1,
 	          pageSize:30
 	        },
-	        pageList:[],
+      pageList:[],
+      loading:false
 			}
+
 	},
 	components: {
-    scroll
+    scroll,
+    Loading
     },
     created(){
       this.loadPageList();  //初次访问查询列表
@@ -101,7 +107,7 @@ export default {
         hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
         document.execCommand('copy');
         document.body.removeChild(hiddenInput);
-        Toast("淘口令已复制到剪切板，打开【手机淘宝】既可领券下单");
+        MessageBox('省钱大师', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
       },500)
     },
 		search (keyword) {
@@ -114,23 +120,30 @@ export default {
 		},
     loadPageList(){
       // 查询数据
+      this.loading=true;
       let param = new URLSearchParams();
       param.append("pageNo", this.searchCondition.pageNo);
       param.append("q", this.$store.state.keyword);
       param.append("pageSize", this.searchCondition.pageSize);
       param.append("platform",2);
       this.axios.post('/getCouponProductList',param).then((response) => {
+        this.loading=false;
         this.pageList = this.pageList.concat(response.data);
       })
         .catch(function (error) {
+          this.loading=false;
           console.log(error)
         })
     },
-    more:function (){
+    more(){
         // 分页查询
       this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
       this.loadPageList();
     },
+    scrollHandler(pos){
+      console.log(pos);
+
+    }
 	}
 };
 </script>

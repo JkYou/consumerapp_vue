@@ -2,13 +2,13 @@
     <section class="tabbar">
         <router-link :to="{ name: 'index' }" class="tab-item" exact>
             <div class="tab-item-icon">
-              <i class="icon iconfont icon-zan"></i>
+              <i class="icon iconfont icon-huo"></i>
             </div>
             <p class="tab-item-label">精选</p>
         </router-link>
         <router-link :to="{ name: 'juhuasuan' }" class="tab-item" exact>
             <div class="tab-item-icon">
-              <i class="icon iconfont icon-gouwuche"></i>
+              <i class="icon iconfont icon-301"></i>
             </div>
             <p class="tab-item-label">淘抢购</p>
         </router-link>
