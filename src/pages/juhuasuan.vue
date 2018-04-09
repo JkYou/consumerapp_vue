@@ -8,7 +8,6 @@
 <script  type="text/ecmascript-6">
 import scroll from '@/components/base/scroll'
 import tabber from '@/components/Tabbar'
-import proType from '@/components/proType'
 import taoQiang from '@/components/taoQiangList'
 
 export default {
@@ -29,7 +28,6 @@ export default {
    components: {
 	   scroll,
 	   tabber,
-     proType,
      taoQiang
     }
 }

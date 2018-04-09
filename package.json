@@ -1,7 +1,7 @@
 {
   "name": "consumerapp-vue",
   "version": "1.0.0",
-  "description": "a consumerapp forvue",
+  "description": "a tbk store by vue",
   "author": "JkYou <ups2017@163.com>",
   "private": true,
   "scripts": {

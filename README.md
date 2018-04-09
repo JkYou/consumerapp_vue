@@ -1,21 +1,15 @@
 # consumerapp-vue
 
-> a consumerapp forvue
+> 淘宝客H5导流网站
 
-## Build Setup
+## 主要使用了vue全家桶以及better-scroll
 
-``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+查看效果请点击查看 [省钱大师](http://www.19buy.top).
 
-# build for production with minification
-npm run build
+或者扫码：
+![code](./static/arcode.png)
 
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 #本地运行http
 http-server .
