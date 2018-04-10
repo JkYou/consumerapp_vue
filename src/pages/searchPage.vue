@@ -9,7 +9,7 @@
 			</div>
 		</div>
 
-  <scroll class="wrapper-search" :pullup="pullup" @pullup="more" :listenScroll="listenerSrcoll" @scroll="scrollHandler">
+  <scroll class="wrapper-search" :pullup="pullup" @pullup="more">
       <div class="content-search">
         <div class="hotwordPanel">
           <div class="hotHea"><span><i class="icon iconfont icon-huo"></i>热门搜索</span></div>
@@ -40,7 +40,6 @@
 </template>
 <script>
   import { MessageBox } from 'mint-ui'
-  import store from 'vuex';
   import scroll from '@/components/base/scroll'
   import Loading from '@/components/loading'
   import scrollBtn from "@/components/scrollTop";
@@ -54,7 +53,6 @@ export default {
 			result: true,
 			key: '',
       pullup:true,
-      listenerSrcoll:true,
       taoCode:'',
       hotword:["日用","男装","女装","零食","办公","电脑"],
 			searchCondition:{  //分页属性
@@ -142,10 +140,6 @@ export default {
         // 分页查询
       this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
       this.loadPageList();
-    },
-    scrollHandler(pos){
-      console.log(pos);
-
     }
 	}
 };

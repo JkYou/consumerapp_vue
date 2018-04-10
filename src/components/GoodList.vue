@@ -31,7 +31,6 @@
   import TNav from '@/components/topSeach'
   import scroll from '@/components/base/scroll'
   import topbar from '@/components/Topbar'
-  import store from 'vuex'
   import Bus from '@/components/base/bus'
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
