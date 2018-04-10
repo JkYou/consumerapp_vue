@@ -1,10 +1,11 @@
 <template>
 	<div id="root">
 
-    <scroll class="wrapper" :pullup="pullup" @pullup="more" :listenScroll="scrollMode" @scroll="scrollHandler(pos)">
+    <scroll class="wrapper" :pullup="pullup" @pullup="more">
       <ul class="content">
         <TNav></TNav>
         <Tbanner></Tbanner>
+        <TaoCard></TaoCard>
         <topbar></topbar>
         <li  v-for="item in totalPageList">
           <div class="good-item">
@@ -35,6 +36,9 @@
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
   import { debounce } from "@/util/util"
+  import TaoCard from "@/components/TaoCard"
+
+
   export default {
     name :"GoodList",
     data:function() {
@@ -44,7 +48,6 @@
           pageSize:30
         },
         pageList:[],
-        scrollMode:true,
         pullup:true,
         taoCode:'',
         loading:false
@@ -55,7 +58,8 @@
       topbar,
       Tbanner,
       TNav,
-      Loading
+      Loading,
+      TaoCard
 		},
 		created(){
 			this.$store.commit("SET_KEYWORD","潮流春装");
@@ -130,9 +134,6 @@
           // 分页查询
         this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
         debounce(this.loadPageList(),1000,500);
-      },
-      scrollHandler(pos){
-        console.log(pos);
       }
     }
   }
