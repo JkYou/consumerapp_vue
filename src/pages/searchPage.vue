@@ -34,6 +34,7 @@
         </div>
       </div>
     </scroll>
+  <scrollBtn></scrollBtn>
   <Loading :show="loading"></Loading>
 </div>
 </template>
@@ -42,6 +43,7 @@
   import store from 'vuex';
   import scroll from '@/components/base/scroll'
   import Loading from '@/components/loading'
+  import scrollBtn from "@/components/scrollTop";
 export default {
 
   name: 'search',
@@ -66,7 +68,8 @@ export default {
 	},
 	components: {
     scroll,
-    Loading
+    Loading,
+    scrollBtn
     },
     created(){
       this.loadPageList();  //初次访问查询列表

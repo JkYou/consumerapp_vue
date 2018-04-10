@@ -7,6 +7,7 @@
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
+  import Bus from '@/components/base/bus'
   export default {
     props: {
       /*1 滚动的时候会派发scroll事件，会截流。
@@ -55,6 +56,11 @@
       refreshDelay: {
         type: Number,
         default: 20
+      },
+      /** * 点击触发返回顶部 */
+      scrollToTop:{
+        type:Boolean,
+        default:false
       }
     },
     mounted() {
@@ -88,6 +94,7 @@
           this.scroll.on('scrollEnd', () => { // 滚动到底部
             if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
               this.$emit('pullup')
+              Bus.$emit('lisScr', true)
             }
           })
         }
@@ -105,6 +112,10 @@
             this.$emit('beforeScroll')
           })
         }
+        Bus.$on('scrollTop', () => {
+          this.scrollTo(0,0,800,'easing');
+          Bus.$emit('lisScr', false)
+        })
       },
       disable() {
         // 代理better-scroll的disable方法

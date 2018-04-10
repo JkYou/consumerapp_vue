@@ -8,7 +8,6 @@ import mint from '@/library/mint'
 import store from './store/'
 import FastClick from 'fastclick'
 import  'animate.css'
-
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
@@ -16,9 +15,8 @@ if ('addEventListener' in document) {
 }
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
-axios.default.timeout = 50000
+axios.defaults.timeout = 50000
 axios.defaults.baseURL = 'http://www.19buy.top/service/imall/'
-// axios.defaults.baseURL ='http://localhost:8088/'
   /* eslint-disable no-new */
 new Vue({
   el: '#app',

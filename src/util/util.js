@@ -1,11 +1,3 @@
-//页面类型
-export const INDEX_PAGE = 'INDEX';
-export const CAR_PAGE = 'CAR';
-export const USER_PAGE = 'USER';
-
-
-// 图片根路径
-export const staticPath = 'http://statics.zhuishushenqi.com';
 
 // 存储localStorage时设置前缀
 const storePrefix = 'ST_';
@@ -31,7 +23,7 @@ export const removeStore = name => {
 }
 
 export const debounce = (fn, delay, timeout) => {
-  debugger
+  console.log(timeout)
 	var timer = null;
 	var last = new Date().getTime();
 	delay = delay || 300;

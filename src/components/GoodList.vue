@@ -1,7 +1,7 @@
 <template>
-	<div id="root" :style="{'-webkit-overflow-scrolling': scrollMode}" >
+	<div id="root">
 
-    <scroll class="wrapper" :pullup="pullup" @pullup="more" >
+    <scroll class="wrapper" :pullup="pullup" @pullup="more" :listenScroll="scrollMode" @scroll="scrollHandler(pos)">
       <ul class="content">
         <TNav></TNav>
         <Tbanner></Tbanner>
@@ -31,10 +31,11 @@
   import scroll from '@/components/base/scroll'
   import topbar from '@/components/Topbar'
   import store from 'vuex'
-  import Bus from '@/components/base/bus.js'
+  import Bus from '@/components/base/bus'
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
- export default {
+  import { debounce } from "@/util/util"
+  export default {
     name :"GoodList",
     data:function() {
       return {
@@ -43,8 +44,7 @@
           pageSize:30
         },
         pageList:[],
-        allLoaded: false, //是否可以上拉属性，false可以上拉，true为禁止上拉，就是不让往上划加载数据了
-        scrollMode:"auto" ,//移动端弹性滚动效果，touch为弹性滚动，auto是非弹性滚动
+        scrollMode:true,
         pullup:true,
         taoCode:'',
         loading:false
@@ -79,7 +79,6 @@
 				 this.loadPageList();  //初次访问查询列表
 			})
       this.loadPageList();  //初次访问查询列表
-
     },
     methods: {
       getCode(url,text,logo){
@@ -110,7 +109,7 @@
           MessageBox('省钱大师', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
         },500)
       },
-      loadPageList:function(){
+      loadPageList(){
         this.loading=true;
              // 查询数据
             let param = new URLSearchParams();
@@ -127,10 +126,13 @@
           	console.log(error)
           })
       },
-      more:function (){
+      more(){
           // 分页查询
         this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
-		    this.loadPageList();
+        debounce(this.loadPageList(),1000,500);
+      },
+      scrollHandler(pos){
+        console.log(pos);
       }
     }
   }
