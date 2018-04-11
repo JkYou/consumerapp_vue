@@ -2,6 +2,7 @@
   <div>
     <scroll class="wrapper-qiang" :pullup="pullup" @pullup="more">
       <ul class="content">
+        <Card></Card>
         <li v-for="(item,index) in pageList" :key="index">
           <div class="tao-lf"><img v-lazy="item.pic_url" alt=""></div>
           <div class="tao-rg">
@@ -30,11 +31,15 @@
   import scroll from '@/components/base/scroll'
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
-    export default {
+  import Card from '@/components/Card';
+
+
+  export default {
         name: "taoQiangList",
         components:{
           scroll,
-          Loading
+          Loading,
+          Card
         },
       data(){
           return {

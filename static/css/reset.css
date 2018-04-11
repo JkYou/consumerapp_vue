@@ -29,8 +29,12 @@ ul, ol { list-style: none; }
 
 /* 重置文本格式元素 */
 a { text-decoration: none; color: inherit;}
-/*a:hover { text-decoration: underline; }*/
-
+a:hover { text-decoration: none; }
+a:link{
+  text-decoration: none;
+}
+a:visited {text-decoration: none;}
+a:active {text-decoration: none;}
 abbr[title], acronym[title] { /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
     border-bottom: 1px dotted;
     cursor: help;

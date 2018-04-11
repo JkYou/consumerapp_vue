@@ -8,8 +8,24 @@
 </template>
 
 <script>
-export default {
+  import Toast from "mint-ui";
+  export default {
   name: 'app',
+  mounted(){
+    if(this.is_weixn()){
+      Toast("点击右上角，使用其他浏览浏览，体验更好哦！")
+    }
+  },
+  methods:{
+    is_weixn() {
+      var ua = navigator.userAgent.toLowerCase();
+      if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
 }
 </script>
 
