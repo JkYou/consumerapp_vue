@@ -1,10 +1,12 @@
 <template>
-  <div class="root">
+  <div class="root" @click="game">
     <h3 class="animated bounceInDown">使用攻略</h3>
     <div class="content">
       <p class="animated fadeInLeft"><b>方案1：</b>在【手机淘宝】中搜索自己喜欢的商品，复制商品信息到省钱大师，搜索查看该商品是否有优惠，若有，则点击领取优惠券后，优惠券信息自动复制，打开手机淘宝客户端，即可领取！</p>
       <p class="lastp animated fadeInLeftBig"><b>方案2：</b>直接在省钱大师中查找自己喜欢的商品，并点击“领券”，然后打开【手机淘宝】即可自动领取优惠券，然后再购买即可！</p>
+      <p class="wram animated fadeInLeftBig">* 部分链接使用微信浏览器可能无法打开，请点击微信右上角按钮选择使用其他浏览器浏览！</p>
     </div>
+    <div class="btn animated pulse infinite">玩一玩</div>
     <tabbar></tabbar>
   </div>
 </template>
@@ -15,6 +17,11 @@
     name: "guide",
     components: {
       tabbar
+    },
+    methods:{
+      game(){
+        this.$router.push("/game")
+      }
     }
   }
 </script>
@@ -46,6 +53,25 @@
       .lastp{
         padding-top:30px;
       }
+      .wram{
+        font-size: 12px;
+        margin-top: 20px;
+        color: #fffdef;
+      }
+    }
+    .btn{
+      width: 50px;
+      height: 50px;
+      box-shadow: 0 0 3px #888;
+      color: #888;
+      position: fixed;
+      right: 60px;
+      bottom: 100px;
+      font-size: 12px;
+      line-height: 50px;
+      text-align: center;
+      background: #ffffff;
+      border-radius: 50%;
     }
   }
 </style>

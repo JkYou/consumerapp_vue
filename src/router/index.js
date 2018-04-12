@@ -4,7 +4,7 @@ const Index = resolve => require(['@/pages/index'], resolve);
 const juhuasuan = resolve => require(['@/pages/juhuasuan'], resolve);
 const search = resolve => require(['@/pages/searchPage'], resolve);
 const guide =resolve =>require(['@/pages/guide'],resolve);
-
+const game =resolve =>require(['@/components/game'],resolve);
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +25,10 @@ export default new Router({
       path:'/guide',
       name:'guide',
       component:guide
+    },{
+      path:'/game',
+      name:'game',
+      component:game
     }
   ]
 })
