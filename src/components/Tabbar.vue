@@ -12,6 +12,12 @@
             </div>
             <p class="tab-item-label">淘抢购</p>
         </router-link>
+      <router-link :to="{ name: 'guide' }" class="tab-item" exact>
+          <div class="tab-item-icon">
+            <i class="icon iconfont icon-neirong2"></i>
+          </div>
+          <p class="tab-item-label">攻略</p>
+      </router-link>
     </section>
 </template>
 

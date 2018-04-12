@@ -1,10 +1,4 @@
 import {SET_KEYWORD,SET_BTN,SET_SCRO} from './mutation-types';
-import {
-  setStore,
-  getStore,
-  removeStore
-} from '../util/util'
-
 const mutations = {
   [SET_KEYWORD](state, keyword) {
     state.keyword = keyword;

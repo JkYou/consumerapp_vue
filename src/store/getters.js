@@ -1,4 +1,7 @@
-// export default const keyword = state => state.keyword;
+//相当于计算属性
+import {keyword,btn,scrollTo} from "./state"
+
 export default {
-    
+
+
 }

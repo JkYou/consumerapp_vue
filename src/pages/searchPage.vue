@@ -25,7 +25,7 @@
                   <span class="couponinfo">{{item.coupon_info}}</span>
                   <div class="coupon">
                     <span class="price">￥{{item.zk_final_price}}</span>
-                    <div class="cou-text animated infinite pulse" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券下单</div>
+                    <div class="cou-text animated infinite pulse" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券</div>
                   </div>
                 </div>
               </div>
