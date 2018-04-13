@@ -1,12 +1,14 @@
 <template>
-  <div class="root" @click="game">
+  <div class="root">
     <h3 class="animated bounceInDown">使用攻略</h3>
     <div class="content">
       <p class="animated fadeInLeft"><b>方案1：</b>在【手机淘宝】中搜索自己喜欢的商品，复制商品信息到省钱大师，搜索查看该商品是否有优惠，若有，则点击领取优惠券后，优惠券信息自动复制，打开手机淘宝客户端，即可领取！</p>
       <p class="lastp animated fadeInLeftBig"><b>方案2：</b>直接在省钱大师中查找自己喜欢的商品，并点击“领券”，然后打开【手机淘宝】即可自动领取优惠券，然后再购买即可！</p>
       <p class="wram animated fadeInLeftBig">* 部分链接使用微信浏览器可能无法打开，请点击微信右上角按钮选择使用其他浏览器浏览！</p>
     </div>
-    <div class="btn animated pulse infinite">玩一玩</div>
+    <!--<div class="btn animated pulse infinite">玩一玩</div>-->
+    <!--<div class="btn"><router-link to="/navcls">Go to</router-link></div>-->
+    <router-view></router-view>
     <tabbar></tabbar>
   </div>
 </template>

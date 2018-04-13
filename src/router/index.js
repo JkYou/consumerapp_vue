@@ -5,6 +5,7 @@ const juhuasuan = resolve => require(['@/pages/juhuasuan'], resolve);
 const search = resolve => require(['@/pages/searchPage'], resolve);
 const guide =resolve =>require(['@/pages/guide'],resolve);
 const game =resolve =>require(['@/components/game'],resolve);
+const  navClass = resolve => require(['@/components/navClass'],resolve)
 Vue.use(Router)
 
 export default new Router({
@@ -24,7 +25,12 @@ export default new Router({
     },{
       path:'/guide',
       name:'guide',
-      component:guide
+      component:guide,
+      children:[{
+        path: '/navcls',
+        name: '测试',
+        component:navClass
+      }]
     },{
       path:'/game',
       name:'game',

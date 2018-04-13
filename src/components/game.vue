@@ -1,5 +1,10 @@
 <template>
   <div class="awardRotate">
+    <mt-header title="抽奖" style="background:#ffffff;">
+      <router-link to="/" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+    </mt-header>
     <img src="../assets/img/2.png" id="shan-img" style="display:none;"/>
     <img src="../assets/img/1.png" id="sorry-img" style="display:none;"/>
     <div class="banner">
@@ -13,7 +18,7 @@
 
 <script type="text/ecmascript-6">
   import {myfun} from '../assets/js/awardRotate'
-  import {Toast} from 'mint-ui'
+  import {Toast,Header} from 'mint-ui'
 
   export default {
     name: 'game',
