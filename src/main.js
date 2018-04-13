@@ -8,11 +8,8 @@ import mint from '@/library/mint'
 import store from './store/'
 import FastClick from 'fastclick'
 import  'animate.css'
-if ('addEventListener' in document) {
-  document.addEventListener('DOMContentLoaded', function() {
-    FastClick.attach(document.body);
-  }, false);
-}
+FastClick.attach(document.body);
+
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
 axios.defaults.timeout = 50000

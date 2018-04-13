@@ -77,7 +77,10 @@ export default {
       let newList=Array.from(new Set(this.pageList))
       for(let i=0;i<newList.length;i++){
         if(newList[i].shop_title.length>9){
-          newList.splice(i,1);
+          newList[i].shop_title=newList[i].shop_title.substr(0,8)+"..."
+        }
+        if(newList[i].title.length>20){
+          newList[i].title=newList[i].title.substr(0,30)+"..."
         }
       }
       return newList;

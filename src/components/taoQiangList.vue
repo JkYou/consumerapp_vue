@@ -4,22 +4,22 @@
       <ul class="content">
         <Card></Card>
         <li v-for="(item,index) in pageList" :key="index">
-          <div class="tao-lf"><img v-lazy="item.pic_url" alt=""></div>
-          <div class="tao-rg">
-            <div class="title">{{item.title}}</div>
-            <div class="des">{{item.category_name}}<div class="time">截止时间：{{item.end_time}}</div></div>
-            <div class="range">
-              <div class="status-progress" :style="{width:item.sold_num/item.total_amount*100+'%'}"></div>
-              <div class="status-msg">
-                <div class="status-num">已抢{{item.sold_num}}件</div>
-                <div class="status-soldrate">{{(item.sold_num/item.total_amount)*100}}%</div>
+            <div class="tao-lf"><img v-lazy="item.pic_url" alt=""></div>
+            <div class="tao-rg">
+              <div class="title">{{item.title}}</div>
+              <div class="des">{{item.category_name}}<div class="time">截止时间：{{item.end_time}}</div></div>
+              <div class="range">
+                <div class="status-progress" :style="{width:item.sold_num/item.total_amount*100+'%'}"></div>
+                <div class="status-msg">
+                  <div class="status-num">已抢{{item.sold_num}}件</div>
+                  <div class="status-soldrate">{{(item.sold_num/item.total_amount)*100}}%</div>
+                </div>
+              </div>
+              <div class="bot">
+                <div class="pri"><span class="pt">￥</span>{{item.zk_final_price}}<span class="oldpri">￥{{item.reserve_price}}</span></div>
+                <div class="btn animated infinite pulse" @touchend="getCode(item.click_url,item.title,item.pic_url)"  @click="clipBordText">马上抢</div>
               </div>
             </div>
-            <div class="bot">
-              <div class="pri"><span class="pt">￥</span>{{item.zk_final_price}}<span class="oldpri">￥{{item.reserve_price}}</span></div>
-              <div class="btn animated infinite pulse" @touchend="getCode(item.click_url,item.title,item.pic_url)"  @click="clipBordText">马上抢</div>
-            </div>
-          </div>
         </li>
       </ul>
     </scroll>
