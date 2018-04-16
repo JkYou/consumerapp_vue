@@ -12,8 +12,9 @@ FastClick.attach(document.body);
 
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
-axios.defaults.timeout = 50000
-axios.defaults.baseURL = 'http://www.19buy.top/service/imall/'
+axios.defaults.timeout = 5000
+// axios.defaults.baseURL = 'http://www.19buy.top/service/imall/'
+axios.defaults.baseURL = 'http://localhost:8088/'
   /* eslint-disable no-new */
 new Vue({
   el: '#app',
