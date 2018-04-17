@@ -1,6 +1,6 @@
 <template>
   <div>
-    <scroll class="timewrap" :scrollX="scX">
+    <scroll class="timewrap" :scrollX="scX" :listenScroll="true" @scroll="scrollListener">
       <ul class="timeCon">
         <li v-for="(it,index) in newTimeArr" :key="index" :class="{'now':it.clsSts ===true}" @click.stop="checkTime(it.hour)">
             <p class="timeDot">{{it.hour}}:00</p>
@@ -8,7 +8,7 @@
         </li>
       </ul>
     </scroll>
-    <scroll class="wrapper-qiang" :pullup="pullup" @pullup="more">
+    <scroll class="wrapper-qiang" :pullup="pullup" @pullup="more" :listenScroll="true" @scroll="scrollListener">
       <ul class="content">
         <!--<Card></Card>-->
         <li v-for="(item,index) in pageList" :key="index">
@@ -58,7 +58,7 @@
             },
             taoCode:'',
             loading:false,
-            timeDot:[{hour:"8"},{hour:"10"},{hour:"12"},{hour:"14"},{hour:"16"},{hour:"18"},{hour:"20"},{hour:"22"}],
+            timeDot:[{hour:"8"},{hour:"9"},{hour:"10"},{hour:"11"},{hour:"12"},{hour:"13"},{hour:"14"},{hour:"15"},{hour:"16"},{hour:"17"},{hour:"18"},{hour:"19"},{hour:"20"},{hour:"21"},{hour:"22"}],
             scX:true,
             startTime:null,
             endTime:null,
@@ -86,7 +86,7 @@
         let day=date.getDate().toString().length>1 ? date.getDate() : '0'+date.getDate();
         let hour=date.getHours().toString().length>1?date.getHours():'0'+date.getHours();
         this.startTime=`${date.getFullYear()}-${month}-${day} ${hour}:00:00`;
-        this.endTime=`${date.getFullYear()}-${month}-${day} ${parseInt(hour)+2}:00:00`;
+        this.endTime=`${date.getFullYear()}-${month}-${day} ${parseInt(hour)+1}:00:00`;
       },
       mounted(){
         this.loadPageList();  //初次访问查询列表
@@ -95,12 +95,15 @@
         })
       },
       methods:{
+        scrollListener(pos){
+          console.log(pos);
+        },
         checkTime(hour){
           let date=new Date();
           let month= (date.getMonth()+1).toString().length>1 ? (date.getMonth()+1) : '0'+(date.getMonth()+1);
           let day=date.getDate().toString().length>1 ? date.getDate() : '0'+date.getDate();
           this.startTime=`${date.getFullYear()}-${month}-${day} ${hour}:00:00`;
-          this.endTime=`${date.getFullYear()}-${month}-${day} ${parseInt(hour)+2}:00:00`;
+          this.endTime=`${date.getFullYear()}-${month}-${day} ${parseInt(hour)+1}:00:00`;
           this.pageList=[];
           this.loadPageList();
         },

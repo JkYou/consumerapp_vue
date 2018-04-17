@@ -15,7 +15,7 @@
        3 除了实时派发scroll事件，在swipe的情况下仍然能实时派发scroll事件     */
       probeType: {
         type: Number,
-        default: 1
+        default: 2
       },
       //  点击列表是否派发click事件
       click: {

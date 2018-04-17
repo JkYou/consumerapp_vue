@@ -61,7 +61,7 @@
       TaoCard
 		},
 		created(){
-			this.$store.commit("SET_KEYWORD","半价");
+			this.$store.commit("SET_KEYWORD","夏季热卖");
 		},
    computed:{
      totalPageList(){
