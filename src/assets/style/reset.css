@@ -7,7 +7,10 @@ th, td { /* table elements 表格元素 */
     margin: 0;
     padding: 0;
 }
-
+body{
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
 /* 设置默认字体 */
 body,
 button, input, select, textarea { /* for ie */

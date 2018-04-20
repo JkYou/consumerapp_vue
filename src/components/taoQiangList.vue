@@ -31,7 +31,6 @@
         </li>
       </ul>
     </scroll>
-
     <Loading :show="loading"></Loading>
   </div>
 </template>
