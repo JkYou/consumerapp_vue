@@ -1,7 +1,8 @@
 
 <template>
   <div>
-    <GoodList></GoodList>
+    <TNav/>  
+    <GoodList/>
     <tabbar></tabbar>
   </div>
 
@@ -10,11 +11,13 @@
 <script type="text/ecmascript-6">
 import GoodList from '@/components/GoodList'
 import tabbar from '@/components/Tabbar'
+import TNav from '@/components/topSeach'
     export default {
         name:'index',
         components:{
             GoodList,
             tabbar,
+            TNav
         },
         data() {
             return {

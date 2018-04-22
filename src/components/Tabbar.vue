@@ -49,6 +49,8 @@ export default {
     z-index: 1;
     display: flex;
     height: 50px;
+    width: 10rem;
+    margin: 0 auto;
     background-color: #fff;
     border-top: 1px solid rgba(0, 0, 0, .1);
     box-sizing: border-box;

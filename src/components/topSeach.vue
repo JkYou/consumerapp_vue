@@ -1,8 +1,9 @@
 <template>
-  <section id="top"  v-bind:class="{ isScroll: scrolled}" @scroll.native="listenerScroll">
+  <section id="top">
     <router-link to="/search" class="search">
       <input type="search">
     </router-link>
+     <div class="categrey"><i class="icon iconfont icon-neirong2"></i></div>
   </section>
 </template>
 
@@ -30,39 +31,44 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-.isScroll{
-  background:#DD2727;
-}
 #top{
-  width:90%;
-  height: 0.8rem;
-  background: none;
+  width: 100%;
+  height: 50px;
+  background: rgba(0, 0, 0, 1);
   z-index: 10;
-  position: fixed;
-  top:10px;
+  position: absolute;
   display: flex;
   align-items: center;
-  padding-left: 5%;
   input{
     display: none;
     border: none;
   }
+  .categrey{
+    flex: 0 1 50px;
+    text-align: center;
+    i{
+      font-size: 30px;
+      color: #ffffff; 
+      line-height: 50px;
+    }
+  }
   .search{
-    flex:1;
-    height: 0.8rem;
-    display: flex;
+    flex: 1;
+    height: 0.9rem;
     align-items: center;
     outline: none;
+    margin-left:20px; 
     border-radius:0.666667rem;
     border: none;
     background-color: #fff;
     background-image: url('../assets/search.png');
     background-repeat: no-repeat;
     background-size: 0.533333rem 0.533333rem;
-    background-position: .4rem 50%;
-    /*border: 1px solid #d9d9d9;*/
-    box-shadow: 2px 2px 3px #d9d9d9;
+    background-position: .4rem 50% ;
+    // /*border: 1px solid #d9d9d9;*/
+    // box-shadow: 2px 2px 3px #d9d9d9;
   }
+ 
 }
 
 </style>

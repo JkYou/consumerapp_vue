@@ -3,11 +3,10 @@
 
     <scroll class="wrapper" :pullup="pullup" @pullup="more">
       <ul class="content">
-        <TNav></TNav>
         <Tbanner></Tbanner>
         <TaoCard></TaoCard>
         <topbar></topbar>
-        <li  v-for="item in totalPageList">
+        <li  v-for="(item,index) in totalPageList" :key="index">
           <div class="good-item">
             <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
             <div class="item-right">
@@ -28,7 +27,7 @@
 
 <script>
   import Tbanner from '@/components/banner'
-  import TNav from '@/components/topSeach'
+  
   import scroll from '@/components/base/scroll'
   import topbar from '@/components/Topbar'
   import Bus from '@/components/base/bus'
@@ -56,7 +55,6 @@
       scroll,
       topbar,
       Tbanner,
-      TNav,
       Loading,
       TaoCard
 		},
@@ -64,6 +62,7 @@
 			this.$store.commit("SET_KEYWORD","夏季热卖");
 		},
    computed:{
+     //15937686861
      totalPageList(){
        let newList=Array.from(new Set(this.pageList))
        for(let i=0;i<newList.length;i++){

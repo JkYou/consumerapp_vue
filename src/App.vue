@@ -35,6 +35,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100%;overflow-x: hidden;
+    width: 10rem;
+    margin: 0 auto;
     .router-link-active {
       color:#FF1845;
     }
