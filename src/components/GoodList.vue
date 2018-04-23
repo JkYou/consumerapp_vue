@@ -14,7 +14,7 @@
               <span class="couponinfo">{{item.coupon_info}}</span>
               <div class="coupon">
                 <span class="price">￥{{item.zk_final_price}}</span>
-                <div class="cou-text animated infinite pulse" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券</div>
+                <div class="cou-text" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券</div>
               </div>
             </div>
           </div>
@@ -187,10 +187,10 @@
         }
       }
       .couponinfo{
-        display: inline-block;
+         display: inline-block;
         float: right;
-        color: #ff5d62;
-        padding-right: 50px;
+        color: #cc0244;
+        padding-right: 20px;
         margin-top: 10px;
         font-size: 12px;
       }
@@ -198,7 +198,7 @@
         font-size: 16px;
         line-height: 30px;
         font-weight: 700;
-        color: #ff5d62;
+        color: #cc0244;
         margin-top: 9px;
         margin-right: 25px;
         height: 30px;
@@ -210,18 +210,35 @@
         }
 
         .cou-text {
-          display: inline-block;
-          float: right;
-          width: 80px;
-          height: 30px;
-          font-weight: normal;
-          background: #ff5d62;
-          line-height: 30px;
-          text-align: center;
+         float: right;
+          position: relative;
+          padding: 0 8px;
+          margin: 0 3.5px;
+          height: 22px;
+          line-height: 22px;
           font-size: 12px;
-          color: #fff;
-          margin-left: 9px;
-          border-radius: 5px;
+          color: #ffffff;
+          background-color: #cc0244;
+          &::before{
+              content: '';
+              position: absolute;
+              left: -3.5px;
+              top: 0;
+              width: 3.5px;
+              height: 22px;
+              background: url(http://cdn.temzt.cn/AppCms/UI/zcshare/quan_left.jpg) 0 0 no-repeat;
+              background-size: 100% 100%;
+          }
+          &::after{
+              content: '';
+              position: absolute;
+              right: -3.5px;
+              top: 0;
+              width: 3.5px;
+              height: 22px;
+              background: url(http://cdn.temzt.cn/AppCms/UI/zcshare/quan_right.jpg) 0 0 no-repeat;
+              background-size: 100% 100%;
+          }
         }
 
       }

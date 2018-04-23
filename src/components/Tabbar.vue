@@ -59,7 +59,7 @@ export default {
         flex: 1;
         padding: 5px 0;
         &.router-link-exact-active {
-            color: #ed424b;
+            color: #cc0244;
         }
     }
     .tab-item-icon {

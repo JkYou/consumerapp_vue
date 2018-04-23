@@ -89,6 +89,7 @@
     width: 100%;
     height: 180px;
     display: flex;
+    background: #ffffff;
     .imgwrap {
       flex: 0 1 150px;
       height: 180px;

@@ -1,11 +1,10 @@
 <template>
+  <div>
+<scroll class="wrapper" :pullup="pullup" @pullup="more">  
 <div>
-<scroll class="wrapper" :pullup="pullup" @pullup="more">
-    
-<div >
-    <Tbanner></Tbanner>
-    <TaoCard></TaoCard>
-    <topbar></topbar>
+    <div class="topImg">
+        <img :src="URL" alt="">
+    </div>
     <ul class="content">
         <li class="item" v-for="(item,index) in totalPageList" :key="index" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">
             <div class="imgcontent">
@@ -29,21 +28,19 @@
 </scroll>
 <Loading :show="loading"></Loading>
 </div>
-
 </template>
 <script>
-  import Tbanner from '@/components/banner'
   import scroll from '@/components/base/scroll'
-  import topbar from '@/components/Topbar'
-  import Bus from '@/components/base/bus'
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
   import { debounce } from "@/util/util"
-  import TaoCard from "@/components/TaoCard"
+  let URL=import("@/assets/img/banner/banner_food.jpg")
 export default {
-    name:"newList",
+    name:"topic",
     data () {
 		return {
+            URL:URL,
+            text:this.$store.state.info.text,
         searchCondition:{  //分页属性
           pageNo:1,
           pageSize:30
@@ -56,10 +53,7 @@ export default {
     },
     components: {
       scroll,
-      topbar,
-      Tbanner,
       Loading,
-      TaoCard
 	},
     computed:{
         totalPageList(){
@@ -76,17 +70,8 @@ export default {
         }
     },
     created(){
-			this.$store.commit("SET_KEYWORD","夏季热卖");
+        this.loadPageList();  //初次访问查询列表
 		},
-     mounted(){
-			Bus.$on('msg', (msg) => {
-        //  this.message = msg
-				 this.$store.commit("SET_KEYWORD", msg);
-				 this.pageList=[];
-				 this.loadPageList();  //初次访问查询列表
-			})
-      this.loadPageList();  //初次访问查询列表
-    },
     methods:{
         getCode(url,text,logo){
         if(!url || !text){return;}
@@ -122,7 +107,7 @@ export default {
             let param = new URLSearchParams();
             console.log(this.searchCondition.pageNo);
             param.append("pageNo", this.searchCondition.pageNo);
-            param.append("q", this.$store.state.keyword);
+            param.append("q", this.text);
             param.append("pageSize", this.searchCondition.pageSize);
             param.append("platform",2);
            this.axios.post('/getCouponProductList',param).then(response => {
@@ -145,8 +130,16 @@ export default {
 </script>
 <style lang="less" scoped>
 .wrapper{
-    width: 100%;
+    width: 10rem;
     height: 800px;
+    .topImg{
+        width: 100%;
+        height: 4.5rem;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
     .content{
     width: 10rem;
     // height:900px;
@@ -258,7 +251,5 @@ export default {
     }
 }
 }
-
 </style>
-
 

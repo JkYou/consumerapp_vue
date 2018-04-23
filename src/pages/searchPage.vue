@@ -132,6 +132,7 @@ export default {
       param.append("platform",2);
       this.axios.post('/getCouponProductList',param).then((response) => {
         this.loading=false;
+        console.info(response.data)
         this.pageList = this.pageList.concat(response.data);
       })
         .catch(function (error) {

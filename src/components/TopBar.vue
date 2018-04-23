@@ -63,9 +63,10 @@ export default {
 <style lang="less" scoped>
 .wrapper-nav{
 	/*height: 40px;*/
-	margin: 0 auto;
+	margin: 5px auto 0px;
 	z-index: 2;
-	overflow-x: hidden;
+  overflow-x: hidden;
+  background: #ffffff;
 	.content{
 		height:90px;
 		width: 600px;

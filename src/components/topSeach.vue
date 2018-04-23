@@ -3,7 +3,7 @@
     <router-link to="/search" class="search">
       <input type="search">
     </router-link>
-     <div class="categrey"><i class="icon iconfont icon-neirong2"></i></div>
+     <div class="categrey"><i class="icon iconfont icon-fenlei"></i></div>
   </section>
 </template>
 
@@ -32,7 +32,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 #top{
-  width: 100%;
+  width: 10rem;
   height: 50px;
   background: rgba(0, 0, 0, 1);
   z-index: 10;

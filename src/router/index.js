@@ -6,6 +6,8 @@ const search = resolve => require(['@/pages/searchPage'], resolve);
 const guide =resolve =>require(['@/pages/guide'],resolve);
 const game =resolve =>require(['@/components/game'],resolve);
 const  navClass = resolve => require(['@/components/navClass'],resolve)
+
+import topic from '@/pages/topic'
 Vue.use(Router)
 
 export default new Router({
@@ -35,6 +37,10 @@ export default new Router({
       path:'/game',
       name:'game',
       component:game
+    },{
+      path:'/topic',
+      name:'topic',
+      component:topic
     }
   ]
 })

@@ -2,7 +2,9 @@
 <template>
   <div>
     <TNav/>  
-    <GoodList/>
+    <!-- <GoodList/>
+     -->
+      <List/>
     <tabbar></tabbar>
   </div>
 
@@ -12,12 +14,14 @@
 import GoodList from '@/components/GoodList'
 import tabbar from '@/components/Tabbar'
 import TNav from '@/components/topSeach'
+import List from '@/components/newList'
     export default {
         name:'index',
         components:{
             GoodList,
             tabbar,
-            TNav
+            TNav,
+            List
         },
         data() {
             return {

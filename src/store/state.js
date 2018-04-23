@@ -1,7 +1,8 @@
 const state = {
     keyword:"",
     btn:false,
-    scrollTo:false
+    scrollTo:false,
+    info:{}
 };
 
 export default state;
