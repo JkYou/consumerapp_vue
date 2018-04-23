@@ -31,13 +31,13 @@ export default {
     goTopic(type){
       let param;
       if(type===1){
-        this.$store.commit("SET_TOPIC",{URL:"../assets/img/banner/banner_food.jpg",text:"水果"});
+        this.$store.commit("SET_TOPIC",{URL:"../../static/banner_food.jpg",text:"水果"});
       }else if(type===2){
-        this.$store.commit("SET_TOPIC",{URL:"../assets/img/banner/banner_man.jpg",text:"潮流男装"});
+        this.$store.commit("SET_TOPIC",{URL:"../../static/banner_man.jpg",text:"潮流男装"});
       }else if(type===3){
-         this.$store.commit("SET_TOPIC",{URL:"../assets/img/banner/banner_spring.jpg",text:"护眼"});
+         this.$store.commit("SET_TOPIC",{URL:"../../static/banner_spring.jpg",text:"护眼"});
       }else{
-         this.$store.commit("SET_TOPIC",{URL:"../assets/img/banner/banner_sun.jpg",text:"旅游"});
+         this.$store.commit("SET_TOPIC",{URL:"../../static/banner_sun.jpg",text:"旅游必备"});
       }
       this.$router.push({ path: '/topic'})
     }

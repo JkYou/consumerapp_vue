@@ -34,12 +34,11 @@
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
   import { debounce } from "@/util/util"
-  let URL=import("@/assets/img/banner/banner_food.jpg")
 export default {
     name:"topic",
     data () {
 		return {
-            URL:URL,
+            URL:this.$store.state.info.URL,
             text:this.$store.state.info.text,
         searchCondition:{  //分页属性
           pageNo:1,
