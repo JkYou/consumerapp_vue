@@ -13,11 +13,11 @@
       <div class="content-search">
         <div class="hotwordPanel">
           <div class="hotHea"><span><i class="icon iconfont icon-huo"></i>热门搜索</span></div>
-          <div class="s-mi-hq" v-for="item in hotword" @click="search(item)"><span class="s-mi-cont-key">{{item}}</span></div>
+          <div class="s-mi-hq" v-for="(item,index) in hotword" :key="index" @click="search(item)"><span class="s-mi-cont-key">{{item}}</span></div>
         </div>
         <div id="root">
           <ul>
-            <li  v-for="item in totalPageList">
+            <li  v-for="(item,index) in totalPageList" :key="index">
               <div class="good-item">
                 <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
                 <div class="item-right">
@@ -43,6 +43,7 @@
   import scroll from '@/components/base/scroll'
   import Loading from '@/components/loading'
   import scrollBtn from "@/components/scrollTop";
+  import { debounce } from "@/util/util"
 export default {
 
   name: 'search',
@@ -111,13 +112,11 @@ export default {
         hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
         document.execCommand('copy');
         document.body.removeChild(hiddenInput);
-        MessageBox('省钱大师', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
+        MessageBox('美券', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
       },500)
     },
 		search (keyword) {
 			this.$store.commit("SET_KEYWORD",keyword);
-			// this.keyword=keyword
-			//  this.loadPageList(1);
       this.pageList=[];
 			console.log(this.$store.state.keyword);
 			 this.loadPageList();
@@ -143,7 +142,7 @@ export default {
     more(){
         // 分页查询
       this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
-      this.loadPageList();
+          debounce(this.loadPageList(),1000,500);
     }
 	}
 };

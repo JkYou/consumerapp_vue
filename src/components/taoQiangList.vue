@@ -1,6 +1,6 @@
 <template>
   <div>
-    <scroll class="timewrap" :scrollX="scX" :listenScroll="true" @scroll="scrollListener">
+    <scroll class="timewrap" :scrollX="scX">
       <ul class="timeCon">
         <li v-for="(it,index) in newTimeArr" :key="index" :class="{'now':it.clsSts ===true}" @click.stop="checkTime(it.hour)">
             <p class="timeDot">{{it.hour}}:00</p>
@@ -8,7 +8,7 @@
         </li>
       </ul>
     </scroll>
-    <scroll class="wrapper-qiang" :pullup="pullup" @pullup="more" :listenScroll="true" @scroll="scrollListener">
+    <scroll class="wrapper-qiang" :pullup="pullup" @pullup="more">
       <ul class="content">
         <!--<Card></Card>-->
         <li v-for="(item,index) in pageList" :key="index">
@@ -40,6 +40,7 @@
   import { MessageBox,Toast} from 'mint-ui'
   import Loading from '@/components/loading'
   import Card from '@/components/Card'
+  import { debounce } from "@/util/util"
   export default {
         name: "taoQiangList",
         components:{
@@ -124,7 +125,6 @@
           })
           .catch( error => {
             this.loading=false;
-            console.log(error)
           })
         },
         getCode(url,text,logo){
@@ -151,12 +151,12 @@
             hiddenInput.setSelectionRange(0, hiddenInput.value.length); // ios
             document.execCommand('copy');
             document.body.removeChild(hiddenInput);
-            MessageBox('省钱大师', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
+            MessageBox('美券', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
           },600)
         },
         more(){
           this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
-          this.loadPageList();
+          debounce(this.loadPageList(),1000,500);
         }
       }
     }

@@ -19,7 +19,7 @@
   </div>
 </template>
 <script>
-import {Toast} from "mint-ui"
+import {Toast,MessageBox} from "mint-ui"
 export default {
   name: "commontpage",
   data() {
@@ -32,6 +32,8 @@ export default {
         if(this.message.length<10){
             Toast("您输入的内容太敷衍哦！");
             return;
+        }else{
+          MessageBox("美券","我们已收到您的反馈，如被采纳将有精美礼品哦！");
         }
         
     }

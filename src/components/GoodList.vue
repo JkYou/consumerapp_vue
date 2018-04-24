@@ -5,7 +5,7 @@
       <ul class="content">
         <Tbanner></Tbanner>
         <TaoCard></TaoCard>
-        <topNav></topNav>
+        <topbar></topbar>
         <li  v-for="(item,index) in totalPageList" :key="index">
           <div class="good-item">
             <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
@@ -14,7 +14,7 @@
               <span class="couponinfo">{{item.coupon_info}}</span>
               <div class="coupon">
                 <span class="price">￥{{item.zk_final_price}}</span>
-                <div class="cou-text" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券</div>
+                <div class="cou-text animated infinite pulse" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">领券</div>
               </div>
             </div>
           </div>
@@ -27,8 +27,9 @@
 
 <script>
   import Tbanner from '@/components/banner'
-  import topNav from '@/components/newNav'
+  
   import scroll from '@/components/base/scroll'
+  import topbar from '@/components/Topbar'
   import Bus from '@/components/base/bus'
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
@@ -52,14 +53,14 @@
     },
     components: {
       scroll,
+      topbar,
       Tbanner,
       Loading,
-      TaoCard,
-      topNav
+      TaoCard
 		},
 		created(){
 			this.$store.commit("SET_KEYWORD","夏季热卖");
-		},
+		}, 
    computed:{
      //15937686861
      totalPageList(){
@@ -110,7 +111,7 @@
           document.execCommand('copy');
           document.body.removeChild(hiddenInput);
           console.log(this.taoCode);
-          MessageBox('省钱大师', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
+          MessageBox('美券', `淘口令 ${this.taoCode} 已复制到剪切板，打开【手机淘宝】即可领券下单`);
         },500)
       },
       loadPageList(){
@@ -186,10 +187,10 @@
         }
       }
       .couponinfo{
-         display: inline-block;
+        display: inline-block;
         float: right;
-        color: #cc0244;
-        padding-right: 20px;
+        color: #ff5d62;
+        padding-right: 50px;
         margin-top: 10px;
         font-size: 12px;
       }
@@ -197,7 +198,7 @@
         font-size: 16px;
         line-height: 30px;
         font-weight: 700;
-        color: #cc0244;
+        color: #ff5d62;
         margin-top: 9px;
         margin-right: 25px;
         height: 30px;
@@ -209,35 +210,18 @@
         }
 
         .cou-text {
-         float: right;
-          position: relative;
-          padding: 0 8px;
-          margin: 0 3.5px;
-          height: 22px;
-          line-height: 22px;
+          display: inline-block;
+          float: right;
+          width: 80px;
+          height: 30px;
+          font-weight: normal;
+          background: #ff5d62;
+          line-height: 30px;
+          text-align: center;
           font-size: 12px;
-          color: #ffffff;
-          background-color: #cc0244;
-          &::before{
-              content: '';
-              position: absolute;
-              left: -3.5px;
-              top: 0;
-              width: 3.5px;
-              height: 22px;
-              background: url(http://cdn.temzt.cn/AppCms/UI/zcshare/quan_left.jpg) 0 0 no-repeat;
-              background-size: 100% 100%;
-          }
-          &::after{
-              content: '';
-              position: absolute;
-              right: -3.5px;
-              top: 0;
-              width: 3.5px;
-              height: 22px;
-              background: url(http://cdn.temzt.cn/AppCms/UI/zcshare/quan_right.jpg) 0 0 no-repeat;
-              background-size: 100% 100%;
-          }
+          color: #fff;
+          margin-left: 9px;
+          border-radius: 5px;
         }
 
       }
