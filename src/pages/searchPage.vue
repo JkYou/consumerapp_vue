@@ -2,7 +2,7 @@
 <div class="wrap">
 		<div class="head">
 			<div class="searchbox">
-				<input type="search" autofocus @keypress.enter="search(keyword)" v-model="keyword" placeholder="尽情搜索">
+				<input type="search" autofocus @keypress.enter="search(keyword)" v-model="keyword" placeholder="复制淘宝商品标题找券，领券省钱">
 			</div>
 			<div class="searchbtn">
 				<button class="search" @click="search(keyword)">搜索</button>
@@ -154,7 +154,7 @@ export default {
 	/*width: 100%;*/
 	background-color: #F3F3F3;
   .head {
-    background-color: #ff5d62;
+    background-color: #000000;
     position: fixed;
     top: 0;
     left: 0;
@@ -180,7 +180,7 @@ export default {
         height: 0.8rem;
         width: 100%;
         border: none;
-        font-size: 16px;
+        font-size: 13px;
         padding-left: 1rem;
         background-image: url('../assets/search.png');
         background-repeat: no-repeat;
@@ -197,7 +197,7 @@ export default {
         color:#ffffff;
         border: none;
         outline: none;
-        background:#ff5d62;
+        background:#000000;
         font-size: 16px;
         line-height: 1.2;
       }
@@ -216,18 +216,18 @@ export default {
       line-height: 16px;
       margin-left: 5px;
       margin-top: 5px;
-      color: #ff5d62;
+      color: #cc0244;
     }
     .s-mi-hq{
       float: left;
-      border: 1px solid #ff5d62;
+      border: 1px solid #cc0244;
       margin-right: 10px;
       margin-top: 20px;
       padding: 1px 5px;
       border-radius: 5px;
       color: inherit;
       .s-mi-cont-key{
-        color: #ff5d62;
+        color: #cc0244;
       }
     }
   }
@@ -265,7 +265,7 @@ export default {
       .couponinfo{
         display: inline-block;
         float: right;
-        color: #ff5d62;
+        color: #cc0244;
         padding-right: 50px;
         margin-top: 10px;
         font-size: 12px;
@@ -286,7 +286,7 @@ export default {
 			    font-size: 16px;
 			    line-height: 16px;
 			    font-weight: 700;
-			    color: #ff5d62;
+			    color: #cc0244;
 			    margin-top: 9px;
 			    margin-right: 25px;
 			    .price{
@@ -301,7 +301,7 @@ export default {
 			    	width: 80px;
 			    	height: 30px;
 			    	font-weight: normal;
-			    	background: #ff5d62;
+			    	background: #cc0244;
 			    	line-height: 30px;
 			    	text-align: center;
 			    	font-size: 12px;

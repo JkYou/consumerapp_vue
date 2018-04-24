@@ -3,7 +3,7 @@
     <router-link to="/search" class="search">
       <input type="search">
     </router-link>
-     <div class="categrey"><i class="icon iconfont icon-fenlei"></i></div>
+     <div class="categrey" @click.stop="openDig"><i class="icon iconfont icon-yijianfankui"></i></div>
   </section>
 </template>
 
@@ -21,6 +21,9 @@
         let scroll=document.body.scrollTop;
         this.scrolled=scroll >100? true:false;
         console.log(e);
+      },
+      openDig(){
+        this.$router.push({path:"/comment"})
       }
     },
     mounted(){

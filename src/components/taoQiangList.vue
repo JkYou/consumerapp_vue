@@ -180,17 +180,26 @@
         border-right: 1px solid #ffffff;
         p{
           text-align: center;
-          &:last-child{
+          &:last-child{  
             margin-top: 5px;
           }
         }
       }
       .now{
-        background: #ff5d62;
+        background: #cc0244;
         width: 140px;
         padding: 10px 5px 10px 5px;
         color: #ffffff;
         border-right: 1px solid #ffffff;
+        position: relative;
+        &:before,&:after{  
+         border: solid transparent;
+        content: ' ';
+        height: 0;
+        left: 100%;    //根据三角形的位置，可以随意更改。
+        position: absolute;
+        width: 0;
+        }
       }
     }
   }
@@ -201,7 +210,7 @@
       margin: 0 auto;
       width: 100%;
       background: #ffffff;
-      heihgt:145px;
+      height:145px;
       li{
         display: flex;
         height: 115px;
@@ -283,7 +292,7 @@
             height: 30px;
             .pri{
               float: left;
-              color: #ff5d62;
+              color: #cc0244;
               font-size: 20px;
               font-weight: 700;
               .pt{
@@ -303,7 +312,7 @@
               width: 50px;
               height: 30px;
               color: #fff;
-              background: #ff5d62;
+              background: #cc0244;
               line-height: 30px;
               text-align: center;
               padding: 0 5px;
@@ -314,7 +323,6 @@
           }
         }
       }
-
     }
     .nullSts{
       width: 100%;

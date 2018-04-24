@@ -1,11 +1,11 @@
 <template>
 <div>
 <scroll class="wrapper" :pullup="pullup" @pullup="more">
-    
+
 <div >
     <Tbanner></Tbanner>
+  <topNav></topNav>
     <TaoCard></TaoCard>
-    <topbar></topbar>
     <ul class="content">
         <li class="item" v-for="(item,index) in totalPageList" :key="index" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">
             <div class="imgcontent">
@@ -40,6 +40,7 @@
   import Loading from '@/components/loading'
   import { debounce } from "@/util/util"
   import TaoCard from "@/components/TaoCard"
+  import topNav from '@/components/newNav'
 export default {
     name:"newList",
     data () {
@@ -59,7 +60,8 @@ export default {
       topbar,
       Tbanner,
       Loading,
-      TaoCard
+      TaoCard,
+      topNav
 	},
     computed:{
         totalPageList(){
@@ -70,7 +72,7 @@ export default {
                  }
                  Object.assign(value,{"coupon_final_info":value.coupon_info.split("减")[1]});
                  let final_price=parseFloat(value.zk_final_price)-parseFloat(value.coupon_final_info.split("元")[0]);
-                 Object.assign(value,{"final_price":final_price.toFixed(2)}) 
+                 Object.assign(value,{"final_price":final_price.toFixed(2)})
              })
              return newList;
         }
@@ -140,7 +142,7 @@ export default {
         debounce(this.loadPageList(),1000,500);
       }
     }
-  
+
 }
 </script>
 <style lang="less" scoped>
@@ -185,7 +187,7 @@ export default {
             text-overflow:ellipsis;
             padding: 0 5px;
             }
-           
+
         }
         .price{
             margin-top:10px;
@@ -209,19 +211,19 @@ export default {
                 }
 
             }
-            
+
         }
         .num{
             overflow: hidden;
             height: 30px;
             line-height: 30px;
-            padding:0 10px 3px; 
+            padding:0 10px 3px;
             border-bottom: 1px solid #f3f3f3;
             .peo{
                 float: left;
                 font-size: 12px;
                 color: #969ba3;
-               
+
             }
             .cou-text {
                 float: right;
