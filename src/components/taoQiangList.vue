@@ -10,7 +10,6 @@
     </scroll>
     <scroll class="wrapper-qiang" :pullup="pullup" @pullup="more">
       <ul class="content">
-        <!--<Card></Card>-->
         <li v-for="(item,index) in pageList" :key="index">
             <div class="tao-lf"><img v-lazy="item.pic_url" alt=""></div>
             <div class="tao-rg">
@@ -54,7 +53,7 @@
             pageList:[],
             searchCondition:{  //分页属性
               pageNo:"1",
-              pageSize:"30"
+              pageSize:"10"
             },
             taoCode:'',
             loading:false,
@@ -90,14 +89,8 @@
       },
       mounted(){
         this.loadPageList();  //初次访问查询列表
-        window.addEventListener('scroll',function(e){
-          console.log(e);
-        })
       },
       methods:{
-        scrollListener(pos){
-          console.log(pos);
-        },
         checkTime(hour){
           let date=new Date();
           let month= (date.getMonth()+1).toString().length>1 ? (date.getMonth()+1) : '0'+(date.getMonth()+1);
@@ -180,7 +173,7 @@
         border-right: 1px solid #ffffff;
         p{
           text-align: center;
-          &:last-child{  
+          &:last-child{
             margin-top: 5px;
           }
         }
@@ -191,15 +184,6 @@
         padding: 10px 5px 10px 5px;
         color: #ffffff;
         border-right: 1px solid #ffffff;
-        position: relative;
-        &:before,&:after{  
-         border: solid transparent;
-        content: ' ';
-        height: 0;
-        left: 100%;    //根据三角形的位置，可以随意更改。
-        position: absolute;
-        width: 0;
-        }
       }
     }
   }
@@ -210,7 +194,6 @@
       margin: 0 auto;
       width: 100%;
       background: #ffffff;
-      height:145px;
       li{
         display: flex;
         height: 115px;

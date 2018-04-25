@@ -6,7 +6,6 @@
 </template>
 
 <script  type="text/ecmascript-6">
-import scroll from '@/components/base/scroll'
 import tabber from '@/components/Tabbar'
 import taoQiang from '@/components/taoQiangList'
 
@@ -16,17 +15,9 @@ export default {
 
   data () {
     return {
-      pullup:true,
-      data:[1,2,4,1,2,4,5,6564,5345,543,34534,5345,345,354,5435,345,534],
-    }
-  },
-  methods: {
-    loadData() {
-        console.log("数据加载中")
     }
   },
    components: {
-	   scroll,
 	   tabber,
      taoQiang
     }
