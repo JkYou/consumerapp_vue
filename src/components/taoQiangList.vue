@@ -1,6 +1,6 @@
 <template>
   <div>
-    <scroll class="timewrap" :scrollX="scX">
+    <scroll class="timewrap" :scrollX="scX" :scrollTo="true">
       <ul class="timeCon">
         <li v-for="(it,index) in newTimeArr" :key="index" :class="{'now':it.clsSts ===true}" @click.stop="checkTime(it.hour)">
             <p class="timeDot">{{it.hour}}:00</p>

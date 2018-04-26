@@ -116,6 +116,9 @@
           this.scrollTo(0,0,800,'easing');
           Bus.$emit('lisScr', false)
         })
+        if(scrollTo){
+          this.scrollToElement(".now",500,true)
+        }
       },
       disable() {
         // 代理better-scroll的disable方法

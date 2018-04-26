@@ -1,9 +1,9 @@
 <template>
   <div class="root" @click.stop="wechatStatus(1)">
-    <h3 class="animated bounceInDown">使用攻略</h3>
+    <h3 class="animated bounceInDown">美券使用攻略</h3>
     <div class="content">
-      <p class="animated fadeInLeft"><b>方案1：</b>在【手机淘宝】中搜索自己喜欢的商品，复制商品信息到省钱大师，搜索查看该商品是否有优惠，若有，则点击领取优惠券后，优惠券信息自动复制，打开手机淘宝客户端，即可领取！</p>
-      <p class="lastp animated fadeInLeftBig"><b>方案2：</b>直接在省钱大师中查找自己喜欢的商品，并点击“领券”，然后打开【手机淘宝】即可自动领取优惠券，然后再购买即可！</p>
+      <p class="animated fadeInLeft"><b>方案1：</b>淘宝选取商品-->复制商品标题--->粘贴至美券搜索-->点击搜索结果--->打开手机淘宝自动领取优惠券-->加入购物车下单</p>
+      <p class="lastp animated fadeInLeftBig"><b>方案2：</b>直接在美券搜索商品并复制淘口令--->打开手机淘宝自动领取优惠券-->加入购物车下单。</p>
       <p class="wram animated fadeInLeftBig">* 部分链接使用微信浏览器可能无法打开，请点击微信右上角按钮选择使用其他浏览器浏览！</p>
     </div>
       <div class="info">

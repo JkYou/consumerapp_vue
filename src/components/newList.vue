@@ -9,7 +9,7 @@
     <ul class="content">
         <li class="item" v-for="(item,index) in totalPageList" :key="index" @touchend="getCode(item.coupon_click_url,item.title,item.pict_url)"  @click="clipBordText">
             <div class="imgcontent">
-                <img :src="item.pict_url" alt="">
+                <img v-lazy="item.pict_url" alt="">
             </div>
              <div class="h3"><i class="icon iconfont icon-tianmao"></i><span>{{item.title}}</span></div>
             <div class="price">
