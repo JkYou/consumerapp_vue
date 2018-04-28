@@ -22,8 +22,5 @@ www.19buy.top
 
 本人博客地址：[博客](http://www.19buy.top:8088)
 
-```
-#本地运行http
-http-server .
 
 
