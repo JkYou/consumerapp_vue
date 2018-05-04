@@ -1,6 +1,9 @@
 <template>
 <div class="root" >
+  <keep-alive>
   <taoQiang></taoQiang>
+  </keep-alive>
+  
 	<tabber></tabber>
 </div>
 </template>

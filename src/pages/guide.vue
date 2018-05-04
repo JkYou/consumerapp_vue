@@ -1,4 +1,7 @@
 <template>
+<keep-alive>
+
+
   <div class="root" @click.stop="wechatStatus(1)">
     <h3 class="animated bounceInDown">美券使用攻略</h3>
     <div class="content">
@@ -10,7 +13,7 @@
         <div class="infowrap">
           <span @click.stop="wechatStatus(0)"><i class="icon iconfont icon-weixin" style="color: rgb(80, 182, 116);"></i></span>
           <span><a href="https://weibo.com/u/5119880962?refer_flag=1001030102_&is_hot=1" alt=""><i class="icon iconfont icon-weibo" style="color: rgb(211, 32, 36)"></i></a></span>
-          <span><a href="http://www.blog.19buy.top/" alt=""><i class="icon iconfont icon-GitHub" style="color: rgb(25, 23, 23)"></i></a></span>
+          <!--<span><a href="http://www.blog.19buy.top/" alt=""><i class="icon iconfont icon-GitHub" style="color: rgb(25, 23, 23)"></i></a></span>-->
         </div>
       </div>
      <div class="imgwrap animated zoomIn" v-show="wechat"><img src="../assets/wchat.jpg" alt=""></div>
@@ -19,6 +22,7 @@
     <router-view></router-view>
     <tabbar></tabbar>
   </div>
+  </keep-alive>
 </template>
 <script>
   import tabbar from '@/components/Tabbar'

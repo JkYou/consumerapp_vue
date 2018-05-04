@@ -2,7 +2,7 @@
   <div class="banner">
     <mt-swipe :auto="8000">
       <mt-swipe-item v-for="(item,index) in imgArr" :key="index" >
-        <img :src="item.URL" @click="goTopic(item)">
+        <img v-lazy="item.URL" @click="goTopic(item)">
       </mt-swipe-item>
 
     </mt-swipe>

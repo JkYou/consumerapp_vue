@@ -4,7 +4,10 @@
     <TNav/>  
     <!-- <GoodList/>
      -->
-      <List/>
+     <keep-alive>
+        <List/>
+     </keep-alive>
+      
     <tabbar></tabbar>
   </div>
 
