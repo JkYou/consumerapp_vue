@@ -88,6 +88,7 @@ export default {
       this.loadPageList();  //初次访问查询列表
     },
     methods:{
+      //getCode
         getCode(url,text,logo){
         if(!url || !text){return;}
         let params = new URLSearchParams();
