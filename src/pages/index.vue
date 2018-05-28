@@ -1,27 +1,23 @@
 
 <template>
   <div>
-    <TNav/>  
-    <!-- <GoodList/>
-     -->
+    <TNav/>
      <keep-alive>
         <List/>
      </keep-alive>
-      
+
     <tabbar></tabbar>
   </div>
 
 </template>
 
 <script type="text/ecmascript-6">
-import GoodList from '@/components/GoodList'
 import tabbar from '@/components/Tabbar'
 import TNav from '@/components/topSeach'
 import List from '@/components/newList'
     export default {
         name:'index',
         components:{
-            GoodList,
             tabbar,
             TNav,
             List

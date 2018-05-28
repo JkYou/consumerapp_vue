@@ -100,16 +100,13 @@
         position: absolute;
         top: 32%;
         left: 10px;
-
         span {
           background: rgba(0, 0, 0, .5);
           color: #ffffff;
           display: inline-block;
           padding: 5px;
         }
-
       }
-
     }
     .taowrap {
       flex: 1;
@@ -118,7 +115,6 @@
         height: 50px;
         background: url("../assets/onlg.png") no-repeat;
         background-size: cover;
-
       }
       .con {
         padding-top: 10px;
