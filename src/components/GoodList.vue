@@ -58,7 +58,6 @@
 			this.$store.commit("SET_KEYWORD","夏季热卖");
 		},
    computed:{
-     //15937686861
      totalPageList(){
        let newList=Array.from(new Set(this.pageList))
        for(let i=0;i<newList.length;i++){
