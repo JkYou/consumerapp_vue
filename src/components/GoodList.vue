@@ -5,7 +5,6 @@
       <ul class="content">
         <Tbanner></Tbanner>
         <TaoCard></TaoCard>
-        <topbar></topbar>
         <li  v-for="(item,index) in totalPageList" :key="index">
           <div class="good-item">
             <div class="item-left"><img v-lazy="item.pict_url" alt=""></div>
@@ -27,9 +26,7 @@
 
 <script>
   import Tbanner from '@/components/banner'
-  
   import scroll from '@/components/base/scroll'
-  import topbar from '@/components/Topbar'
   import Bus from '@/components/base/bus'
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
@@ -53,14 +50,13 @@
     },
     components: {
       scroll,
-      topbar,
       Tbanner,
       Loading,
       TaoCard
 		},
 		created(){
 			this.$store.commit("SET_KEYWORD","夏季热卖");
-		}, 
+		},
    computed:{
      //15937686861
      totalPageList(){

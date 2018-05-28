@@ -34,7 +34,6 @@
 <script>
   import Tbanner from '@/components/banner'
   import scroll from '@/components/base/scroll'
-  import topbar from '@/components/Topbar'
   import Bus from '@/components/base/bus'
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
@@ -57,7 +56,6 @@ export default {
     },
     components: {
       scroll,
-      topbar,
       Tbanner,
       Loading,
       TaoCard,
