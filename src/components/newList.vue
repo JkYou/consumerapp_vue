@@ -38,7 +38,7 @@
   import { MessageBox } from 'mint-ui'
   import Loading from '@/components/loading'
   import { debounce } from "@/util/util"
-  import TaoCard from "@/components/TaoCard"
+  import TaoCard from "@/components/taoCard"
   import topNav from '@/components/newNav'
 export default {
     name:"newList",
