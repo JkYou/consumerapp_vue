@@ -1,6 +1,7 @@
 <template>
 <div class="wrap">
 		<div class="head">
+      <i class="icon iconfont icon-xiangzuojiantou" @click="$router.back(-1)"></i>
 			<div class="searchbox">
 				<input type="search" autofocus @keypress.enter="search(keyword)" v-model="keyword" placeholder="复制淘宝商品标题找券，领券省钱">
 			</div>
@@ -163,10 +164,14 @@ export default {
     display: -webkit-flex;
     display: flex;
     align-items: center;
+    i {
+      color: #ffffff;
+      padding-left: 0.4rem;
+      }
     .back {
       width: 0.533333rem;
       height: 0.533333rem;
-      padding-left: 0.4rem;
+      
       img {
         width: 100%;
         height: 100%;

@@ -1,10 +1,6 @@
 <template>
   <div>
-      <header>
-          <router-link to="/">
-          <i class="icon iconfont icon-xiangzuojiantou"></i>
-          </router-link>
-      </header>
+      <Top/>
       <div class="loginform">
           <h3>我要吐槽</h3>	
 			<!-- <div class="inputbox">
@@ -19,6 +15,7 @@
   </div>
 </template>
 <script>
+import Top from "@/components/Top";
 import {Toast,MessageBox} from "mint-ui"
 export default {
   name: "commontpage",
@@ -26,6 +23,9 @@ export default {
     return {
       message: ""
     };
+  },
+  components:{
+    Top
   },
   methods: {
     submit() {
@@ -41,19 +41,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-header {
-  width: 10rem;
-  height: 45px;
-  line-height: 45px;
-  font-size: 16px;
-  color: #ffffff;
-  background: #cc0244;
-  padding-left: 10px;
-  position: relative;
-  i {
-    color: #ffffff;
-  }
-}
+
 .loginform {
   display: block;
   margin: 30px auto;
