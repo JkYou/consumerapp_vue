@@ -164,22 +164,24 @@
       display: flex;
       margin: 0 auto;
       height: 55px;
-      width: 900px;
+      width: 1100px;
+      font-size: 0;
       li{
-        width: 140px;
+        width: 150px;
         padding: 10px 5px 10px 5px;
         color: #ffffff;
         background: #666666;
         border-right: 1px solid #ffffff;
         p{
           text-align: center;
+          font-size: 0.133333rem;
           &:last-child{
             margin-top: 5px;
           }
         }
       }
       .now{
-        background: #cc0244;
+        background: #E11E1B;
         width: 140px;
         padding: 10px 5px 10px 5px;
         color: #ffffff;
@@ -275,7 +277,7 @@
             height: 30px;
             .pri{
               float: left;
-              color: #cc0244;
+              color: #E11E1B;
               font-size: 20px;
               font-weight: 700;
               .pt{
@@ -295,7 +297,7 @@
               width: 50px;
               height: 30px;
               color: #fff;
-              background: #cc0244;
+              background: #E11E1B;
               line-height: 30px;
               text-align: center;
               padding: 0 5px;

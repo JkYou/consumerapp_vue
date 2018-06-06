@@ -11,8 +11,8 @@
       <div class="taowrap">
         <div class="top"></div>
         <div class="con">
-          <a :href="productList[0].item_url"><img :src="productList[0].pict_url" alt=""></a>
-          <a :href="productList[1].item_url"><img :src="productList[1].pict_url" alt=""></a>
+          <a :href="productList[0].item_url?productList[0].item_url:''"><img :src="productList[0].pict_url" alt=""></a>
+          <a :href="productList[1].item_url?productList[1].item_url:''"><img :src="productList[1].pict_url" alt=""></a>
         </div>
       </div>
     </div>
@@ -75,7 +75,6 @@
         param.append("is_tmall", true);
         this.axios.post('/getProductList', param).then(res => {
           this.productList = JSON.parse(res.data.data).tbk_item_get_response.results.n_tbk_item;
-          console.log(this.productList)
         }).catch(err => {
           throw Error(err);
         })

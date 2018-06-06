@@ -55,7 +55,7 @@
       /** * 当数据更新后，刷新scroll的延时。 */
       refreshDelay: {
         type: Number,
-        default: 20
+        default: 200
       },
       /** * 点击触发返回顶部 */
       scrollToTop:{
@@ -65,7 +65,7 @@
     },
     mounted() {
       // 保证在DOM渲染完毕后初始化better-scroll
-      this.$nextTick(function () {
+      this.$nextTick( () => {
         // DOM 现在更新了
         // `this` 绑定到当前实例
         this._initScroll()
@@ -80,7 +80,7 @@
         this.scroll = new BScroll(this.$refs.wrapper, {
           probeType: this.probeType,
           click: this.click,
-          scrollX: this.scrollX
+          scrollX: this.scrollX,
         })
         // 是否派发滚动事件
         if (this.listenScroll) {

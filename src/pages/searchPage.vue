@@ -59,7 +59,7 @@ export default {
       hotword:["日用","男装","女装","零食","办公","电脑"],
 			searchCondition:{  //分页属性
 	          pageNo:1,
-	          pageSize:30
+	          pageSize:20
 	        },
       pageList:[],
       loading:false
@@ -154,7 +154,7 @@ export default {
 	/*width: 100%;*/
 	background-color: #F3F3F3;
   .head {
-    background-color: #000000;
+    background-color: #E11E1B;
     position: fixed;
     top: 0;
     left: 0;
@@ -201,7 +201,7 @@ export default {
         color:#ffffff;
         border: none;
         outline: none;
-        background:#000000;
+        background:#E11E1B;
         font-size: 16px;
         line-height: 1.2;
       }
@@ -220,18 +220,18 @@ export default {
       line-height: 16px;
       margin-left: 5px;
       margin-top: 5px;
-      color: #cc0244;
+      color: #E11E1B;
     }
     .s-mi-hq{
       float: left;
-      border: 1px solid #cc0244;
+      border: 1px solid #E11E1B;
       margin-right: 10px;
       margin-top: 20px;
       padding: 1px 5px;
       border-radius: 5px;
       color: inherit;
       .s-mi-cont-key{
-        color: #cc0244;
+        color: #E11E1B;
       }
     }
   }
@@ -269,7 +269,7 @@ export default {
       .couponinfo{
         display: inline-block;
         float: right;
-        color: #cc0244;
+        color: #E11E1B;
         padding-right: 50px;
         margin-top: 10px;
         font-size: 12px;
@@ -290,7 +290,7 @@ export default {
 			    font-size: 16px;
 			    line-height: 16px;
 			    font-weight: 700;
-			    color: #cc0244;
+			    color: #E11E1B;
 			    margin-top: 9px;
 			    margin-right: 25px;
 			    .price{
@@ -305,7 +305,7 @@ export default {
 			    	width: 80px;
 			    	height: 30px;
 			    	font-weight: normal;
-			    	background: #cc0244;
+			    	background: #E11E1B;
 			    	line-height: 30px;
 			    	text-align: center;
 			    	font-size: 12px;

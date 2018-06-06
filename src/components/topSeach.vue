@@ -37,7 +37,7 @@
 #top{
   width: 10rem;
   height: 50px;
-  background: rgba(0, 0, 0, 1);
+  background: #E11E1B;
   z-index: 10;
   position: absolute;
   display: flex;

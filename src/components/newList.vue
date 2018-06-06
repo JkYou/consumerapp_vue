@@ -1,6 +1,6 @@
 <template>
 <div>
-<scroll class="wrapper" :pullup="pullup" @pullup="more">
+<scroll class="wrapper" :pullup="pullup" @pullup="more" :pulldown="true" @pulldown="less">
 
 <div >
     <Tbanner></Tbanner>
@@ -46,7 +46,7 @@ export default {
 		return {
         searchCondition:{  //分页属性
           pageNo:1,
-          pageSize:30
+          pageSize:20
         },
         pageList:[],
         pullup:true,
@@ -139,6 +139,9 @@ export default {
           // 分页查询
         this.searchCondition.pageNo = parseInt(this.searchCondition.pageNo) + 1;
         debounce(this.loadPageList(),1000,500);
+      },
+      less(){
+          console.log("下拉刷新");
       }
     }
 
@@ -147,7 +150,7 @@ export default {
 <style lang="less" scoped>
 .wrapper{
     width: 100%;
-    height: 800px;
+    height: 16.453333rem;
     .content{
     width: 10rem;
     // height:900px;
@@ -176,7 +179,7 @@ export default {
             width: 100%;
             i{
                 width: 20%;
-                color: rgb(251, 0, 61);
+                color: #E11E1B;
                 padding-left: 8px;
             }
             span{
@@ -203,7 +206,7 @@ export default {
                 p{
                     text-align: left;
                     font-size: 12px;
-                    color: #cc0244;
+                    color: #E11E1B;
                     span{
                         font-size: 18px;
                     }
@@ -233,7 +236,7 @@ export default {
                 line-height: 22px;
                 font-size: 12px;
                 color: #ffffff;
-                background-color: #cc0244;
+                background-color: #E11E1B;
                 &::before{
                     content: '';
                     position: absolute;

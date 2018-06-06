@@ -80,7 +80,7 @@ export default {
   margin: 30px auto;
   width: 80%;
   height: 40px;
-  background-color: #cc0244;
+  background-color: #E11E1B;
   outline: none;
   border: none;
   font-size: 16px;

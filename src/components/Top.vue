@@ -15,7 +15,7 @@ header {
   line-height: 45px;
   font-size: 16px;
   color: #ffffff;
-  background: #000000;
+  background: #E11E1B;
   padding-left: 10px;
   position: relative;
   i {
