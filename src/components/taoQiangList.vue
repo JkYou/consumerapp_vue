@@ -174,7 +174,7 @@
         border-right: 1px solid #ffffff;
         p{
           text-align: center;
-          font-size: 12px;
+          font-size: 0.266667rem;
           &:last-child{
             margin-top: 5px;
           }
