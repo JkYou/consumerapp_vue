@@ -20,7 +20,7 @@ www.19buy.top
 ![code](./static/arcode.png)
 
 
-本人博客地址：[博客](http://www.19buy.top:8088)
+本人博客地址：[博客](http://www.blog.19buy.top)
 
 
 
